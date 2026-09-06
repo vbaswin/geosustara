@@ -137,12 +137,15 @@
     var load = function () {
       if (started) return;
       started = true;
+      // data-base is written by the layout and carries the deployment path prefix, so these
+      // resolve on a hosted sub-path (GitHub Pages project site) as well as at the root.
+      var base = (document.documentElement.getAttribute('data-base') || '/').replace(/\/$/, '');
       var css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = '/assets/vendor/leaflet.css';
+      css.href = base + '/assets/vendor/leaflet.css';
       document.head.appendChild(css);
       var s = document.createElement('script');
-      s.src = '/assets/vendor/leaflet.js';
+      s.src = base + '/assets/vendor/leaflet.js';
       s.onload = function () {
         try {
           var lat = parseFloat(el.dataset.lat), lng = parseFloat(el.dataset.lng);

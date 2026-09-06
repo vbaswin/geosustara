@@ -23,8 +23,8 @@ eleventyComputed:
   <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
   <div class="wrap phero-in">
     <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="/">Home</a><span aria-hidden="true">/</span>
-      <a href="/services/">Services</a><span aria-hidden="true">/</span>
+      <a href="{{ '/' | url }}">Home</a><span aria-hidden="true">/</span>
+      <a href="{{ '/services/' | url }}">Services</a><span aria-hidden="true">/</span>
       <span aria-current="page">{{ service.shortTitle }}</span>
     </nav>
     <span class="label" style="display:block;margin-top:22px">Service {{ service.n }}</span>
@@ -79,7 +79,7 @@ eleventyComputed:
             {%- if s.slug == service.slug %}
             <span>{{ s.shortTitle }}</span>
             {%- else %}
-            <a href="/services/{{ s.slug }}/">{{ s.shortTitle }}</a>
+            <a href="{{ ('/services/' + s.slug + '/') | url }}">{{ s.shortTitle }}</a>
             {%- endif %}
           </li>
           {%- endfor %}

@@ -1,6 +1,8 @@
 {#- Structured data as a single @graph so entities can cross-reference by @id. -#}
-{%- set orgId  = siteUrl + "/#organization" -%}
-{%- set siteId = siteUrl + "/#website" -%}
+{#- @ids are built from homeUrl, not siteUrl: siteUrl is the bare origin, and on a hosted
+    sub-path (GitHub Pages project site) the prefix has to be part of the identity. -#}
+{%- set orgId  = homeUrl + "#organization" -%}
+{%- set siteId = homeUrl + "#website" -%}
 {#- Breadcrumbs: explicit front matter wins; otherwise derive from page type. -#}
 {%- set crumbs = breadcrumbs -%}
 {%- if not crumbs and service -%}
@@ -27,7 +29,7 @@
       "@id": {{ orgId | dump | safe }},
       "name": {{ site.name | dump | safe }},
       "alternateName": {{ site.shortName | dump | safe }},
-      "url": {{ siteUrl | dump | safe }},
+      "url": {{ homeUrl | dump | safe }},
       "description": {{ site.description | dump | safe }},
       "email": {{ site.contact.email | dump | safe }},
       "telephone": {{ site.contact.phoneE164 | dump | safe }},
@@ -75,7 +77,7 @@
               "@type": "Service",
               "name": {{ s.title | dump | safe }},
               "description": {{ s.summary | dump | safe }},
-              "url": {{ ("/services/" + s.slug + "/" | absUrl(siteUrl)) | dump | safe }}
+              "url": {{ (("/services/" + s.slug + "/") | absUrl(siteUrl)) | dump | safe }}
             }
           }{{ "," if not loop.last }}
           {%- endfor %}
@@ -85,7 +87,7 @@
     {
       "@type": "WebSite",
       "@id": {{ siteId | dump | safe }},
-      "url": {{ siteUrl | dump | safe }},
+      "url": {{ homeUrl | dump | safe }},
       "name": {{ site.name | dump | safe }},
       "description": {{ site.description | dump | safe }},
       "publisher": { "@id": {{ orgId | dump | safe }} },
@@ -95,7 +97,7 @@
     {%- if crumbs %},
     {
       "@type": "BreadcrumbList",
-      "@id": {{ (page.url + "#breadcrumbs" | absUrl(siteUrl)) | dump | safe }},
+      "@id": {{ ((page.url | absUrl(siteUrl)) + "#breadcrumbs") | dump | safe }},
       "itemListElement": [
         {%- for c in crumbs %}
         {
@@ -114,7 +116,7 @@
     {%- if service %},
     {
       "@type": "Service",
-      "@id": {{ (page.url + "#service" | absUrl(siteUrl)) | dump | safe }},
+      "@id": {{ ((page.url | absUrl(siteUrl)) + "#service") | dump | safe }},
       "name": {{ service.title | dump | safe }},
       "description": {{ service.summary | dump | safe }},
       "serviceType": {{ service.title | dump | safe }},
@@ -136,7 +138,7 @@
     {%- if faqList %},
     {
       "@type": "FAQPage",
-      "@id": {{ (page.url + "#faq" | absUrl(siteUrl)) | dump | safe }},
+      "@id": {{ ((page.url | absUrl(siteUrl)) + "#faq") | dump | safe }},
       "mainEntity": [
         {%- for f in faqList %}
         {
@@ -152,7 +154,7 @@
     {%- if layout == "layouts/post.njk" %},
     {
       "@type": "BlogPosting",
-      "@id": {{ (page.url + "#article" | absUrl(siteUrl)) | dump | safe }},
+      "@id": {{ ((page.url | absUrl(siteUrl)) + "#article") | dump | safe }},
       "headline": {{ title | dump | safe }},
       "description": {{ (description or site.description) | dump | safe }},
       "datePublished": {{ (page.date | dateISO) | dump | safe }},

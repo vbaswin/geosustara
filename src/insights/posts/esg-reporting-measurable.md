@@ -114,6 +114,6 @@ Before a sustainability figure goes into a report:
 A figure that clears all six is defensible. One that does not is a question waiting to be asked.
 
 ESG and sustainability reporting sits within our
-[sustainability and eco solutions](/services/sustainability-eco-solutions/) work. If you are
+[sustainability and eco solutions]({{ '/services/sustainability-eco-solutions/' | url }}) work. If you are
 preparing a first reporting cycle and want the data foundation right before the report is
 written, that is the point at which it is cheapest to fix.

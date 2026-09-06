@@ -115,6 +115,6 @@ been, and none of them can be resolved quickly once they arrive.
 - Treat it as evidence that will be read by someone sceptical, because it will be.
 
 Baseline studies, environmental audits and site compliance assessments are part of our
-[environmental compliance work](/services/environmental-compliance-consulting/). If you are at
+[environmental compliance work]({{ '/services/environmental-compliance-consulting/' | url }}). If you are at
 the start of a project and unsure what the assessment stage should cover, that is a conversation
 worth having early.

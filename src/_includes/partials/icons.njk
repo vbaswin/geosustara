@@ -61,9 +61,9 @@
 {#- Responsive <picture> for the build-generated image set. -#}
 {%- macro picture(name, alt, widths, sizes, loading, fetchpriority, w, h) -%}
 <picture>
-  <source type="image/avif" srcset="{% for x in widths %}/assets/img/{{ name }}-{{ x }}.avif {{ x }}w{{ ", " if not loop.last }}{% endfor %}" sizes="{{ sizes }}">
-  <source type="image/webp" srcset="{% for x in widths %}/assets/img/{{ name }}-{{ x }}.webp {{ x }}w{{ ", " if not loop.last }}{% endfor %}" sizes="{{ sizes }}">
-  <img src="/assets/img/{{ name }}-{{ widths | last }}.jpg" width="{{ w }}" height="{{ h }}"
+  <source type="image/avif" srcset="{% for x in widths %}{{ ('/assets/img/' + name + '-' + x + '.avif') | url }} {{ x }}w{{ ", " if not loop.last }}{% endfor %}" sizes="{{ sizes }}">
+  <source type="image/webp" srcset="{% for x in widths %}{{ ('/assets/img/' + name + '-' + x + '.webp') | url }} {{ x }}w{{ ", " if not loop.last }}{% endfor %}" sizes="{{ sizes }}">
+  <img src="{{ ('/assets/img/' + name + '-' + (widths | last) + '.jpg') | url }}" width="{{ w }}" height="{{ h }}"
        alt="{{ alt }}" loading="{{ loading or 'lazy' }}" decoding="async"
        {% if fetchpriority %}fetchpriority="{{ fetchpriority }}"{% endif %}>
 </picture>

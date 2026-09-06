@@ -20,23 +20,23 @@
       <div>
         <h2>Services</h2>
         {%- for s in services %}
-        <a href="/services/{{ s.slug }}/">{{ s.shortTitle }}</a>
+        <a href="{{ ('/services/' + s.slug + '/') | url }}">{{ s.shortTitle }}</a>
         {%- endfor %}
       </div>
 
       <div>
         <h2>Firm</h2>
-        <a href="/about/">About</a>
-        <a href="/about/#vision">Vision &amp; Mission</a>
-        <a href="/about/#approach">Approach</a>
-        <a href="/contact/">Contact</a>
+        <a href="{{ '/about/' | url }}">About</a>
+        <a href="{{ '/about/' | url }}#vision">Vision &amp; Mission</a>
+        <a href="{{ '/about/' | url }}#approach">Approach</a>
+        <a href="{{ '/contact/' | url }}">Contact</a>
       </div>
 
       <div>
         <h2>Insights</h2>
-        <a href="/insights/">All articles</a>
-        <a href="/insights/feed.xml">RSS feed</a>
-        <a href="/sitemap.xml">Sitemap</a>
+        <a href="{{ '/insights/' | url }}">All articles</a>
+        <a href="{{ '/insights/feed.xml' | url }}">RSS feed</a>
+        <a href="{{ '/sitemap.xml' | url }}">Sitemap</a>
       </div>
     </div>
 

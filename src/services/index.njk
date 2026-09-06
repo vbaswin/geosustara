@@ -30,7 +30,7 @@ breadcrumbs:
           {%- for b in s.bullets %}<li>{{ b }}</li>{% endfor %}
         </ul>
         <span class="more">Explore {{ arrow() }}</span>
-        <a class="bx-link" href="/services/{{ s.slug }}/"><span class="vh">{{ s.title }}</span></a>
+        <a class="bx-link" href="{{ ('/services/' + s.slug + '/') | url }}"><span class="vh">{{ s.title }}</span></a>
       </article>
       {%- endfor %}
     </div>
@@ -47,7 +47,7 @@ breadcrumbs:
       the problem and we will tell you which of the five it falls under — often it is more than one.
     </p>
     <div class="hero-cta rv" style="justify-content:center;margin-top:clamp(26px,4vh,40px)">
-      <a class="btn btn--out mag" href="/about/#approach">How an engagement runs {{ arrow() }}</a>
+      <a class="btn btn--out mag" href="{{ '/about/' | url }}#approach">How an engagement runs {{ arrow() }}</a>
     </div>
   </div>
 </section>

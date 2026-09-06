@@ -13,7 +13,7 @@
 
 <header class="site">
   <div class="wrap nav">
-    <a class="brand" href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>
+    <a class="brand" href="{{ '/' | url }}" {% if page.url == "/" %}aria-current="page"{% endif %}>
       {{ logo(40, true) }}
       <span>
         <span class="brand-name">GEOSUSTARA</span>
@@ -24,11 +24,11 @@
 
     <nav class="nav-links" aria-label="Primary">
       {%- for item in site.nav %}
-      <a href="{{ item.url }}"{% if page.url == item.url or (item.url != "/" and page.url.startsWith(item.url)) %} aria-current="page"{% endif %}>{{ item.text }}</a>
+      <a href="{{ item.url | url }}"{% if page.url == item.url or (item.url != "/" and page.url.startsWith(item.url)) %} aria-current="page"{% endif %}>{{ item.text }}</a>
       {%- endfor %}
     </nav>
 
-    <a class="btn mag" href="/contact/">Request a consultation {{ arrow | safe }}</a>
+    <a class="btn mag" href="{{ '/contact/' | url }}">Request a consultation {{ arrow | safe }}</a>
 
     <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
       <span></span>
@@ -38,7 +38,7 @@
 
 <nav class="mnav" id="mobile-nav" data-open="false" aria-label="Mobile">
   {%- for item in site.nav %}
-  <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>
+  <a href="{{ item.url | url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>
     {{ item.text }} {{ arrow | safe }}
   </a>
   {%- endfor %}

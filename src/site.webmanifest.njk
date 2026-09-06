@@ -1,0 +1,23 @@
+---
+permalink: /site.webmanifest
+eleventyExcludeFromCollections: true
+---
+{#- A template rather than a static file in src/root: start_url, scope and the icon paths
+    all have to carry the deployment path prefix, which is only known at build time. -#}
+{
+  "name": "Geosustara Enviro Services LLP",
+  "short_name": "Geosustara",
+  "description": "Environmental and geospatial consulting — regulatory compliance, GIS, pollution control and sustainability.",
+  "start_url": "{{ '/' | url }}",
+  "scope": "{{ '/' | url }}",
+  "display": "standalone",
+  "background_color": "#061513",
+  "theme_color": "#061513",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "{{ '/favicon.svg' | url }}", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "{{ '/icon-192.png' | url }}", "sizes": "192x192", "type": "image/png" },
+    { "src": "{{ '/icon-512.png' | url }}", "sizes": "512x512", "type": "image/png" },
+    { "src": "{{ '/icon-512-maskable.png' | url }}", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="{{ site.lang }}">
+{#- data-base carries the path prefix to main.js, which builds asset URLs at runtime. -#}
+<html lang="{{ site.lang }}" data-base="{{ '/' | url }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,17 +39,17 @@
 <meta name="geo.region" content="IN-{{ site.contact.regionCode }}">
 <meta name="geo.placename" content="{{ site.contact.locality }}">
 
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
+<link rel="icon" href="{{ '/favicon.svg' | url }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | url }}">
 <link rel="alternate" type="application/rss+xml" title="{{ site.shortName }} — Insights" href="{{ '/insights/feed.xml' | absUrl(siteUrl) }}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/css/site.css">
-<link rel="stylesheet" href="/assets/vendor/lenis.css">
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
+<link rel="stylesheet" href="{{ '/assets/vendor/lenis.css' | url }}">
 
 {% include "partials/jsonld.njk" %}
 {%- block head %}{% endblock %}
@@ -66,9 +67,9 @@
 
 {% include "partials/footer.njk" %}
 
-<script src="/assets/vendor/gsap.min.js" defer></script>
-<script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
-<script src="/assets/vendor/lenis.min.js" defer></script>
-<script src="/assets/js/main.js" defer></script>
+<script src="{{ '/assets/vendor/gsap.min.js' | url }}" defer></script>
+<script src="{{ '/assets/vendor/ScrollTrigger.min.js' | url }}" defer></script>
+<script src="{{ '/assets/vendor/lenis.min.js' | url }}" defer></script>
+<script src="{{ '/assets/js/main.js' | url }}" defer></script>
 </body>
 </html>

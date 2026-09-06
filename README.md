@@ -61,20 +61,43 @@ the site at all, so this step matters.
 
 Every push to `main` redeploys automatically. Pull requests get their own preview URL.
 
+### GitHub Pages
+
+`.github/workflows/pages.yml` builds the site with Eleventy and publishes it. **One setting has
+to be changed by hand, once:**
+
+> Repository **Settings → Pages → Build and deployment → Source**, change
+> **"Deploy from a branch"** to **"GitHub Actions"**.
+
+Until that is done, GitHub ignores the workflow and runs its own Jekyll build against the source
+instead, which fails with `Liquid syntax error: Unknown tag 'from'` — Jekyll cannot parse the
+Nunjucks templates this site is written in. Nothing in the repository can override that setting.
+
+The workflow sets `PATH_PREFIX` and `SITE_URL` from the Pages configuration automatically, so the
+site works at `https://<user>.github.io/<repo>/` without any edit. It also sets `NOINDEX=1`, which
+keeps the github.io copy out of search results so it never competes with geosustara.com. If Pages
+ever becomes the production host, remove that line from the workflow.
+
 ### Any other host
 
 Run `npm run build` and upload the **contents of `_site/`** to your web root. Works on Netlify,
-Cloudflare Pages, GitHub Pages, or ordinary cPanel/shared hosting. For Netlify or Cloudflare
-Pages, set build command `npm run build` and publish directory `_site`.
+Cloudflare Pages or ordinary cPanel/shared hosting. For Netlify or Cloudflare Pages, set build
+command `npm run build` and publish directory `_site`.
 
 ### Environment variables
 
-Both are optional and unset by default.
+All three are optional and unset by default.
 
 | Variable | Effect |
 |---|---|
 | `SITE_URL` | Overrides the canonical base URL from `site.json`. Use on preview deployments. |
 | `NOINDEX` | Set to `1` to add `noindex,nofollow` to every page and serve a `Disallow: /` robots.txt. |
+| `PATH_PREFIX` | Sub-directory the site is served from, e.g. `/geosustara/`. Defaults to `/`. Only needed when the site is not at the domain root. |
+
+Internal links go through Eleventy's `url` filter and absolute URLs through the `absUrl` filter,
+so `PATH_PREFIX` is the only thing that needs setting — no template edits. Note that the two are
+not combined: `absUrl` applies the prefix itself, so `x | url | absUrl(siteUrl)` would apply it
+twice.
 
 **Three things to configure at the host:**
 

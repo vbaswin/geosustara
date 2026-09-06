@@ -9,7 +9,7 @@ layout: layouts/base.njk
     {%- if breadcrumbs %}
     <nav class="crumbs" aria-label="Breadcrumb">
       {%- for c in breadcrumbs %}
-        {%- if c.url and not loop.last %}<a href="{{ c.url }}">{{ c.text }}</a><span aria-hidden="true">/</span>
+        {%- if c.url and not loop.last %}<a href="{{ c.url | url }}">{{ c.text }}</a><span aria-hidden="true">/</span>
         {%- else %}<span aria-current="page">{{ c.text }}</span>{% endif %}
       {%- endfor %}
     </nav>
@@ -20,7 +20,7 @@ layout: layouts/base.njk
         lives in the header, so it is always reachable without being repeated down the page. -#}
     {%- if showCta %}
     <div class="hero-cta">
-      <a class="btn btn--out mag" href="/services/">View our services</a>
+      <a class="btn btn--out mag" href="{{ '/services/' | url }}">View our services</a>
     </div>
     {%- endif %}
   </div>

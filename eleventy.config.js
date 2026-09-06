@@ -1,6 +1,24 @@
 const { minify } = require('html-minifier-terser');
 const { DateTime } = require('luxon');
 
+// Sub-directory the site is served from. Root ("/") on Vercel and on the production domain;
+// "/geosustara/" on a GitHub Pages project site, where the repo name becomes a path segment.
+// Set PATH_PREFIX at build time — every internal link goes through Eleventy's `url` filter,
+// so nothing else needs to know about it.
+function normalisePrefix(value) {
+  const trimmed = String(value || '/').trim().replace(/^\/+|\/+$/g, '');
+  return trimmed ? `/${trimmed}/` : '/';
+}
+const PATH_PREFIX = normalisePrefix(process.env.PATH_PREFIX);
+
+// Prepend the path prefix to a root-relative path. Idempotent, so a value that already
+// carries the prefix is returned unchanged.
+function withPrefix(p) {
+  const s = String(p == null ? '/' : p);
+  if (PATH_PREFIX === '/' || !s.startsWith('/') || s.startsWith(PATH_PREFIX)) return s;
+  return PATH_PREFIX.replace(/\/$/, '') + s;
+}
+
 module.exports = function (eleventyConfig) {
   // ---- passthrough: assets are copied verbatim -------------------------------
   eleventyConfig.addPassthroughCopy({ 'src/assets/css': 'assets/css' });
@@ -32,6 +50,14 @@ module.exports = function (eleventyConfig) {
     ['1', 'true', 'yes'].includes(String(process.env.NOINDEX || '').toLowerCase())
   );
 
+  // Absolute URL of the home page, prefix included. Structured data and the Atom feed need
+  // a real URL to build @ids from, and `siteUrl` alone is the bare origin.
+  eleventyConfig.addGlobalData('homeUrl', function () {
+    const configured = require('./src/_data/site.json').url;
+    const override = (process.env.SITE_URL || '').trim().replace(/\/+$/, '');
+    return new URL(PATH_PREFIX, override || configured).toString();
+  });
+
   // ---- collections -----------------------------------------------------------
   eleventyConfig.addCollection('insights', (c) =>
     c.getFilteredByGlob('src/insights/posts/*.md').sort((a, b) => b.date - a.date)
@@ -54,9 +80,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter('reject', (arr, key, value) =>
     (arr || []).filter((i) => i[key] !== value)
   );
-  // Absolute URL for canonical / Open Graph / sitemap entries.
+  // Absolute URL for canonical / Open Graph / sitemap entries. The path prefix is applied
+  // here, so callers pass a plain site-root path and never pipe through `url` as well —
+  // `x | url | absUrl(siteUrl)` would prefix it twice.
   eleventyConfig.addFilter('absUrl', (path, base) =>
-    new URL(path || '/', base).toString()
+    new URL(withPrefix(path || '/'), base).toString()
   );
   // Strip HTML for meta descriptions and feed summaries.
   eleventyConfig.addFilter('plain', (html) =>
@@ -97,6 +125,6 @@ module.exports = function (eleventyConfig) {
     templateFormats: ['njk', 'md', 'html'],
     markdownTemplateEngine: 'njk',
     htmlTemplateEngine: 'njk',
-    pathPrefix: '/',
+    pathPrefix: PATH_PREFIX,
   };
 };

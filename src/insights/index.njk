@@ -18,7 +18,7 @@ breadcrumbs:
     {%- if posts.length %}
     <div class="posts">
       {%- for p in posts %}
-      <a class="post rv" href="{{ p.url }}">
+      <a class="post rv" href="{{ p.url | url }}">
         <div class="thumb">
           {{ picture(p.data.image or "card-gis", p.data.imageAlt or "", [520,900],
                      "(max-width:760px) 92vw, 30vw", "lazy", false, 900, 563) }}
@@ -35,7 +35,7 @@ breadcrumbs:
     </div>
     {%- else %}
     <p class="sec-lede">The first articles are being written. In the meantime,
-      <a href="/contact/" style="color:var(--aqua)">get in touch</a> with a question.</p>
+      <a href="{{ '/contact/' | url }}" style="color:var(--aqua)">get in touch</a> with a question.</p>
     {%- endif %}
   </div>
 </section>
@@ -44,7 +44,7 @@ breadcrumbs:
   <div class="wrap" style="text-align:center">
     <h2 class="sec-title rv" style="margin-inline:auto;max-width:18ch">New notes as they are published</h2>
     <div class="hero-cta rv" style="justify-content:center;margin-top:26px">
-      <a class="btn btn--out mag" href="/insights/feed.xml">Subscribe by RSS {{ arrow() }}</a>
+      <a class="btn btn--out mag" href="{{ '/insights/feed.xml' | url }}">Subscribe by RSS {{ arrow() }}</a>
     </div>
   </div>
 </section>

@@ -8,8 +8,8 @@ layout: layouts/base.njk
     <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
     <div class="wrap phero-in">
       <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a><span aria-hidden="true">/</span>
-        <a href="/insights/">Insights</a><span aria-hidden="true">/</span>
+        <a href="{{ '/' | url }}">Home</a><span aria-hidden="true">/</span>
+        <a href="{{ '/insights/' | url }}">Insights</a><span aria-hidden="true">/</span>
         <span aria-current="page">{{ category }}</span>
       </nav>
       <h1>{{ title }}</h1>
@@ -35,7 +35,7 @@ layout: layouts/base.njk
           <h3>Related services</h3>
           <ul>
             {%- for s in services %}
-            <li><a href="/services/{{ s.slug }}/">{{ s.shortTitle }}</a></li>
+            <li><a href="{{ ('/services/' + s.slug + '/') | url }}">{{ s.shortTitle }}</a></li>
             {%- endfor %}
           </ul>
         </div>
@@ -53,7 +53,7 @@ layout: layouts/base.njk
       <ul class="nextup rv">
         {%- for p in others %}
         <li>
-          <a href="{{ p.url }}">
+          <a href="{{ p.url | url }}">
             <span class="k">{{ p.data.category }}</span>
             <span class="t">{{ p.data.title }}</span>
             {{ arrow() }}

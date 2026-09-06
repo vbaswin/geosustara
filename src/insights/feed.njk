@@ -7,10 +7,10 @@ eleventyExcludeFromCollections: true
   <title>{{ site.shortName }} — Insights</title>
   <subtitle>{{ site.description }}</subtitle>
   <link href="{{ "/insights/feed.xml" | absUrl(siteUrl) }}" rel="self"/>
-  <link href="{{ siteUrl }}/"/>
+  <link href="{{ homeUrl }}"/>
   {%- set newest = collections.insights | reverse | first %}
   <updated>{{ (newest.date | dateISO) if newest else buildDate }}</updated>
-  <id>{{ siteUrl }}/</id>
+  <id>{{ homeUrl }}</id>
   <author>
     <name>{{ site.name }}</name>
     <email>{{ site.contact.email }}</email>

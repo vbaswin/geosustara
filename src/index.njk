@@ -10,9 +10,9 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
     {#- Capped at 1440w on purpose: this sits under a dark scrim with a sub-pixel blur baked in,
         so a 1920 variant is visually identical but 70% heavier on the LCP element. -#}
     <picture>
-      <source type="image/avif" srcset="/assets/img/hero-960.avif 960w, /assets/img/hero-1440.avif 1440w" sizes="100vw">
-      <source type="image/webp" srcset="/assets/img/hero-960.webp 960w, /assets/img/hero-1440.webp 1440w" sizes="100vw">
-      <img src="/assets/img/hero-1440.jpg" width="1440" height="810" fetchpriority="high" decoding="async"
+      <source type="image/avif" srcset="{{ '/assets/img/hero-960.avif' | url }} 960w, {{ '/assets/img/hero-1440.avif' | url }} 1440w" sizes="100vw">
+      <source type="image/webp" srcset="{{ '/assets/img/hero-960.webp' | url }} 960w, {{ '/assets/img/hero-1440.webp' | url }} 1440w" sizes="100vw">
+      <img src="{{ '/assets/img/hero-1440.jpg' | url }}" width="1440" height="810" fetchpriority="high" decoding="async"
            alt="False-colour satellite image of a river delta showing braided channel networks and land-cover zones.">
     </picture>
   </div>
@@ -35,7 +35,7 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
         <p class="hero-p">We bridge the gap between environmental responsibility and practical implementation —
           delivering integrated environmental and geospatial solutions that go beyond reports.</p>
         <div class="hero-cta">
-          <a class="btn mag" href="/services/">View our services {{ arrow() }}</a>
+          <a class="btn mag" href="{{ '/services/' | url }}">View our services {{ arrow() }}</a>
         </div>
       </div>
       <div class="metrics">
@@ -84,7 +84,7 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
         <h3>{{ s.title }}</h3>
         <p>{{ s.summary }}</p>
         <span class="more">Explore {{ arrow() }}</span>
-        <a class="bx-link" href="/services/{{ s.slug }}/"><span class="vh">{{ s.title }}</span></a>
+        <a class="bx-link" href="{{ ('/services/' + s.slug + '/') | url }}"><span class="vh">{{ s.title }}</span></a>
       </article>
       {%- endfor %}
     </div>
@@ -112,7 +112,7 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
       {%- endfor %}
     </ol>
     <div class="hero-cta rv" style="margin-top:clamp(28px,4vh,44px)">
-      <a class="btn btn--out mag" href="/about/#approach">How we work, in full {{ arrow() }}</a>
+      <a class="btn btn--out mag" href="{{ '/about/' | url }}#approach">How we work, in full {{ arrow() }}</a>
     </div>
   </div>
 </section>
@@ -147,7 +147,7 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
     </div>
     <div class="posts">
       {%- for p in latest %}
-      <a class="post rv" href="{{ p.url }}">
+      <a class="post rv" href="{{ p.url | url }}">
         <div class="thumb">
           {{ picture(p.data.image or "card-gis", p.data.imageAlt or "", [520,900],
                      "(max-width:760px) 92vw, 30vw", "lazy", false, 900, 563) }}
@@ -162,7 +162,7 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
       {%- endfor %}
     </div>
     <div class="hero-cta rv" style="margin-top:clamp(28px,4vh,44px)">
-      <a class="btn btn--out mag" href="/insights/">All insights {{ arrow() }}</a>
+      <a class="btn btn--out mag" href="{{ '/insights/' | url }}">All insights {{ arrow() }}</a>
     </div>
   </div>
 </section>
@@ -184,7 +184,7 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
         <li><span class="ctk">Email</span><span class="ctv"><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></span></li>
       </ul>
       <p class="form-note" style="margin-top:18px">Full contact details, a map and an enquiry form
-        are on the <a href="/contact/" style="color:var(--aqua)">contact page</a>.</p>
+        are on the <a href="{{ '/contact/' | url }}" style="color:var(--aqua)">contact page</a>.</p>
     </div>
   </div>
 </section>

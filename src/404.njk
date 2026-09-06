@@ -14,9 +14,9 @@ eleventyExcludeFromCollections: true
     <h1>That page does not exist.</h1>
     <p>The link may be out of date, or the address mistyped. Everything below is still where it should be.</p>
     <div class="hero-cta">
-      <a class="btn mag" href="/">Back to home {{ arrow() }}</a>
-      <a class="btn btn--out mag" href="/services/">Our services</a>
-      <a class="btn btn--out mag" href="/contact/">Contact</a>
+      <a class="btn mag" href="{{ '/' | url }}">Back to home {{ arrow() }}</a>
+      <a class="btn btn--out mag" href="{{ '/services/' | url }}">Our services</a>
+      <a class="btn btn--out mag" href="{{ '/contact/' | url }}">Contact</a>
     </div>
   </div>
 </div>
