@@ -36,10 +36,45 @@ Then open <http://localhost:8080>. The site rebuilds as you edit.
 
 ## Deploying
 
-Run `npm run build`, then upload the **contents of `_site/`** to your web root.
+### Vercel (recommended — connects straight to the GitHub repo)
 
-Works as-is on Netlify, Cloudflare Pages, GitHub Pages, Vercel, or ordinary cPanel/shared hosting.
-For Netlify or Cloudflare Pages, set build command `npm run build` and publish directory `_site`.
+`vercel.json` is committed, so the build settings are read automatically. No CLI needed.
+
+1. Go to <https://vercel.com/new> and sign in **with GitHub**.
+2. Import `vbaswin/geosustara`. Vercel picks up from `vercel.json`:
+   install `npm ci`, build `npm run build`, output `_site`.
+3. Before the first deploy, open **Environment Variables** and add:
+
+   | Name | Value | Why |
+   |---|---|---|
+   | `NOINDEX` | `1` | Keeps the temporary `*.vercel.app` URL out of Google, so it never competes with geosustara.com later |
+
+4. Deploy. You get a shareable `https://<project>.vercel.app` URL in about a minute.
+5. *Optional, after the first deploy:* add `SITE_URL` set to that `.vercel.app` address and
+   redeploy. Canonical tags, the sitemap, the RSS feed and the structured data will then point at
+   the URL people are actually visiting instead of geosustara.com.
+
+**When you go live on the real domain:** add `geosustara.com` under Settings → Domains, then
+**delete both `NOINDEX` and `SITE_URL`** and redeploy. The site falls back to the production URL
+in `site.json` and becomes indexable. Forgetting to remove `NOINDEX` means Google never indexes
+the site at all, so this step matters.
+
+Every push to `main` redeploys automatically. Pull requests get their own preview URL.
+
+### Any other host
+
+Run `npm run build` and upload the **contents of `_site/`** to your web root. Works on Netlify,
+Cloudflare Pages, GitHub Pages, or ordinary cPanel/shared hosting. For Netlify or Cloudflare
+Pages, set build command `npm run build` and publish directory `_site`.
+
+### Environment variables
+
+Both are optional and unset by default.
+
+| Variable | Effect |
+|---|---|
+| `SITE_URL` | Overrides the canonical base URL from `site.json`. Use on preview deployments. |
+| `NOINDEX` | Set to `1` to add `noindex,nofollow` to every page and serve a `Disallow: /` robots.txt. |
 
 **Three things to configure at the host:**
 
