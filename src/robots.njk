@@ -1,0 +1,16 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+{%- if noindex %}
+# Preview deployment — NOINDEX=1 is set, so crawlers are kept out entirely.
+# Unset NOINDEX on the production deployment to allow indexing.
+User-agent: *
+Disallow: /
+{%- else %}
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+Sitemap: {{ "/sitemap.xml" | absUrl(siteUrl) }}
+{%- endif %}

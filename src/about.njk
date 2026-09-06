@@ -1,0 +1,156 @@
+---
+layout: layouts/page.njk
+permalink: /about/
+title: "About the Firm"
+heading: "Bridging environmental responsibility and practical implementation."
+description: "A sustainability-driven environmental consulting firm in Thiruvananthapuram, delivering integrated environmental and geospatial solutions across India."
+lede: "We were founded with a vision to bridge the gap between environmental responsibility and practical implementation by delivering integrated environmental and geospatial solutions."
+showCta: true
+sections:
+  - { id: overview, label: Overview }
+  - { id: vision,   label: Vision & Mission }
+  - { id: approach, label: Approach }
+  - { id: questions, label: Questions }
+breadcrumbs:
+  - text: Home
+    url: /
+  - text: About
+faqs:
+  - q: "What does Geosustara Enviro Services LLP do?"
+    a: "We are a sustainability-driven environmental consulting firm. Our work covers environmental compliance, pollution control, waste and water resource management, GIS mapping and spatial analysis, sustainability consulting, and technical support for research and academic projects."
+  - q: "Who do you work with?"
+    a: "Government bodies, industries, commercial establishments, residential communities, research organizations and academic institutions."
+  - q: "Where are you based and where do you work?"
+    a: "Our office is at Perekonam, Pappanamcode, Thiruvananthapuram, Kerala. We work with clients across India."
+  - q: "How does an engagement usually run?"
+    a: "In four stages — assessment, planning, implementation and monitoring. We support clients from the initial assessment through to continuous monitoring rather than handing over a report and leaving."
+---
+{%- from "partials/icons.njk" import svcIcon, arrow, picture -%}
+
+<section class="sec" id="overview">
+  <div class="wrap">
+    <div class="svc-layout">
+      <div class="svc-body prose rv">
+        <p class="svc-intro" style="margin-bottom:34px">Geosustara Enviro Services LLP is a sustainability-driven
+          environmental consulting firm committed to helping organizations achieve regulatory compliance, optimize
+          resource use, and adopt responsible environmental practices.</p>
+
+        <h2>Beyond reports</h2>
+        <p>We provide end-to-end services that go beyond reports. Our approach combines technical expertise, field
+          experience, scientific analysis, and a deep understanding of evolving environmental regulations to deliver
+          practical, cost-effective, and sustainable solutions.</p>
+        <p>We work closely with government bodies, industries, commercial establishments, residential communities,
+          research organizations, and academic institutions to address diverse environmental challenges.</p>
+
+        <h2>What our expertise covers</h2>
+        <p>Our expertise spans environmental compliance, pollution control, waste and water resource management,
+          GIS mapping and spatial analysis, sustainability consulting, and technical support for research and
+          academic projects. Whether it is obtaining regulatory approvals, preparing thematic maps for Environmental
+          Impact Assessment (EIA), optimizing environmental systems, or supporting scientific research, we provide
+          reliable solutions tailored to each client's needs.</p>
+
+        <h2>What we believe</h2>
+        <p>At Geosustara, we believe sustainability should be practical, measurable, and impactful. We support our
+          clients from initial assessment and planning through implementation and continuous monitoring, transforming
+          environmental challenges into opportunities for responsible growth and innovation.</p>
+      </div>
+
+      <aside class="svc-side">
+        {% include "partials/secnav.njk" %}
+
+        <div class="side-card">
+          <h3>Who we work with</h3>
+          <ul>
+            {%- for s in site.sectors %}<li><span>{{ s }}</span></li>{% endfor %}
+          </ul>
+        </div>
+        <div class="side-card">
+          <h3>Registered office</h3>
+          <ul>
+            <li><span>{{ site.contact.addressLine }}</span></li>
+            <li><span>{{ site.contact.locality }}, {{ site.contact.region }} {{ site.contact.postalCode }}</span></li>
+            <li><a href="tel:{{ site.contact.phoneE164 }}">{{ site.contact.phoneDisplay }}</a></li>
+            <li><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VISION / MISSION ===================== -->
+<section class="sec sec--tint" id="vision">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">Our purpose</span>
+      <h2 class="sec-title">What we are working toward.</h2>
+    </div>
+    <div class="vm">
+      <div class="vmc rv">
+        <span class="vmi">{{ svcIcon("globe") }}</span>
+        <h3>Vision</h3>
+        <p>{{ site.vision }}</p>
+      </div>
+      <div class="vmc rv">
+        <span class="vmi">{{ svcIcon("target") }}</span>
+        <h3>Mission</h3>
+        <p>{{ site.mission }}</p>
+      </div>
+    </div>
+    <p class="pullquote rv">We believe sustainability should be <em>practical, measurable</em> and impactful.</p>
+  </div>
+</section>
+
+<!-- ===================== APPROACH ===================== -->
+<section class="sec" id="approach">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">How we work</span>
+      <h2 class="sec-title">From first survey to<br>continuous monitoring.</h2>
+      <p class="sec-lede">Our approach combines technical expertise, field experience, scientific analysis and a deep
+        understanding of evolving environmental regulations.</p>
+    </div>
+    <div class="lc-grid">
+      <div class="lc-sticky">
+        <div class="lc-vis">
+          {{ picture("panel", "Satellite view of a shallow coastal strait used as a survey reference panel.",
+                     [640,1000], "(max-width:1040px) 460px, 40vw", "lazy", false, 1000, 1000) }}
+          <svg viewBox="0 0 400 400" aria-hidden="true">
+            <g id="lcg"></g>
+            <path id="lctrail" fill="none" stroke="#35C3AC" stroke-width="1.2" stroke-dasharray="4 5" opacity=".5" d=""></path>
+            <circle id="lcring" cx="200" cy="200" r="34" fill="none" stroke="#35C3AC" stroke-width="1.4" opacity=".7"></circle>
+            <circle id="lcdot" cx="200" cy="200" r="5" fill="#35C3AC"></circle>
+          </svg>
+          <span class="lc-stage" id="lcStage">Stage 01 — Assessment</span>
+        </div>
+      </div>
+      <div class="lc-steps">
+        {%- for st in site.lifecycle %}
+        <div class="lc-step{{ ' on' if loop.first }}" data-stage="Stage {{ st.n }} — {{ st.title }}">
+          <span class="n">STAGE {{ st.n }}</span>
+          <h3>{{ st.title }}</h3>
+          <p>{{ st.body }}</p>
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="sec sec--tint" id="questions">
+  <div class="wrap" style="max-width:900px">
+    <div class="sec-head rv">
+      <span class="label">Questions</span>
+      <h2 class="sec-title">Common questions</h2>
+    </div>
+    <div class="faq rv">
+      {%- for f in faqs %}
+      <details{% if loop.first %} open{% endif %}>
+        <summary>{{ f.q }}</summary>
+        <div class="a">{{ f.a }}</div>
+      </details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

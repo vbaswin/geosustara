@@ -1,0 +1,15 @@
+{#- Vertical "on this page" timeline, rendered into the sticky side column.
+    Pages declare `sections: [{id, label}]`; article pages set `autoToc: true` and main.js
+    builds the list from the <h2>s in .prose. Active state and the progress line are driven
+    by a scroll listener, so this works on the reduced-motion path where GSAP never loads. -#}
+{%- if sections or autoToc %}
+<nav class="toc" id="toc" aria-label="On this page"{% if autoToc %} data-autotoc=".prose h2"{% endif %}>
+  <p class="toc-title">On this page</p>
+  <ul class="toc-list" id="toc-list">
+    <span class="toc-fill" id="toc-fill" aria-hidden="true"></span>
+    {%- for s in sections %}
+    <li><a href="#{{ s.id }}">{{ s.label }}</a></li>
+    {%- endfor %}
+  </ul>
+</nav>
+{%- endif %}

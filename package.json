@@ -1,0 +1,34 @@
+﻿{
+  "name": "geosustara-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Geosustara Enviro Services LLP corporate website. Static HTML output, SEO-first.",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "eleventy --serve --quiet",
+    "build": "eleventy",
+    "images": "node .tooling/build-images.mjs",
+    "serve": "http-server _site -p 8080 -c-1 --silent",
+    "licenses": "license-checker-rseidelsohn --summary",
+    "licenses:report": "license-checker-rseidelsohn --csv --out LICENSES-THIRD-PARTY.csv"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "@11ty/eleventy-plugin-rss": "2.0.4",
+    "html-minifier-terser": "7.2.0",
+    "http-server": "14.1.1",
+    "license-checker-rseidelsohn": "4.4.2",
+    "luxon": "3.7.2",
+    "markdown-it-anchor": "9.2.0",
+    "sharp": "0.35.4"
+  },
+  "dependencies": {
+    "gsap": "3.13.0",
+    "leaflet": "1.9.4",
+    "lenis": "1.3.11"
+  }
+}
+

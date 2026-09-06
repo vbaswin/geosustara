@@ -1,0 +1,43 @@
+{
+  "hero": {
+    "widths": [
+      960,
+      1440,
+      1920
+    ],
+    "ar": 1.7777777777777777,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAwBACdASoYAA4APwFwsE6rJyUiMAgBYCAJYwC/OCHEob4TbU5774EDDgAA/stSvzA67HZkVP54GjVxHF7BxY24pq6G2cgA"
+  },
+  "panel": {
+    "widths": [
+      640,
+      1000
+    ],
+    "ar": 1,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAABwAwCdASoYABgAPwFqq08rJiOiMBgMAWAgCWcAxkAWMb/KhgAA/uv0Yj6fF1wLmgkunkDdVB5YTXFycce2LxJ72CzngAAA"
+  },
+  "card-gis": {
+    "widths": [
+      520,
+      900
+    ],
+    "ar": 1.6,
+    "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAwCdASoYAA8APwFwsE6rJyUiMAgBYCAJZQAAXGUJ15iOsTOtF74AAP6diQ3jblOV+kbIitOoojO1NBwP60AA"
+  },
+  "card-comp": {
+    "widths": [
+      520,
+      900
+    ],
+    "ar": 1.6,
+    "lqip": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAABwAwCdASoYAA8APwFqrE6rJiQiMAgBYCAJaQDE2C0HxVNDCgAA/ulxmKbu+ISkAAA="
+  },
+  "card-sust": {
+    "widths": [
+      520,
+      900
+    ],
+    "ar": 1.6,
+    "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAACwAwCdASoYAA8APwFIu1grIqckmAFgIAljALUagANRojT0M5+n0AD+nYVE+Q57MPTZnOuxM8xAegkIjI5INo5OVqLQAoVAAAA="
+  }
+}

@@ -1,0 +1,96 @@
+---
+pagination:
+  data: services
+  size: 1
+  alias: service
+permalink: "/services/{{ service.slug }}/"
+layout: layouts/base.njk
+sections:
+  - { id: overview,        label: Overview }
+  - { id: what-we-deliver, label: What we deliver }
+  - { id: in-detail,       label: In detail }
+  - { id: questions,       label: Common questions }
+eleventyComputed:
+  # `| safe` matters here: without it the value is escaped once by eleventyComputed and
+  # again on output, turning "&" into "&amp;amp;" in the rendered <title>.
+  title: "{{ service.metaTitle | safe }}"
+  description: "{{ service.metaDescription | safe }}"
+  ogImage: "/assets/img/{{ service.image }}-900.jpg"
+---
+{%- from "partials/icons.njk" import svcIcon, arrow -%}
+
+<div class="phero">
+  <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+  <div class="wrap phero-in">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/services/">Services</a><span aria-hidden="true">/</span>
+      <span aria-current="page">{{ service.shortTitle }}</span>
+    </nav>
+    <span class="label" style="display:block;margin-top:22px">Service {{ service.n }}</span>
+    <h1>{{ service.title }}</h1>
+    <p class="lede">{{ service.summary }}</p>
+    <div class="hero-cta">
+      <a class="btn btn--out mag" href="#what-we-deliver">What we deliver {{ arrow() }}</a>
+    </div>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="wrap svc-layout">
+    <div class="svc-body">
+      <p class="svc-intro rv" id="overview">{{ service.intro }}</p>
+
+      <h2 id="what-we-deliver" class="rv" style="margin-top:clamp(38px,5vh,58px)">What we deliver</h2>
+      <ul class="deliv rv">
+        {%- for b in service.bullets %}
+        <li>{{ b }}</li>
+        {%- endfor %}
+      </ul>
+
+      {%- for d in service.detail %}
+      <div class="rv"{% if loop.first %} id="in-detail"{% endif %}>
+        <h2>{{ d.h }}</h2>
+        <p>{{ d.p }}</p>
+      </div>
+      {%- endfor %}
+
+      {%- if service.faqs %}
+      <h2 class="rv" id="questions" style="margin-top:clamp(40px,6vh,64px)">Common questions</h2>
+      <div class="faq rv">
+        {%- for f in service.faqs %}
+        <details{% if loop.first %} open{% endif %}>
+          <summary>{{ f.q }}</summary>
+          <div class="a">{{ f.a }}</div>
+        </details>
+        {%- endfor %}
+      </div>
+      {%- endif %}
+    </div>
+
+    <aside class="svc-side">
+      {% include "partials/secnav.njk" %}
+
+      <div class="side-card">
+        <h3>All services</h3>
+        <ul>
+          {%- for s in services %}
+          <li{% if s.slug == service.slug %} aria-current="true"{% endif %}>
+            {%- if s.slug == service.slug %}
+            <span>{{ s.shortTitle }}</span>
+            {%- else %}
+            <a href="/services/{{ s.slug }}/">{{ s.shortTitle }}</a>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+
+      {#- No CTA card here either. The single "Request a consultation" in the header stays on
+          screen the whole way down the page, so a second one adds nothing but repetition. -#}
+    </aside>
+  </div>
+</section>
+
+{#- No "other services" card grid here: the sidebar already lists all five, and repeating
+    each summary on every service page put the same paragraphs on four URLs. -#}

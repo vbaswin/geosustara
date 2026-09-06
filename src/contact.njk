@@ -1,0 +1,61 @@
+---
+layout: layouts/page.njk
+permalink: /contact/
+title: "Contact"
+heading: "Start with an assessment."
+description: "Contact Geosustara Enviro Services LLP — Pappanamcode, Thiruvananthapuram, Kerala 695018. Call +91 94469 93196 or email geosustara@gmail.com."
+lede: "Tell us about your site, your obligations or your research question. We will tell you exactly what is required."
+breadcrumbs:
+  - text: Home
+    url: /
+  - text: Contact
+---
+{%- from "partials/icons.njk" import svcIcon, arrow -%}
+
+<section class="sec">
+  <div class="wrap">
+    <div class="ct">
+      <div class="rv">
+        <div class="ctr">
+          <div class="ctk">Office</div>
+          <div class="ctv">
+            <address style="font-style:normal;line-height:1.7">
+              {{ site.contact.addressLine }},<br>
+              {{ site.contact.locality }},<br>
+              {{ site.contact.region }} {{ site.contact.postalCode }}, {{ site.contact.country }}
+            </address>
+          </div>
+        </div>
+        <div class="ctr">
+          <div class="ctk">Telephone</div>
+          <div class="ctv"><a href="tel:{{ site.contact.phoneE164 }}">{{ site.contact.phoneDisplay }}</a></div>
+        </div>
+        <div class="ctr">
+          <div class="ctk">Email</div>
+          <div class="ctv"><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></div>
+        </div>
+        <div class="ctr">
+          <div class="ctk">Entity</div>
+          <div class="ctv">{{ site.name }}</div>
+        </div>
+        <div class="ctr">
+          <div class="ctk">Area served</div>
+          <div class="ctv">{{ site.areaServed }}</div>
+        </div>
+
+        <div id="map" data-lat="{{ site.map.lat }}" data-lng="{{ site.map.lng }}" data-zoom="{{ site.map.zoom }}"
+             data-popup="{{ site.name }} — {{ site.contact.locality }}"
+             role="img" aria-label="Map showing the {{ 'approximate ' if site.map.approximate }}office location in {{ site.contact.locality }}, {{ site.contact.region }}."></div>
+        {%- if site.map.approximate %}
+        <p class="form-note">Map shows the {{ site.contact.addressLine }} neighbourhood. Please call ahead for
+          directions to the office.</p>
+        {%- endif %}
+      </div>
+
+      {% include "partials/contact-form.njk" %}
+    </div>
+  </div>
+</section>
+
+{#- No service card grid here: the form's own dropdown already lists all five, and repeating
+    the summaries would put them on a fourth URL. -#}

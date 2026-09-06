@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+---
+{%- from "partials/icons.njk" import arrow -%}
+
+<div class="phero">
+  <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+  <div class="wrap phero-in">
+    {%- if breadcrumbs %}
+    <nav class="crumbs" aria-label="Breadcrumb">
+      {%- for c in breadcrumbs %}
+        {%- if c.url and not loop.last %}<a href="{{ c.url }}">{{ c.text }}</a><span aria-hidden="true">/</span>
+        {%- else %}<span aria-current="page">{{ c.text }}</span>{% endif %}
+      {%- endfor %}
+    </nav>
+    {%- endif %}
+    <h1>{{ heading or title }}</h1>
+    {%- if lede %}<p class="lede">{{ lede }}</p>{% endif %}
+    {#- No contact CTA here. There is exactly one "Request a consultation" on the site and it
+        lives in the header, so it is always reachable without being repeated down the page. -#}
+    {%- if showCta %}
+    <div class="hero-cta">
+      <a class="btn btn--out mag" href="/services/">View our services</a>
+    </div>
+    {%- endif %}
+  </div>
+</div>
+
+{{ content | safe }}

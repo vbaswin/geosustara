@@ -1,0 +1,67 @@
+---
+layout: layouts/base.njk
+---
+{%- from "partials/icons.njk" import arrow, picture -%}
+
+<article>
+  <div class="phero">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+    <div class="wrap phero-in">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span>
+        <a href="/insights/">Insights</a><span aria-hidden="true">/</span>
+        <span aria-current="page">{{ category }}</span>
+      </nav>
+      <h1>{{ title }}</h1>
+      <p class="lede">{{ description }}</p>
+      <div class="article-meta" style="margin-top:26px">
+        <span class="k">{{ category }}</span>
+        <time datetime="{{ page.date | dateYMD }}">{{ page.date | dateReadable }}</time>
+        {%- if readingTime %}<span>{{ readingTime }} min read</span>{% endif %}
+      </div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="wrap svc-layout">
+      <div class="prose rv">
+        {{ content | safe }}
+      </div>
+
+      <aside class="svc-side">
+        {% include "partials/secnav.njk" %}
+
+        <div class="side-card">
+          <h3>Related services</h3>
+          <ul>
+            {%- for s in services %}
+            <li><a href="/services/{{ s.slug }}/">{{ s.shortTitle }}</a></li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {#- Titles only, no summaries: the full cards live on /insights/ and the home page, and
+      repeating each summary on every other article put them on four URLs. -#}
+  {%- set others = collections.insights | reject("url", page.url) | limit(3) %}
+  {%- if others.length %}
+  <section class="sec sec--tint">
+    <div class="wrap" style="max-width:900px">
+      <span class="label rv">Keep reading</span>
+      <ul class="nextup rv">
+        {%- for p in others %}
+        <li>
+          <a href="{{ p.url }}">
+            <span class="k">{{ p.data.category }}</span>
+            <span class="t">{{ p.data.title }}</span>
+            {{ arrow() }}
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+  {%- endif %}
+</article>

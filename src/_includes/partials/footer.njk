@@ -1,0 +1,49 @@
+<footer class="site">
+  <div class="wrap">
+    <div class="fg">
+      <div class="fbrand">
+        <svg width="34" height="34" viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
+          <path d="M24 5 43 13.4 24 21.8 5 13.4 24 5Z" stroke="#35C3AC" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M8.6 21 24 27.8 39.4 21" stroke="#35C3AC" stroke-width="1.6" stroke-linejoin="round" opacity=".62"/>
+          <path d="M8.6 28.6 24 35.4 39.4 28.6" stroke="#35C3AC" stroke-width="1.6" stroke-linejoin="round" opacity=".34"/>
+        </svg>
+        <p>{{ site.name }} — sustainability-driven environmental consulting, geospatial solutions and
+          regulatory compliance across industry and academia.</p>
+        <address>
+          {{ site.contact.addressLine }},<br>
+          {{ site.contact.locality }}, {{ site.contact.region }} {{ site.contact.postalCode }}<br>
+          <a href="tel:{{ site.contact.phoneE164 }}">{{ site.contact.phoneDisplay }}</a><br>
+          <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>
+        </address>
+      </div>
+
+      <div>
+        <h2>Services</h2>
+        {%- for s in services %}
+        <a href="/services/{{ s.slug }}/">{{ s.shortTitle }}</a>
+        {%- endfor %}
+      </div>
+
+      <div>
+        <h2>Firm</h2>
+        <a href="/about/">About</a>
+        <a href="/about/#vision">Vision &amp; Mission</a>
+        <a href="/about/#approach">Approach</a>
+        <a href="/contact/">Contact</a>
+      </div>
+
+      <div>
+        <h2>Insights</h2>
+        <a href="/insights/">All articles</a>
+        <a href="/insights/feed.xml">RSS feed</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+
+    <div class="fbot">
+      <span>&copy; {{ buildYear }} {{ site.name }}</span>
+      <span>{{ site.contact.locality }}, {{ site.contact.region }} &middot; {{ site.areaServed }}</span>
+    </div>
+    <div class="fghost" aria-hidden="true">GEOSUSTARA</div>
+  </div>
+</footer>

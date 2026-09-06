@@ -1,0 +1,73 @@
+{
+  "name": "Geosustara Enviro Services LLP",
+  "shortName": "Geosustara",
+  "tagline": "Environmental & Geospatial Consulting",
+  "url": "https://geosustara.com",
+  "urlIsPlaceholder": false,
+  "locale": "en_IN",
+  "lang": "en-IN",
+  "themeColor": "#061513",
+
+  "description": "Sustainability-driven environmental consulting firm in Thiruvananthapuram delivering regulatory compliance, GIS and geospatial services, pollution control, sustainability consulting and research support across India.",
+
+  "contact": {
+    "phoneDisplay": "+91 94469 93196",
+    "phoneE164": "+919446993196",
+    "phoneRaw": "9446993196",
+    "email": "geosustara@gmail.com",
+    "addressLine": "Perekonam, Pappanamcode",
+    "locality": "Thiruvananthapuram",
+    "region": "Kerala",
+    "regionCode": "KL",
+    "postalCode": "695018",
+    "country": "India",
+    "countryCode": "IN",
+    "addressFull": "Perekonam, Pappanamcode, Thiruvananthapuram, Kerala 695018, India"
+  },
+
+  "//map": "Locality-level coordinates for Pappanamcode, shown at neighbourhood zoom. These are APPROXIMATE and are used only for the visual map — they are deliberately NOT published in the LocalBusiness structured data, where a wrong pin would do harm. Replace with your exact coordinates (right-click your building in Google Maps > copy the lat,lng) and raise the zoom to 16.",
+  "map": { "lat": 8.4718, "lng": 76.956, "zoom": 13, "approximate": true },
+
+  "areaServed": "India",
+
+  "//formEndpoint": "Paste a form endpoint here to activate the enquiry form — e.g. a Formspree URL (https://formspree.io/f/xxxxxxx) or a Web3Forms endpoint. Until it is set, the form tells visitors to phone or email instead. Both are free for this volume.",
+  "formEndpoint": null,
+
+  "//nav": "An explicit Home item is included deliberately. The logo also links home, but this audience includes government bodies and residential communities where that convention is not universally known, and Indian institutional sites conventionally carry it. 'Approach' was removed because it pointed at a section of /about/ and sat redundantly beside 'About'.",
+  "nav": [
+    { "text": "Home",      "url": "/" },
+    { "text": "Services",  "url": "/services/" },
+    { "text": "About",     "url": "/about/" },
+    { "text": "Insights",  "url": "/insights/" },
+    { "text": "Contact",   "url": "/contact/" }
+  ],
+
+  "sectors": [
+    "Government bodies",
+    "Industries",
+    "Commercial establishments",
+    "Residential communities",
+    "Research organizations",
+    "Academic institutions"
+  ],
+
+  "vision": "To be a trusted global partner in sustainability-driven environmental consulting, geospatial solutions, regulatory compliance, and knowledge dissemination across industry and academia.",
+
+  "mission": "To deliver practical, cost-effective environmental and geospatial solutions through consulting, implementation, research support and capacity building — enabling sustainable development and informed decision-making.",
+
+  "//lifecycle": "`short` is used on the home summary, `body` on /about/#approach. They are deliberately different wording so the two pages are not competing for the same text in search results.",
+  "lifecycle": [
+    { "n": "01", "title": "Assessment",
+      "short": "Find out where you actually stand, on the ground.",
+      "body": "Baseline studies, environmental audits and site compliance assessments establish the ground truth before anything is committed to paper." },
+    { "n": "02", "title": "Planning",
+      "short": "Turn those findings into a defensible, costed plan.",
+      "body": "Management plans, thematic mapping and GIS-based spatial modelling turn field findings into a defensible, costed strategy." },
+    { "n": "03", "title": "Implementation",
+      "short": "Approvals obtained, systems commissioned, records kept.",
+      "body": "Regulatory approvals secured, pollution control systems commissioned, certification and reporting delivered on the ground." },
+    { "n": "04", "title": "Monitoring",
+      "short": "We stay on, and keep the performance measurable.",
+      "body": "Continuous environmental monitoring, operation and maintenance support, and measurable performance improvement over the long term." }
+  ]
+}

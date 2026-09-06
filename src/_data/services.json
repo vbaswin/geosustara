@@ -1,0 +1,287 @@
+[
+  {
+    "slug": "environmental-compliance-consulting",
+    "n": "01",
+    "title": "Environmental Compliance & Consulting",
+    "shortTitle": "Compliance & Consulting",
+    "icon": "doc-check",
+    "image": "card-comp",
+    "summary": "Comprehensive environmental consulting to ensure statutory compliance and regulatory excellence.",
+    "metaTitle": "Environmental Compliance Consultant",
+    "metaDescription": "Regulatory approvals, statutory documentation, environmental audits, site compliance assessments and baseline monitoring. Thiruvananthapuram, serving India.",
+    "keywords": "environmental compliance consultant, environmental audit, regulatory approvals, environmental documentation, baseline monitoring",
+    "bullets": [
+      "Regulatory approvals and statutory compliance support",
+      "Environmental documentation, reporting and management plans",
+      "Environmental audits and site compliance assessments",
+      "Environmental monitoring and baseline studies"
+    ],
+    "intro": "Environmental regulation changes faster than most organisations can track, and the cost of discovering a gap during an inspection is far higher than the cost of closing it beforehand. We work with government bodies, industries, commercial establishments and residential communities to establish exactly where they stand, what is required of them, and how to get there without disrupting operations.",
+    "detail": [
+      {
+        "h": "Regulatory approvals and statutory compliance support",
+        "p": "Applications and supporting documentation prepared to the standard the reviewing authority expects, with the technical annexures assembled correctly the first time. We identify which approvals a site actually needs before work begins, so the sequence of applications matches the sequence of construction or operation rather than holding it up."
+      },
+      {
+        "h": "Environmental documentation, reporting and management plans",
+        "p": "Environmental management plans, periodic returns and compliance reports written to be used rather than filed. A management plan is only useful if the people running the site can act on it, so we write them against the actual operating reality — who does what, at what frequency, and what the record looks like when it is done."
+      },
+      {
+        "h": "Environmental audits and site compliance assessments",
+        "p": "A structured walk through the site against the obligations that apply to it, producing a clear register of what is compliant, what is not, and what is at risk. Findings are prioritised by exposure and effort, so limited budgets go to the gaps that matter most rather than the ones that are simply easiest to close."
+      },
+      {
+        "h": "Environmental monitoring and baseline studies",
+        "p": "Baseline studies establish the environmental conditions at a site before a project changes them — the reference point every later claim depends on. Sampling design, parameter selection and reporting are matched to the decision the data has to support, whether that is an impact assessment, a treatment design or a compliance record."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "When should a baseline study be carried out?",
+        "a": "Before any site activity that could alter environmental conditions. A baseline established after work has started cannot be used to demonstrate what the project did or did not change, which weakens both impact assessment and later compliance reporting."
+      },
+      {
+        "q": "What is the difference between an environmental audit and a compliance assessment?",
+        "a": "A compliance assessment checks a site against the specific obligations that currently apply to it. An environmental audit is broader — it also examines management systems, monitoring practice, record keeping and the risks that are not yet regulatory failures but are heading that way."
+      },
+      {
+        "q": "Do you support sites that are already non-compliant?",
+        "a": "Yes. Establishing the actual position through an audit is the first step, followed by a prioritised remediation and documentation plan. Bringing an existing site into compliance is a substantial share of the work we do."
+      }
+    ]
+  },
+  {
+    "slug": "gis-geospatial-services",
+    "n": "02",
+    "title": "GIS & Geospatial Services",
+    "shortTitle": "GIS & Geospatial",
+    "icon": "layers",
+    "image": "card-gis",
+    "summary": "Professional mapping and spatial analysis for environmental planning, research and decision-making.",
+    "metaTitle": "GIS & Geospatial Mapping Services",
+    "metaDescription": "Thematic maps for EIA, Land Use/Land Cover mapping, watershed and terrain analysis, sensitivity mapping and GIS support for research across India.",
+    "keywords": "GIS services, thematic map preparation, LULC mapping, watershed analysis, environmental sensitivity mapping, GIS for EIA, spatial analysis",
+    "bullets": [
+      "Thematic map preparation and cartographic outputs",
+      "GIS-based spatial analysis and modelling",
+      "Land Use/Land Cover (LULC) mapping",
+      "Watershed, terrain, and drainage analysis",
+      "Environmental sensitivity and resource mapping",
+      "GIS support for research, and academic projects"
+    ],
+    "intro": "Spatial data answers questions that tabular data cannot: not just how much, but where, adjacent to what, and draining into where. Our geospatial work supports environmental planning, impact assessment and research — producing maps that are defensible under review, not merely attractive.",
+    "detail": [
+      {
+        "h": "Thematic map preparation and cartographic outputs",
+        "p": "Maps prepared to cartographic standard with correct projection, scale, legend, north arrow, source attribution and data vintage. Thematic maps for Environmental Impact Assessment are a common request, and the difference between one that is accepted and one that is returned is usually completeness of the map furniture rather than the analysis behind it."
+      },
+      {
+        "h": "GIS-based spatial analysis and modelling",
+        "p": "Overlay analysis, proximity and buffer studies, suitability modelling and change detection between time periods. The method is chosen to fit the decision: a siting question, a constraint map and an impact zone each demand a different analytical approach, and we document which was used and why."
+      },
+      {
+        "h": "Land Use / Land Cover (LULC) mapping",
+        "p": "Classification of land cover from remote sensing imagery into the categories a project actually needs, with the classification scheme stated explicitly. Where change over time is the question, multi-date classification shows how land use has shifted and at what rate — the evidence base for most land-related environmental argument."
+      },
+      {
+        "h": "Watershed, terrain and drainage analysis",
+        "p": "Catchment delineation, slope and aspect derivation, drainage network extraction and flow accumulation from elevation data. This underpins rainwater harvesting design, erosion and runoff assessment, and any question about where water goes when it leaves a site."
+      },
+      {
+        "h": "Environmental sensitivity and resource mapping",
+        "p": "Composite mapping of the features that constrain or complicate development — ecologically sensitive areas, water bodies, drainage lines and resource distribution. Sensitivity mapping is most valuable early, when the layout can still respond to what the map shows."
+      },
+      {
+        "h": "GIS support for research and academic projects",
+        "p": "Spatial data preparation, analysis and cartographic output for researchers and students whose work needs a geospatial component but whose training is in another discipline. We work alongside the researcher so the method is understood and defensible, not delivered as a black box."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "What makes a thematic map acceptable for an EIA?",
+        "a": "Correct projection and datum, an explicit scale, a complete legend, north arrow, and clear attribution of data source and vintage. Analytical quality matters, but maps are most often returned for missing or inconsistent map furniture rather than flawed analysis."
+      },
+      {
+        "q": "Can you work with data we already hold?",
+        "a": "Yes. Existing survey data, drawings and imagery are usually worth incorporating. We assess what is usable, identify gaps that need new data, and document the provenance of every layer in the final output."
+      },
+      {
+        "q": "Do you provide GIS support for student research?",
+        "a": "Yes — technical guidance for dissertations, projects and scientific studies is a distinct part of our practice. The intent is that the student can explain and defend the method, so we work through it with them rather than simply returning outputs."
+      }
+    ]
+  },
+  {
+    "slug": "pollution-control-environmental-management",
+    "n": "03",
+    "title": "Pollution Control & Environmental Management",
+    "shortTitle": "Pollution Control",
+    "icon": "droplet",
+    "image": "card-comp",
+    "summary": "Practical solutions for efficient management of air, water and waste systems.",
+    "metaTitle": "Pollution Control & Water Management",
+    "metaDescription": "Site-specific pollution control, treatment system operation and maintenance, water quality assessment, rainwater harvesting and waste management.",
+    "keywords": "pollution control consultant, water quality assessment, rainwater harvesting, waste management consultant, treatment system O&M, swimming pool water quality",
+    "bullets": [
+      "Site-specific pollution control solutions",
+      "Operation and maintenance of pollution control systems",
+      "Water quality assessment and treatment support",
+      "Rainwater harvesting planning and guidance",
+      "Swimming pool water quality and maintenance support",
+      "Solid and liquid waste management solutions"
+    ],
+    "intro": "Most pollution control failures are not design failures — they are operating failures. A system that was correctly specified will still breach limits if it is run outside its design envelope, maintained irregularly, or loaded with something it was never sized for. Our work spans both: getting the solution right for the site, and keeping it working afterwards.",
+    "detail": [
+      {
+        "h": "Site-specific pollution control solutions",
+        "p": "Control measures matched to the actual characteristics of the site — the load, the variability, the space available and the standard that has to be met. A specification copied from a comparable facility is a common and expensive mistake, because the loading profile is rarely comparable in the ways that matter."
+      },
+      {
+        "h": "Operation and maintenance of pollution control systems",
+        "p": "Ongoing operation and maintenance support for installed treatment and control systems, including performance monitoring, corrective action and the record keeping that demonstrates the system is doing what it was permitted to do."
+      },
+      {
+        "h": "Water quality assessment and treatment support",
+        "p": "Characterisation of water quality against the standard relevant to its use, followed by treatment support where the water does not meet it. Parameter selection is driven by intended use — drinking, process, discharge and irrigation each impose different requirements, and testing everything is rarely the efficient route to an answer."
+      },
+      {
+        "h": "Rainwater harvesting planning and guidance",
+        "p": "Assessment of catchment area, rainfall pattern and demand to size storage and recharge realistically. Harvesting systems commonly underperform because storage was sized without reference to the demand profile, or because recharge potential at the site was assumed rather than assessed."
+      },
+      {
+        "h": "Swimming pool water quality and maintenance support",
+        "p": "Water quality assessment and maintenance guidance for swimming pools in resorts, commercial facilities and residential communities — balancing treatment, circulation and testing frequency so quality is maintained consistently rather than corrected reactively."
+      },
+      {
+        "h": "Solid and liquid waste management solutions",
+        "p": "Practical handling, segregation, treatment and disposal arrangements for solid and liquid waste streams. We start from what the site actually generates and where it goes today, because waste plans built on assumed streams fail at the first audit."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Our treatment system was compliant at commissioning but is failing now. Why?",
+        "a": "Most commonly the load has changed — in volume, composition or variability — beyond what the system was sized for, or maintenance has drifted. Assessing actual current loading against design assumptions usually identifies the cause faster than modifying the system."
+      },
+      {
+        "q": "How large should a rainwater harvesting system be?",
+        "a": "It depends on catchment area, local rainfall pattern and, critically, the demand it is intended to meet. Sizing storage without reference to the demand profile is the most frequent reason harvesting systems underperform."
+      },
+      {
+        "q": "Do you support residential communities as well as industry?",
+        "a": "Yes. Residential communities are one of the six sectors we work with, and water quality, rainwater harvesting and waste management are the areas they most often need support in."
+      }
+    ]
+  },
+  {
+    "slug": "sustainability-eco-solutions",
+    "n": "04",
+    "title": "Sustainability & Eco Solutions",
+    "shortTitle": "Sustainability",
+    "icon": "leaf",
+    "image": "card-sust",
+    "summary": "Integrated sustainability strategies for environmentally responsible development.",
+    "metaTitle": "Sustainability Consulting & ESG Reporting",
+    "metaDescription": "Sustainability planning for resorts, commercial and residential projects, green building certification, ESG reporting and resource efficiency.",
+    "keywords": "sustainability consultant, ESG reporting, green building certification, resource efficiency, climate resilient advisory, nature-based solutions",
+    "bullets": [
+      "Sustainability planning for resorts, commercial, and residential projects",
+      "Green building and green certification support",
+      "ESG and sustainability reporting",
+      "Resource efficiency and environmental performance improvement",
+      "Climate-resilient and nature-based solution advisory"
+    ],
+    "intro": "We believe sustainability should be practical, measurable and impactful. That belief has a direct consequence for how we work: every commitment we help an organisation make should be something it can measure, evidence and defend. Sustainability work that cannot survive scrutiny is a liability, not an asset.",
+    "detail": [
+      {
+        "h": "Sustainability planning for resorts, commercial and residential projects",
+        "p": "Integrated planning that treats water, energy, waste and site ecology as a single system rather than four separate compliance exercises. Resorts and residential developments in particular gain most when these are considered together at design stage, where the cheapest improvements are still available."
+      },
+      {
+        "h": "Green building and green certification support",
+        "p": "Support through certification — identifying which credits are realistically achievable for the project, assembling the evidence, and coordinating the documentation. The determining factor is usually how early the process starts, since many credits become unreachable once design is frozen."
+      },
+      {
+        "h": "ESG and sustainability reporting",
+        "p": "Reporting built on data an organisation can actually produce and substantiate. We work backwards from what will be asked for, establish where each figure comes from and how it is verified, then build the reporting around those sources — so the second reporting cycle is easier than the first, not harder."
+      },
+      {
+        "h": "Resource efficiency and environmental performance improvement",
+        "p": "Identifying where resources are being consumed without producing value, and what it would take to change that. Improvements are ranked by measurable return, so investment goes where performance actually shifts rather than where it is most visible."
+      },
+      {
+        "h": "Climate-resilient and nature-based solution advisory",
+        "p": "Advisory on adapting sites to changing climate conditions, and on nature-based approaches — using drainage, vegetation and site ecology to deliver outcomes that would otherwise need built infrastructure, generally at lower cost and with fewer ongoing maintenance obligations."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "When should sustainability planning start on a project?",
+        "a": "At design stage. The interventions with the best return — orientation, drainage, water reuse, site ecology — become progressively harder and more expensive to introduce as design freezes and construction begins."
+      },
+      {
+        "q": "What makes ESG reporting defensible?",
+        "a": "Every figure must trace to a source that can be produced on request, with a documented method for how it was derived. Reporting assembled from estimates is the most common reason a sustainability claim fails under scrutiny."
+      },
+      {
+        "q": "Do you work with existing buildings or only new projects?",
+        "a": "Both. Existing facilities are typically where resource efficiency work produces the clearest measurable return, since inefficiencies have usually been running unexamined for years."
+      }
+    ]
+  },
+  {
+    "slug": "training-research-technical-support",
+    "n": "05",
+    "title": "Training, Research & Technical Support",
+    "shortTitle": "Training & Research",
+    "icon": "academic",
+    "image": "card-sust",
+    "summary": "Building knowledge and technical capacity for industry and academia.",
+    "metaTitle": "Environmental Training & Research Support",
+    "metaDescription": "Capacity-building programs, professional training, academic collaboration, research consultancy and technical guidance for dissertations and studies.",
+    "keywords": "environmental training, capacity building, research consultancy, dissertation guidance, environmental data analysis, academic collaboration",
+    "bullets": [
+      "Environmental awareness and capacity-building programs",
+      "Professional training for industry personnel",
+      "Academic collaboration and research consultancy",
+      "Technical guidance for dissertations, projects, and scientific studies",
+      "Data analysis, report preparation, and environmental research support"
+    ],
+    "intro": "Knowledge dissemination across industry and academia is part of our vision, not a sideline to it. Compliance that depends entirely on an external consultant is fragile; the organisations that maintain environmental performance are the ones whose own people understand why the requirements exist.",
+    "detail": [
+      {
+        "h": "Environmental awareness and capacity-building programs",
+        "p": "Programs pitched at the audience that will actually use them, from site-level awareness through to management briefings. Content is built around the environmental realities of the organisation in question, because generic material is reliably forgotten."
+      },
+      {
+        "h": "Professional training for industry personnel",
+        "p": "Technical training for the people responsible for environmental performance day to day — operators, supervisors and environmental officers. The emphasis is on the reasoning behind procedures, so staff can respond correctly to situations no procedure anticipated."
+      },
+      {
+        "h": "Academic collaboration and research consultancy",
+        "p": "Collaboration with research organisations and academic institutions on environmental and geospatial studies, contributing field capability, analytical support and domain knowledge to work led by the institution."
+      },
+      {
+        "h": "Technical guidance for dissertations, projects and scientific studies",
+        "p": "Methodological guidance for students and researchers — study design, sampling strategy, analytical approach and interpretation. The goal is a student who can defend the work, which means guiding the method rather than executing it for them."
+      },
+      {
+        "h": "Data analysis, report preparation and environmental research support",
+        "p": "Analysis of environmental datasets and preparation of technical reports to publication or submission standard, including presentation of results in a form a non-specialist reviewer can follow without losing the technical substance."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Do you work directly with students?",
+        "a": "Yes. Technical guidance for dissertations, projects and scientific studies is a defined part of our practice, covering study design, analysis and interpretation."
+      },
+      {
+        "q": "Can training be delivered at our site?",
+        "a": "Yes, and site delivery is usually more effective — training built around an organisation's own equipment, waste streams and procedures is retained far better than generic material delivered off site."
+      },
+      {
+        "q": "What does academic collaboration involve?",
+        "a": "It varies by project. Typically we contribute field capability, geospatial or analytical support and domain knowledge to research led by the institution, rather than directing the research ourselves."
+      }
+    ]
+  }
+]

@@ -1,0 +1,51 @@
+{%- macro logo(size, ids) -%}
+<svg width="{{ size }}" height="{{ size }}" viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
+  <path {% if ids %}id="lg1"{% endif %} d="M24 5 43 13.4 24 21.8 5 13.4 24 5Z" stroke="#35C3AC" stroke-width="1.6" stroke-linejoin="round"/>
+  <path {% if ids %}id="lg2"{% endif %} d="M8.6 21 24 27.8 39.4 21" stroke="#35C3AC" stroke-width="1.6" stroke-linejoin="round" opacity=".62"/>
+  <path {% if ids %}id="lg3"{% endif %} d="M8.6 28.6 24 35.4 39.4 28.6" stroke="#35C3AC" stroke-width="1.6" stroke-linejoin="round" opacity=".34"/>
+  <circle cx="24" cy="13.4" r="2.6" fill="#35C3AC"/>
+</svg>
+{%- endmacro -%}
+
+{%- set arrow -%}
+<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
+{%- endset -%}
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>
+      {{ logo(40, true) }}
+      <span>
+        <span class="brand-name">GEOSUSTARA</span>
+        <span class="brand-sub">ENVIRO SERVICES LLP</span>
+      </span>
+      <span class="vh">{{ site.name }} — home</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      {%- for item in site.nav %}
+      <a href="{{ item.url }}"{% if page.url == item.url or (item.url != "/" and page.url.startsWith(item.url)) %} aria-current="page"{% endif %}>{{ item.text }}</a>
+      {%- endfor %}
+    </nav>
+
+    <a class="btn mag" href="/contact/">Request a consultation {{ arrow | safe }}</a>
+
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="mnav" id="mobile-nav" data-open="false" aria-label="Mobile">
+  {%- for item in site.nav %}
+  <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>
+    {{ item.text }} {{ arrow | safe }}
+  </a>
+  {%- endfor %}
+  {#- No CTA button here either: "Contact" is already in the list above, one tap away. -#}
+  <div class="mnav-meta">
+    <span>{{ site.contact.addressLine }}, {{ site.contact.locality }} {{ site.contact.postalCode }}</span>
+    <a href="tel:{{ site.contact.phoneE164 }}">{{ site.contact.phoneDisplay }}</a>
+    <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>
+  </div>
+</nav>

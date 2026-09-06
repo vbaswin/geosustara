@@ -1,0 +1,56 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+{#- Built explicitly from the data rather than collections.all. Paginated pages are not
+    reliably present in collections.all at the time this template renders, and a sitemap
+    that silently drops pages is worse than no sitemap. -#}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ "/" | absUrl(siteUrl) }}</loc>
+    <lastmod>{{ buildDate | dateYMD }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>{{ "/services/" | absUrl(siteUrl) }}</loc>
+    <lastmod>{{ buildDate | dateYMD }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  {%- for s in services %}
+  <url>
+    <loc>{{ ("/services/" + s.slug + "/") | absUrl(siteUrl) }}</loc>
+    <lastmod>{{ buildDate | dateYMD }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  {%- endfor %}
+  <url>
+    <loc>{{ "/about/" | absUrl(siteUrl) }}</loc>
+    <lastmod>{{ buildDate | dateYMD }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{ "/contact/" | absUrl(siteUrl) }}</loc>
+    <lastmod>{{ buildDate | dateYMD }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>{{ "/insights/" | absUrl(siteUrl) }}</loc>
+    <lastmod>{{ buildDate | dateYMD }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  {%- for p in collections.insights | reverse %}
+  <url>
+    <loc>{{ p.url | absUrl(siteUrl) }}</loc>
+    <lastmod>{{ p.date | dateYMD }}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  {%- endfor %}
+</urlset>

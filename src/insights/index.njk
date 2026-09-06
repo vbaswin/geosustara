@@ -1,0 +1,50 @@
+---
+layout: layouts/page.njk
+permalink: /insights/
+title: "Insights"
+heading: "Notes from the field."
+description: "Practical notes on environmental regulation, geospatial method and environmental performance — written for the people who have to act on them."
+lede: "On regulation, geospatial method and environmental performance — written for the people who have to act on them, not for search engines."
+breadcrumbs:
+  - text: Home
+    url: /
+  - text: Insights
+---
+{%- from "partials/icons.njk" import arrow, picture -%}
+
+<section class="sec">
+  <div class="wrap">
+    {%- set posts = collections.insights | reverse %}
+    {%- if posts.length %}
+    <div class="posts">
+      {%- for p in posts %}
+      <a class="post rv" href="{{ p.url }}">
+        <div class="thumb">
+          {{ picture(p.data.image or "card-gis", p.data.imageAlt or "", [520,900],
+                     "(max-width:760px) 92vw, 30vw", "lazy", false, 900, 563) }}
+        </div>
+        <div class="body">
+          <span class="k">{{ p.data.category }}</span>
+          <h2>{{ p.data.title }}</h2>
+          <p>{{ p.data.description }}</p>
+          <time datetime="{{ p.date | dateYMD }}">{{ p.date | dateReadable }}</time>
+          <span class="more">Read {{ arrow() }}</span>
+        </div>
+      </a>
+      {%- endfor %}
+    </div>
+    {%- else %}
+    <p class="sec-lede">The first articles are being written. In the meantime,
+      <a href="/contact/" style="color:var(--aqua)">get in touch</a> with a question.</p>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="sec sec--tint">
+  <div class="wrap" style="text-align:center">
+    <h2 class="sec-title rv" style="margin-inline:auto;max-width:18ch">New notes as they are published</h2>
+    <div class="hero-cta rv" style="justify-content:center;margin-top:26px">
+      <a class="btn btn--out mag" href="/insights/feed.xml">Subscribe by RSS {{ arrow() }}</a>
+    </div>
+  </div>
+</section>

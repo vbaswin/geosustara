@@ -1,0 +1,172 @@
+{#- Structured data as a single @graph so entities can cross-reference by @id. -#}
+{%- set orgId  = siteUrl + "/#organization" -%}
+{%- set siteId = siteUrl + "/#website" -%}
+{#- Breadcrumbs: explicit front matter wins; otherwise derive from page type. -#}
+{%- set crumbs = breadcrumbs -%}
+{%- if not crumbs and service -%}
+  {%- set crumbs = [
+    { "text": "Home", "url": "/" },
+    { "text": "Services", "url": "/services/" },
+    { "text": service.title }
+  ] -%}
+{%- endif -%}
+{%- if not crumbs and layout == "layouts/post.njk" -%}
+  {%- set crumbs = [
+    { "text": "Home", "url": "/" },
+    { "text": "Insights", "url": "/insights/" },
+    { "text": title }
+  ] -%}
+{%- endif -%}
+{%- set faqList = faqs or service.faqs -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+      "@id": {{ orgId | dump | safe }},
+      "name": {{ site.name | dump | safe }},
+      "alternateName": {{ site.shortName | dump | safe }},
+      "url": {{ siteUrl | dump | safe }},
+      "description": {{ site.description | dump | safe }},
+      "email": {{ site.contact.email | dump | safe }},
+      "telephone": {{ site.contact.phoneE164 | dump | safe }},
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ ("/assets/img/logo.png" | absUrl(siteUrl)) | dump | safe }},
+        "width": 512,
+        "height": 512
+      },
+      "image": {{ ("/assets/img/og-default.jpg" | absUrl(siteUrl)) | dump | safe }},
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": {{ site.contact.addressLine | dump | safe }},
+        "addressLocality": {{ site.contact.locality | dump | safe }},
+        "addressRegion": {{ site.contact.region | dump | safe }},
+        "postalCode": {{ site.contact.postalCode | dump | safe }},
+        "addressCountry": {{ site.contact.countryCode | dump | safe }}
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": {{ site.areaServed | dump | safe }}
+      },
+      "knowsAbout": [
+        "Environmental compliance",
+        "Environmental impact assessment",
+        "Geographic information systems",
+        "Land use and land cover mapping",
+        "Watershed analysis",
+        "Pollution control",
+        "Water quality assessment",
+        "Rainwater harvesting",
+        "Sustainability reporting",
+        "ESG reporting",
+        "Green building certification",
+        "Environmental research"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Environmental and geospatial services",
+        "itemListElement": [
+          {%- for s in services %}
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": {{ s.title | dump | safe }},
+              "description": {{ s.summary | dump | safe }},
+              "url": {{ ("/services/" + s.slug + "/" | absUrl(siteUrl)) | dump | safe }}
+            }
+          }{{ "," if not loop.last }}
+          {%- endfor %}
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ siteId | dump | safe }},
+      "url": {{ siteUrl | dump | safe }},
+      "name": {{ site.name | dump | safe }},
+      "description": {{ site.description | dump | safe }},
+      "publisher": { "@id": {{ orgId | dump | safe }} },
+      "inLanguage": {{ site.lang | dump | safe }}
+    }
+
+    {%- if crumbs %},
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ (page.url + "#breadcrumbs" | absUrl(siteUrl)) | dump | safe }},
+      "itemListElement": [
+        {%- for c in crumbs %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.index }},
+          "name": {{ c.text | dump | safe }}
+          {%- if c.url %},
+          "item": {{ (c.url | absUrl(siteUrl)) | dump | safe }}
+          {%- endif %}
+        }{{ "," if not loop.last }}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+
+    {%- if service %},
+    {
+      "@type": "Service",
+      "@id": {{ (page.url + "#service" | absUrl(siteUrl)) | dump | safe }},
+      "name": {{ service.title | dump | safe }},
+      "description": {{ service.summary | dump | safe }},
+      "serviceType": {{ service.title | dump | safe }},
+      "provider": { "@id": {{ orgId | dump | safe }} },
+      "areaServed": { "@type": "Country", "name": {{ site.areaServed | dump | safe }} },
+      "url": {{ (page.url | absUrl(siteUrl)) | dump | safe }},
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": {{ service.title | dump | safe }},
+        "itemListElement": [
+          {%- for b in service.bullets %}
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": {{ b | dump | safe }} } }{{ "," if not loop.last }}
+          {%- endfor %}
+        ]
+      }
+    }
+    {%- endif %}
+
+    {%- if faqList %},
+    {
+      "@type": "FAQPage",
+      "@id": {{ (page.url + "#faq" | absUrl(siteUrl)) | dump | safe }},
+      "mainEntity": [
+        {%- for f in faqList %}
+        {
+          "@type": "Question",
+          "name": {{ f.q | dump | safe }},
+          "acceptedAnswer": { "@type": "Answer", "text": {{ f.a | dump | safe }} }
+        }{{ "," if not loop.last }}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+
+    {%- if layout == "layouts/post.njk" %},
+    {
+      "@type": "BlogPosting",
+      "@id": {{ (page.url + "#article" | absUrl(siteUrl)) | dump | safe }},
+      "headline": {{ title | dump | safe }},
+      "description": {{ (description or site.description) | dump | safe }},
+      "datePublished": {{ (page.date | dateISO) | dump | safe }},
+      "dateModified": {{ (page.date | dateISO) | dump | safe }},
+      "author": { "@id": {{ orgId | dump | safe }} },
+      "publisher": { "@id": {{ orgId | dump | safe }} },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": {{ (page.url | absUrl(siteUrl)) | dump | safe }} },
+      "articleSection": {{ (category or "Insights") | dump | safe }},
+      "inLanguage": {{ site.lang | dump | safe }}
+      {%- if ogImage %},
+      "image": {{ (ogImage | absUrl(siteUrl)) | dump | safe }}
+      {%- endif %}
+    }
+    {%- endif %}
+  ]
+}
+</script>

@@ -1,0 +1,190 @@
+---
+layout: layouts/base.njk
+title: false
+description: "Sustainability-driven environmental consulting in Thiruvananthapuram — regulatory compliance, GIS mapping, pollution control and sustainability across India."
+---
+{%- from "partials/icons.njk" import svcIcon, arrow, picture -%}
+
+<div class="hero">
+  <div class="hero-bg">
+    {#- Capped at 1440w on purpose: this sits under a dark scrim with a sub-pixel blur baked in,
+        so a 1920 variant is visually identical but 70% heavier on the LCP element. -#}
+    <picture>
+      <source type="image/avif" srcset="/assets/img/hero-960.avif 960w, /assets/img/hero-1440.avif 1440w" sizes="100vw">
+      <source type="image/webp" srcset="/assets/img/hero-960.webp 960w, /assets/img/hero-1440.webp 1440w" sizes="100vw">
+      <img src="/assets/img/hero-1440.jpg" width="1440" height="810" fetchpriority="high" decoding="async"
+           alt="False-colour satellite image of a river delta showing braided channel networks and land-cover zones.">
+    </picture>
+  </div>
+  <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <svg class="hero-mesh" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true"><g id="mesh"></g></svg>
+
+  <div class="wrap hero-in">
+    <div class="eyebrow">
+      <span class="rule"></span>
+      <span class="label">{{ site.tagline }} &middot; {{ site.contact.locality }}</span>
+    </div>
+    <h1 class="hh">
+      <span class="ln"><span>Sustainability that is</span></span>
+      <span class="ln"><span><em>practical, measurable</em></span></span>
+      <span class="ln"><span>and impactful.</span></span>
+    </h1>
+    <div class="hero-row">
+      <div>
+        <p class="hero-p">We bridge the gap between environmental responsibility and practical implementation —
+          delivering integrated environmental and geospatial solutions that go beyond reports.</p>
+        <div class="hero-cta">
+          <a class="btn mag" href="/services/">View our services {{ arrow() }}</a>
+        </div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><span class="n" data-count="5">0</span><span class="t">Service<br>areas</span></div>
+        <div class="metric"><span class="n" data-count="6">0</span><span class="t">Sectors<br>served</span></div>
+        <div class="metric"><span class="n" data-count="4">0</span><span class="t">Stage<br>lifecycle</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scrollcue" aria-hidden="true"><span>Scroll</span><i></i></div>
+</div>
+
+<div class="ticker">
+  <div class="tk">
+    <div class="tk-set">
+      {%- for s in site.sectors %}<span>{{ s }}</span><i></i>{% endfor %}
+    </div>
+    <div class="tk-set" aria-hidden="true">
+      {%- for s in site.sectors %}<span>{{ s }}</span><i></i>{% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="sec" id="services">
+  <div class="topo-band" aria-hidden="true">
+    <svg viewBox="0 0 1440 180" preserveAspectRatio="none"><g data-topo-band fill="none" stroke="#35C3AC" stroke-width="1"></g></svg>
+  </div>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">01 — What we do</span>
+      <h2 class="sec-title">Five disciplines,<br>one integrated practice.</h2>
+      <p class="sec-lede">Our expertise spans environmental compliance, pollution control, waste and water resource
+        management, GIS mapping and spatial analysis, sustainability consulting, and technical support for research
+        and academic projects.</p>
+    </div>
+
+    {#- Overview only. The capability lists live on /services/ and each detail page, so the
+        same content is not competing with itself across three URLs. -#}
+    <div class="bento">
+      {%- for s in services %}
+      <article class="bx {{ 'bx--wide' if loop.index <= 2 }} rv" style="min-height:0">
+        <span class="bx-spot"></span><span class="bx-topo" data-topo></span>
+        <span class="bx-no">{{ s.n }}</span>
+        <span class="bx-ico">{{ svcIcon(s.icon, true) }}</span>
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.summary }}</p>
+        <span class="more">Explore {{ arrow() }}</span>
+        <a class="bx-link" href="/services/{{ s.slug }}/"><span class="vh">{{ s.title }}</span></a>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LIFECYCLE ===================== -->
+<section class="sec sec--tint" id="approach">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">02 — How we work</span>
+      <h2 class="sec-title">From first survey to<br>continuous monitoring.</h2>
+      <p class="sec-lede">We support our clients from initial assessment and planning through implementation and
+        continuous monitoring — transforming environmental challenges into opportunities for responsible growth
+        and innovation.</p>
+    </div>
+    {#- Compact strip here; the full scroll-tracked panel version lives on /about/#approach. -#}
+    <ol class="stages">
+      {%- for st in site.lifecycle %}
+      <li class="stage rv">
+        <span class="stage-n">{{ st.n }}</span>
+        <h3>{{ st.title }}</h3>
+        <p>{{ st.short }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+    <div class="hero-cta rv" style="margin-top:clamp(28px,4vh,44px)">
+      <a class="btn btn--out mag" href="/about/#approach">How we work, in full {{ arrow() }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PURPOSE ===================== -->
+{#- The Vision and Mission statements in full belong to /about/. Here they are represented by
+    the belief they rest on, so the two pages are not competing for the same words. -#}
+<section class="sec" id="purpose">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:center;margin-inline:auto">
+      <span class="label">03 — Our purpose</span>
+    </div>
+    <p class="pullquote rv">We believe sustainability should be <em>practical, measurable</em> and impactful.</p>
+    <p class="rv" style="text-align:center;max-width:56ch;margin:26px auto 0;color:var(--muted);font-size:clamp(15px,.45vw + 14px,17.5px);line-height:1.74">
+      We were founded to bridge the gap between environmental responsibility and practical
+      implementation — supporting clients from first assessment through to continuous monitoring
+      rather than handing over a report and leaving.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== INSIGHTS ===================== -->
+{%- set latest = collections.insights | reverse | limit(3) %}
+{%- if latest.length %}
+<section class="sec sec--tint" id="insights">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">04 — Insights</span>
+      <h2 class="sec-title">Notes from the field.</h2>
+      <p class="sec-lede">On regulation, geospatial method and environmental performance — written for the people
+        who have to act on them.</p>
+    </div>
+    <div class="posts">
+      {%- for p in latest %}
+      <a class="post rv" href="{{ p.url }}">
+        <div class="thumb">
+          {{ picture(p.data.image or "card-gis", p.data.imageAlt or "", [520,900],
+                     "(max-width:760px) 92vw, 30vw", "lazy", false, 900, 563) }}
+        </div>
+        <div class="body">
+          <span class="k">{{ p.data.category }}</span>
+          <h3>{{ p.data.title }}</h3>
+          <p>{{ p.data.description }}</p>
+          <span class="more">Read {{ arrow() }}</span>
+        </div>
+      </a>
+      {%- endfor %}
+    </div>
+    <div class="hero-cta rv" style="margin-top:clamp(28px,4vh,44px)">
+      <a class="btn btn--out mag" href="/insights/">All insights {{ arrow() }}</a>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<!-- ===================== CONTACT ===================== -->
+{#- A short routing band, not a second copy of /contact/. The enquiry form and the map live
+    on the contact page only, so a visitor never meets the same block twice. -#}
+<section class="sec sec--tint" id="contact">
+  <div class="wrap contact-band">
+    <div class="rv">
+      <span class="label">05 — Contact</span>
+      <h2 class="sec-title" style="max-width:16ch">Start with an assessment.</h2>
+    </div>
+    <div class="rv">
+      <ul class="cband">
+        <li><span class="ctk">Office</span><span class="ctv">{{ site.contact.addressLine }},<br>{{ site.contact.locality }} {{ site.contact.postalCode }}</span></li>
+        <li><span class="ctk">Telephone</span><span class="ctv"><a href="tel:{{ site.contact.phoneE164 }}">{{ site.contact.phoneDisplay }}</a></span></li>
+        <li><span class="ctk">Email</span><span class="ctv"><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></span></li>
+      </ul>
+      <p class="form-note" style="margin-top:18px">Full contact details, a map and an enquiry form
+        are on the <a href="/contact/" style="color:var(--aqua)">contact page</a>.</p>
+    </div>
+  </div>
+</section>

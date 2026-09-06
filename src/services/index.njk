@@ -1,0 +1,53 @@
+---
+layout: layouts/page.njk
+permalink: /services/
+title: "Environmental & Geospatial Services"
+heading: "Five disciplines, one integrated practice."
+description: "Environmental compliance, GIS and geospatial services, pollution control, sustainability consulting and research support — delivered end to end across India."
+lede: "Five distinct disciplines that most organisations otherwise have to buy from five different suppliers. Each links to what it covers in practice, what we deliver, and the questions clients ask most often."
+showCta: false
+breadcrumbs:
+  - text: Home
+    url: /
+  - text: Services
+---
+{%- from "partials/icons.njk" import svcIcon, arrow -%}
+
+<section class="sec">
+  <div class="topo-band" aria-hidden="true">
+    <svg viewBox="0 0 1440 180" preserveAspectRatio="none"><g data-topo-band fill="none" stroke="#35C3AC" stroke-width="1"></g></svg>
+  </div>
+  <div class="wrap">
+    <div class="bento">
+      {%- for s in services %}
+      <article class="bx {{ 'bx--wide' if loop.index <= 2 }} rv">
+        <span class="bx-spot"></span><span class="bx-topo" data-topo></span>
+        <span class="bx-no">{{ s.n }}</span>
+        <span class="bx-ico">{{ svcIcon(s.icon, true) }}</span>
+        <h2>{{ s.title }}</h2>
+        <p>{{ s.summary }}</p>
+        <ul>
+          {%- for b in s.bullets %}<li>{{ b }}</li>{% endfor %}
+        </ul>
+        <span class="more">Explore {{ arrow() }}</span>
+        <a class="bx-link" href="/services/{{ s.slug }}/"><span class="vh">{{ s.title }}</span></a>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{#- The four-stage lifecycle is explained once, on /about/#approach. Repeating it here would
+    put the same text on two URLs competing for the same terms. -#}
+<section class="sec sec--tint">
+  <div class="wrap" style="text-align:center">
+    <h2 class="sec-title rv" style="margin-inline:auto;max-width:20ch">Not sure which of these you need?</h2>
+    <p class="rv" style="max-width:52ch;margin:20px auto 0;color:var(--muted);line-height:1.74">
+      Most engagements begin with an assessment that establishes what applies to your site. Describe
+      the problem and we will tell you which of the five it falls under — often it is more than one.
+    </p>
+    <div class="hero-cta rv" style="justify-content:center;margin-top:clamp(26px,4vh,40px)">
+      <a class="btn btn--out mag" href="/about/#approach">How an engagement runs {{ arrow() }}</a>
+    </div>
+  </div>
+</section>

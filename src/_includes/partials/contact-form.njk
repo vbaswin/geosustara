@@ -1,0 +1,52 @@
+{%- from "partials/icons.njk" import arrow -%}
+{#- Posts to site.formEndpoint when configured. Until then the submit handler in main.js
+    shows a clear message and points at the phone/email, which are always in the DOM. -#}
+<form class="form rv" id="enquiry"
+      {% if site.formEndpoint %}action="{{ site.formEndpoint }}" method="POST"{% endif %}
+      data-endpoint="{{ site.formEndpoint or '' }}" novalidate>
+  <div class="f2">
+    <div class="field">
+      <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required>
+    </div>
+    <div class="field">
+      <label for="f-org">Organisation</label>
+      <input id="f-org" name="organisation" type="text" autocomplete="organization">
+    </div>
+  </div>
+  <div class="f2">
+    <div class="field">
+      <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+      <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+    </div>
+    <div class="field">
+      <label for="f-phone">Phone</label>
+      <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+    </div>
+  </div>
+  <div class="field">
+    <label for="f-service">Service area</label>
+    <select id="f-service" name="service">
+      {%- for s in services %}
+      <option value="{{ s.slug }}">{{ s.title }}</option>
+      {%- endfor %}
+      <option value="other">Something else</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="f-message">Requirement <span class="req" aria-hidden="true">*</span></label>
+    <textarea id="f-message" name="message" rows="4" required></textarea>
+    <span class="hint" id="f-message-hint">Tell us about the site, the obligation or the research question.</span>
+  </div>
+  {#- Honeypot: bots fill hidden fields, people do not. -#}
+  <div class="vh" aria-hidden="true">
+    <label for="f-company">Do not fill this in</label>
+    <input id="f-company" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+  </div>
+  <button class="btn mag" type="submit">Send enquiry {{ arrow() }}</button>
+  <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
+  <p class="form-note">
+    Prefer to speak directly? Call <a href="tel:{{ site.contact.phoneE164 }}" style="color:var(--aqua)">{{ site.contact.phoneDisplay }}</a>
+    or email <a href="mailto:{{ site.contact.email }}" style="color:var(--aqua)">{{ site.contact.email }}</a>.
+  </p>
+</form>
