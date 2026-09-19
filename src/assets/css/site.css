@@ -25,6 +25,11 @@
 }
 
 *{box-sizing:border-box}
+/* The `hidden` attribute is only `display:none` in the UA stylesheet, so ANY author rule
+   that sets display on a more specific selector silently defeats it. That is how the
+   enquiry form shipped with every validation error visible on load. Global and !important
+   on purpose: this has to hold no matter what is added below. */
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
   margin:0;background:var(--bg);color:var(--txt);font-family:var(--f-b);
