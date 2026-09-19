@@ -9,17 +9,54 @@ check before you pay".
 
 | | Choice | Roughly |
 |---|---|---|
-| **Domain** | [Cloudflare Registrar](https://www.cloudflare.com/products/registrar/) — sold at cost, no first-year trick, free WHOIS privacy | **₹950–1,050 / year** |
-| **Hosting** | [Cloudflare Pages](https://pages.cloudflare.com) — free tier, commercial use explicitly allowed, unlimited bandwidth, six Indian edge locations | **₹0** |
-| **Email** | [Zoho Mail](https://www.zoho.com/mail/) free plan — `info@geosustara.com` on your own domain, 5 users | **₹0** |
-| | | **≈ ₹1,000 / year, all in** |
+| **Domain** | An Indian registrar — [Hostinger](https://www.hostinger.in) or [BigRock](https://www.bigrock.in). INR, GST invoice, and your RuPay / domestic debit card works. | **₹420 year 1, ~₹1,400/yr after** |
+| **Hosting** | [Cloudflare Pages](https://pages.cloudflare.com) — free tier, commercial use explicitly allowed, unlimited bandwidth, six Indian edge locations. **No payment method required at all.** | **₹0** |
+| **DNS** | Cloudflare free plan — point the registrar's nameservers at it | **₹0** |
+| **Email** | [Zoho Mail](https://www.zoho.com/mail/) free plan — `info@geosustara.com` on your own domain, 5 users. Indian company, pays in INR if you ever upgrade. | **₹0** |
+| | | **≈ ₹1,400 / year after year one** |
 
-If paying in USD is a nuisance, swap the registrar for **Hostinger** or **BigRock** (INR
-billing, GST invoice) and keep everything else. That is the second-best answer and costs
-roughly the same in year one, more on renewal.
+**If you hold a Visa or Mastercard credit card with international payments enabled**, buy the
+domain from [Cloudflare Registrar](https://www.cloudflare.com/products/registrar/) instead —
+it sells at cost with no renewal markup (~₹1,000/yr flat, forever) and free WHOIS privacy.
+That saves a few hundred rupees a year and puts everything in one dashboard. Read
+[Paying for it from India](#paying-for-it-from-india) first — this is the one step where
+Indian cards commonly fail.
 
 **Move off GitHub Pages.** It is not wrong, but Cloudflare Pages is better on every axis
 that matters here, for the same price. Reasons in [Hosting](#hosting) below.
+
+---
+
+## Paying for it from India
+
+**Hosting costs nothing and needs no card.** Cloudflare Pages, Cloudflare DNS and Zoho Mail's
+free plan are all sign-up-and-go. The *only* thing in this whole document you have to pay for
+is the domain name.
+
+That matters, because paying a foreign company from India is where this usually goes wrong:
+
+| Card | Works on Cloudflare / Namecheap (USD) | Works on Hostinger / BigRock (INR) |
+|---|---|---|
+| **RuPay debit (SBI or any bank)** | **No.** RuPay is a domestic network. Cloudflare's accepted networks are Visa, Mastercard, Amex, Discover and UnionPay — RuPay is not among them, and a standard RuPay card cannot transact on foreign sites at all. | **Yes** |
+| RuPay *Global* (co-badged Discover / JCB / Diners) | Sometimes. Depends on the co-badge and on your bank enabling international use. Not worth gambling a domain on. | Yes |
+| SBI / other Visa or Mastercard **debit** | Often, but you must enable international usage in YONO or the bank's app first, and many Indian debit cards still fail 3DS on foreign merchants. | Yes |
+| Visa / Mastercard **credit** | Yes, reliably. Enable international transactions first. | Yes |
+
+Two more things that bite people here:
+
+- **Forex markup.** An international card charge carries roughly 3.5% markup plus GST on that
+  markup. On a ₹1,000 domain it is trivial; it is just not zero.
+- **No GST input credit.** A foreign registrar gives you a USD receipt, not a GST invoice. For
+  an LLP that can claim input credit, an Indian registrar's invoice is worth having — which
+  on a ₹1,400 domain is a small amount, but it is also one less thing your accountant asks
+  about.
+- **Auto-renew breaks.** RBI's rules on recurring card mandates silently kill auto-renewal on
+  some foreign sites. Set a calendar reminder 45 days before expiry regardless of where you
+  buy. A lapsed domain is the most expensive mistake in this document.
+
+**So: buy the domain in rupees from an Indian registrar unless you have a Visa/Mastercard
+credit card and prefer the flat Cloudflare price.** Either way, host on Cloudflare — that part
+is free and needs no payment method.
 
 ---
 
@@ -49,12 +86,23 @@ the arithmetic over five years, not one, on any offer you are shown.
 
 ### So which one
 
-**Cloudflare Registrar, if you can pay by card in USD.** It sells domains at exactly what it
-pays the registry, adds nothing at renewal, includes WHOIS privacy free, and puts the domain
-in the same dashboard as the hosting. This is what most developers pick in 2026 and there is
-no catch — Cloudflare makes its money elsewhere.
+**Start from the card in your wallet** — see
+[Paying for it from India](#paying-for-it-from-india). A RuPay debit card rules Cloudflare and
+Namecheap out entirely, and that is a fine reason to buy in rupees instead. The five-year
+difference between the two routes is about ₹1,000; a failed transaction at 11pm is worth more
+than that in irritation.
 
-Three real caveats:
+**Hostinger or BigRock** if you are paying with an Indian card: INR billing, a GST invoice you
+can claim, and support in Indian hours. You pay a few hundred rupees a year more and you will
+be upsold hard at checkout — decline everything except the domain and WHOIS privacy.
+
+**Cloudflare Registrar** if you have a Visa or Mastercard credit card with international
+payments enabled. It sells domains at exactly what it pays the registry, adds nothing at
+renewal, includes WHOIS privacy free, and puts the domain in the same dashboard as the
+hosting. This is what most developers pick in 2026 and there is no catch — Cloudflare makes
+its money elsewhere.
+
+Three real caveats to the Cloudflare route:
 
 1. **A Cloudflare-registered domain must use Cloudflare's nameservers.** You cannot point its
    DNS at another provider without transferring the domain out. Since the plan is to host on
@@ -144,12 +192,22 @@ as GitHub Actions does now.
 
 ### 1. Buy the domain (15 minutes)
 
-At <https://dash.cloudflare.com> → **Domain Registration → Register Domains** → search
-`geosustara.com` → buy. WHOIS privacy is on by default and free.
+**Paying in rupees (recommended — works with a RuPay or any domestic card):** at
+<https://www.hostinger.in> or <https://www.bigrock.in>, search `geosustara.com` and buy it.
+Turn WHOIS privacy **on**. Decline the bundled hosting, website builder, SSL certificate,
+email and "SEO tools" — you need none of them.
 
-*(If you bought elsewhere: create a free Cloudflare account, **Add a site**, enter
-`geosustara.com`, choose the **Free** plan, and change the nameservers at your registrar to
-the two Cloudflare gives you. Propagation takes minutes to a few hours.)*
+**Paying in USD with a Visa/Mastercard credit card:** at <https://dash.cloudflare.com> →
+**Domain Registration → Register Domains** → search `geosustara.com` → buy. WHOIS privacy is
+on by default and free, and the price never rises at renewal.
+
+### 1b. Put DNS on Cloudflare (10 minutes — skip if you bought at Cloudflare)
+
+Create a free Cloudflare account, **Add a site**, enter `geosustara.com`, choose the **Free**
+plan. Cloudflare gives you two nameservers; set those as the nameservers at your registrar,
+replacing whatever is there. Propagation takes minutes to a few hours.
+
+This step is what lets the rest of this guide work identically whichever registrar you used.
 
 ### 2. Connect the site (10 minutes)
 
@@ -228,15 +286,73 @@ years.
 
 ## Costs, five years, honestly
 
-| | Year 1 | Years 2–5 each | 5-year total |
-|---|---|---|---|
-| Cloudflare domain + Cloudflare Pages + Zoho free | ₹1,000 | ₹1,000 | **₹5,000** |
-| Hostinger domain + Cloudflare Pages + Zoho free | ₹420 | ₹1,400 | **₹6,020** |
-| GoDaddy domain (3-yr ₹1 offer) + Cloudflare Pages | ₹1 | ₹2,300 | **₹9,200** |
-| Any domain + Vercel Pro | ₹22,000 | ₹22,400 | **₹111,600** |
-| Indian shared hosting bundle | ₹3,500 | ₹4,500 | **₹21,500** |
+| | Year 1 | Years 2–5 each | 5-year total | Card needed |
+|---|---|---|---|---|
+| Hostinger domain + Cloudflare Pages + Zoho free | ₹420 | ₹1,400 | **₹6,020** | RuPay / any Indian card |
+| Cloudflare domain + Cloudflare Pages + Zoho free | ₹1,000 | ₹1,000 | **₹5,000** | Visa/MC, international enabled |
+| GoDaddy domain (3-yr ₹1 offer) + Cloudflare Pages | ₹1 | ₹2,300 | **₹9,200** | Any Indian card |
+| Indian shared hosting bundle (domain + hosting + email) | ₹3,500 | ₹4,500 | **₹21,500** | Any Indian card |
+| Any domain + Vercel Pro | ₹22,000 | ₹22,400 | **₹111,600** | Visa/MC |
+
+The first two differ by about ₹1,000 across five years. That is not enough to agonise over —
+pick whichever you can actually pay for without a failed transaction.
 
 Add ~₹5,400/year only if you later need Zoho Mail Lite for IMAP across 5 users.
+
+---
+
+## Why Cloudflare, and when you should not
+
+**It is not a small company taking a chance on you.** Cloudflare sits in front of a very large
+share of the internet. The free tier is not a loss-leader trial that expires — it exists
+because serving static files costs them almost nothing and the free tier feeds their paid
+business. It has worked this way for over a decade.
+
+**The case for it here**
+
+- The free tier permits commercial use *in writing*. Most "free hosting" does not.
+- Unlimited bandwidth. No throttle, no surprise bill, ever.
+- Six Indian edge locations, so pages load from Mumbai or Chennai rather than Singapore.
+  For a Kerala audience this shows up in Core Web Vitals, which feed into ranking.
+- Free SSL, free DDoS protection, and DNS that is among the fastest in the world.
+- It builds from your GitHub repository automatically, exactly as the current GitHub Actions
+  workflow does.
+- It reads the `_headers` file in this repo, so the security and caching rules actually apply.
+  On GitHub Pages they are silently discarded.
+
+**The honest case against it**
+
+1. **Support is a ticket and a forum, not a phone number.** On the free plan there is no
+   Indian phone support and nobody who speaks Malayalam. If DNS breaks the night before a
+   client meeting, you are reading documentation or calling your developer. An Indian shared
+   host gives you a number to ring. If nobody in the firm is comfortable with a technical
+   dashboard, that is worth real money.
+2. **The dashboard assumes you know what an A record is.** Hostinger's panel holds your hand;
+   Cloudflare's does not.
+3. **Concentration risk.** If you register the domain at Cloudflare *and* run DNS *and*
+   hosting there, an account suspension — rare, but it happens over billing disputes and
+   automated abuse flags — takes all three at once. Buying the domain from an Indian registrar
+   and using Cloudflare only for DNS and hosting splits that risk for free. It is one reason
+   the recommendation above is arranged that way.
+4. **A Cloudflare-registered domain is locked to Cloudflare nameservers.** You cannot move its
+   DNS elsewhere without transferring the domain out. Not a problem if you are staying, but
+   know it before you buy.
+5. **No email hosting.** You need Zoho or similar regardless — but so it is with every option
+   in this document except a bundled Indian hosting plan.
+6. **When Cloudflare has an outage it is global and newsworthy.** They are rare and usually
+   short. The honest comparison is against a single shared server in one Indian data centre,
+   which has materially worse uptime and no status page anyone watches.
+7. **No GST invoice, no INR.** Only relevant if you pay them anything — and in the
+   recommended arrangement you do not.
+
+**When I would tell you to use a bundled Indian host instead**
+
+If you want one company, one bill in rupees, one GST invoice and one phone number covering
+domain, hosting and email — and you would rather pay ~₹3,000–4,000 a year than ever touch a
+DNS record — then take a Hostinger or BigRock plan and upload the contents of `_site/` to it.
+The site will be slower and the security headers need setting up by hand, but it will work,
+and "I can phone someone" is a legitimate requirement, not a mistake. Just do not let them
+sell you WordPress; this site does not need it.
 
 ---
 
