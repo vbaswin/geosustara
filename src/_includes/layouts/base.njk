@@ -52,8 +52,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
-<link rel="stylesheet" href="{{ '/assets/vendor/lenis.css' | url }}">
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}?v={{ '/assets/css/site.css' | assetVersion }}">
+<link rel="stylesheet" href="{{ '/assets/vendor/lenis.css' | url }}?v={{ '/assets/vendor/lenis.css' | assetVersion }}">
 
 {% include "partials/jsonld.njk" %}
 {%- block head %}{% endblock %}
@@ -71,9 +71,9 @@
 
 {% include "partials/footer.njk" %}
 
-<script src="{{ '/assets/vendor/gsap.min.js' | url }}" defer></script>
-<script src="{{ '/assets/vendor/ScrollTrigger.min.js' | url }}" defer></script>
-<script src="{{ '/assets/vendor/lenis.min.js' | url }}" defer></script>
-<script src="{{ '/assets/js/main.js' | url }}" defer></script>
+<script src="{{ '/assets/vendor/gsap.min.js' | url }}?v={{ '/assets/vendor/gsap.min.js' | assetVersion }}" defer></script>
+<script src="{{ '/assets/vendor/ScrollTrigger.min.js' | url }}?v={{ '/assets/vendor/ScrollTrigger.min.js' | assetVersion }}" defer></script>
+<script src="{{ '/assets/vendor/lenis.min.js' | url }}?v={{ '/assets/vendor/lenis.min.js' | assetVersion }}" defer></script>
+<script src="{{ '/assets/js/main.js' | url }}?v={{ '/assets/js/main.js' | assetVersion }}" defer></script>
 </body>
 </html>

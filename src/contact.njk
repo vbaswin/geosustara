@@ -57,6 +57,7 @@ faqs:
         </div>
 
         <div id="map" data-lat="{{ site.map.lat }}" data-lng="{{ site.map.lng }}" data-zoom="{{ site.map.zoom }}"
+             data-v="{{ '/assets/vendor/leaflet.js' | assetVersion }}"
              data-popup="{{ site.name }} — {{ site.contact.locality }}"
              role="img" aria-label="Map showing the {{ 'approximate ' if site.map.approximate }}office location in {{ site.contact.locality }}, {{ site.contact.region }}."></div>
         {%- if site.map.approximate %}

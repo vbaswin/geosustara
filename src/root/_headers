@@ -10,6 +10,10 @@
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 
+# Safe only because the layout appends a content hash as ?v= to every asset it links —
+# site.css and main.js carry no fingerprint in their filenames. Remove the versioning and
+# `immutable` will pin returning visitors to a year-old stylesheet. See the assetVersion
+# filter in eleventy.config.js.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 

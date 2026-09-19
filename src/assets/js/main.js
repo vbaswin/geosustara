@@ -140,12 +140,16 @@
       // data-base is written by the layout and carries the deployment path prefix, so these
       // resolve on a hosted sub-path (GitHub Pages project site) as well as at the root.
       var base = (document.documentElement.getAttribute('data-base') || '/').replace(/\/$/, '');
+      // ?v= matches the versioning the layout applies to every other asset: /assets/ is
+      // served `immutable`, so an un-versioned URL would pin a visitor to one build of
+      // Leaflet for a year. leaflet.css and leaflet.js only ever change together.
+      var v = el.dataset.v ? '?v=' + el.dataset.v : '';
       var css = document.createElement('link');
       css.rel = 'stylesheet';
-      css.href = base + '/assets/vendor/leaflet.css';
+      css.href = base + '/assets/vendor/leaflet.css' + v;
       document.head.appendChild(css);
       var s = document.createElement('script');
-      s.src = base + '/assets/vendor/leaflet.js';
+      s.src = base + '/assets/vendor/leaflet.js' + v;
       s.onload = function () {
         try {
           var lat = parseFloat(el.dataset.lat), lng = parseFloat(el.dataset.lng);

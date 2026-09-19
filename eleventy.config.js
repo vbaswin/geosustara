@@ -1,5 +1,8 @@
 const { minify } = require('html-minifier-terser');
 const { DateTime } = require('luxon');
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const nodePath = require('node:path');
 
 // Sub-directory the site is served from. Root ("/") on Vercel and on the production domain;
 // "/geosustara/" on a GitHub Pages project site, where the repo name becomes a path segment.
@@ -132,6 +135,32 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter('jsonld', (obj) =>
     JSON.stringify(obj, null, 0).replace(/</g, '\\u003c')
   );
+
+  // Content hash for an asset, appended by the layout as `?v=`.
+  //
+  // site.css and main.js are served from /assets/, which vercel.json and _headers both mark
+  // `max-age=31536000, immutable` — and their filenames carry no fingerprint. Without this,
+  // a visitor who has been to the site once keeps the old CSS and JavaScript for up to a
+  // year after a deploy, and `immutable` means the browser will not even revalidate. A
+  // changed file produces a different URL, which makes the long lifetime correct rather
+  // than dangerous.
+  //
+  // Cached on mtime so `--serve` picks up edits without restarting.
+  const hashes = new Map();
+  eleventyConfig.addFilter('assetVersion', (sitePath) => {
+    const file = nodePath.join('src', String(sitePath).replace(/^\//, ''));
+    let mtime;
+    try {
+      mtime = fs.statSync(file).mtimeMs;
+    } catch {
+      return 'missing'; // never throw during a build over a stale reference
+    }
+    const hit = hashes.get(file);
+    if (hit && hit.mtime === mtime) return hit.hash;
+    const hash = crypto.createHash('sha1').update(fs.readFileSync(file)).digest('hex').slice(0, 8);
+    hashes.set(file, { mtime, hash });
+    return hash;
+  });
 
   // ---- production HTML minification -----------------------------------------
   // Kept off during `--serve` so the dev output stays readable and rebuilds stay fast.
