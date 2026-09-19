@@ -11,6 +11,8 @@
     "dev": "eleventy --serve --quiet",
     "build": "eleventy",
     "images": "node .tooling/build-images.mjs",
+    "brand": "node .tooling/build-brand.mjs",
+    "verify": "node .tooling/verify.mjs",
     "serve": "http-server _site -p 8080 -c-1 --silent",
     "licenses": "license-checker-rseidelsohn --summary",
     "licenses:report": "license-checker-rseidelsohn --csv --out LICENSES-THIRD-PARTY.csv"

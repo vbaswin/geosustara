@@ -3,6 +3,12 @@
     sub-path (GitHub Pages project site) the prefix has to be part of the identity. -#}
 {%- set orgId  = homeUrl + "#organization" -%}
 {%- set siteId = homeUrl + "#website" -%}
+{%- set pageId = (page.url | absUrl(siteUrl)) + "#webpage" -%}
+{#- Recomputed rather than inherited from the layout: an include should not depend on which
+    variables the parent happens to have set before it. -#}
+{%- set pageTitle = title + " | " + site.shortName if title else site.name -%}
+{%- set pageDesc  = description or site.description -%}
+{%- set pageImg   = (ogImage or "/assets/img/og-default.jpg") | absUrl(siteUrl) -%}
 {#- Breadcrumbs: explicit front matter wins; otherwise derive from page type. -#}
 {%- set crumbs = breadcrumbs -%}
 {%- if not crumbs and service -%}
@@ -29,17 +35,33 @@
       "@id": {{ orgId | dump | safe }},
       "name": {{ site.name | dump | safe }},
       "alternateName": {{ site.shortName | dump | safe }},
+      "slogan": {{ site.strapline | dump | safe }},
       "url": {{ homeUrl | dump | safe }},
-      "description": {{ site.description | dump | safe }},
+      "description": {{ site.descriptionLong | dump | safe }},
       "email": {{ site.contact.email | dump | safe }},
       "telephone": {{ site.contact.phoneE164 | dump | safe }},
+      "contactPoint": [
+        {%- for p in site.contact.phones %}
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "telephone": {{ p.e164 | dump | safe }},
+          "email": {{ site.contact.email | dump | safe }},
+          "areaServed": "IN",
+          "availableLanguage": ["en", "ml"]
+        }{{ "," if not loop.last }}
+        {%- endfor %}
+      ],
       "logo": {
         "@type": "ImageObject",
+        "@id": {{ (homeUrl + "#logo") | dump | safe }},
         "url": {{ ("/assets/img/logo.png" | absUrl(siteUrl)) | dump | safe }},
-        "width": 512,
-        "height": 512
+        "contentUrl": {{ ("/assets/img/logo.png" | absUrl(siteUrl)) | dump | safe }},
+        "width": 640,
+        "height": 537,
+        "caption": {{ site.name | dump | safe }}
       },
-      "image": {{ ("/assets/img/og-default.jpg" | absUrl(siteUrl)) | dump | safe }},
+      "image": { "@id": {{ (homeUrl + "#logo") | dump | safe }} },
       "address": {
         "@type": "PostalAddress",
         "streetAddress": {{ site.contact.addressLine | dump | safe }},
@@ -48,23 +70,36 @@
         "postalCode": {{ site.contact.postalCode | dump | safe }},
         "addressCountry": {{ site.contact.countryCode | dump | safe }}
       },
-      "areaServed": {
-        "@type": "Country",
-        "name": {{ site.areaServed | dump | safe }}
-      },
+      "areaServed": [
+        { "@type": "Country", "name": {{ site.areaServed | dump | safe }} }
+        {%- for r in site.areaServedRegions %},
+        { "@type": "State", "name": {{ r | dump | safe }} }
+        {%- endfor %}
+      ],
       "knowsAbout": [
-        "Environmental compliance",
         "Environmental impact assessment",
+        "Environmental clearance",
+        "Environmental site investigation",
+        "Environmental compliance",
+        "Environmental auditing",
+        "Environmental engineering",
         "Geographic information systems",
+        "Remote sensing",
+        "Thematic mapping",
         "Land use and land cover mapping",
         "Watershed analysis",
+        "Water quality analysis",
+        "Sewage treatment plant design",
+        "Wastewater treatment and reactor design",
+        "Solid waste management",
+        "Swimming pool water treatment",
         "Pollution control",
-        "Water quality assessment",
         "Rainwater harvesting",
         "Sustainability reporting",
         "ESG reporting",
         "Green building certification",
-        "Environmental research"
+        "CADD and technical design",
+        "Environmental research and training"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -92,6 +127,20 @@
       "description": {{ site.description | dump | safe }},
       "publisher": { "@id": {{ orgId | dump | safe }} },
       "inLanguage": {{ site.lang | dump | safe }}
+    },
+    {
+      "@type": "WebPage",
+      "@id": {{ pageId | dump | safe }},
+      "url": {{ (page.url | absUrl(siteUrl)) | dump | safe }},
+      "name": {{ pageTitle | dump | safe }},
+      "description": {{ pageDesc | dump | safe }},
+      "isPartOf": { "@id": {{ siteId | dump | safe }} },
+      "about": { "@id": {{ orgId | dump | safe }} },
+      "primaryImageOfPage": {{ pageImg | dump | safe }},
+      "inLanguage": {{ site.lang | dump | safe }}
+      {%- if crumbs %},
+      "breadcrumb": { "@id": {{ ((page.url | absUrl(siteUrl)) + "#breadcrumbs") | dump | safe }} }
+      {%- endif %}
     }
 
     {%- if crumbs %},
@@ -121,8 +170,14 @@
       "description": {{ service.summary | dump | safe }},
       "serviceType": {{ service.title | dump | safe }},
       "provider": { "@id": {{ orgId | dump | safe }} },
-      "areaServed": { "@type": "Country", "name": {{ site.areaServed | dump | safe }} },
+      "areaServed": [
+        { "@type": "Country", "name": {{ site.areaServed | dump | safe }} }
+        {%- for r in site.areaServedRegions %},
+        { "@type": "State", "name": {{ r | dump | safe }} }
+        {%- endfor %}
+      ],
       "url": {{ (page.url | absUrl(siteUrl)) | dump | safe }},
+      "mainEntityOfPage": { "@id": {{ pageId | dump | safe }} },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": {{ service.title | dump | safe }},
@@ -161,7 +216,7 @@
       "dateModified": {{ (page.date | dateISO) | dump | safe }},
       "author": { "@id": {{ orgId | dump | safe }} },
       "publisher": { "@id": {{ orgId | dump | safe }} },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": {{ (page.url | absUrl(siteUrl)) | dump | safe }} },
+      "mainEntityOfPage": { "@id": {{ pageId | dump | safe }} },
       "articleSection": {{ (category or "Insights") | dump | safe }},
       "inLanguage": {{ site.lang | dump | safe }}
       {%- if ogImage %},

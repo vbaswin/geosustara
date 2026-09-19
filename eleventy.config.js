@@ -28,6 +28,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'src/assets/img/*.avif': 'assets/img' });
   eleventyConfig.addPassthroughCopy({ 'src/assets/img/*.jpg': 'assets/img' });
   eleventyConfig.addPassthroughCopy({ 'src/assets/img/*.svg': 'assets/img' });
+  // PNG was missing here, which silently broke /assets/img/logo.png — the URL the
+  // Organization structured data points Google at. The brand mark is a PNG too.
+  eleventyConfig.addPassthroughCopy({ 'src/assets/img/*.png': 'assets/img' });
   eleventyConfig.addPassthroughCopy({ 'src/root': '/' });
 
   eleventyConfig.setServerOptions({ port: 8080, showAllHosts: false });
@@ -49,6 +52,38 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addGlobalData('noindex', () =>
     ['1', 'true', 'yes'].includes(String(process.env.NOINDEX || '').toLowerCase())
   );
+
+  // ---- enquiry form wiring ---------------------------------------------------
+  // Resolves the form provider once, at build time, so the template and main.js never
+  // have to know which service is behind it. Environment variables win over site.json,
+  // which lets the credential stay out of the repository if that is preferred.
+  //
+  //   FORM_PROVIDER   web3forms | formspree | formsubmit | custom
+  //   FORM_ACCESS_KEY Web3Forms access key (public by design — it identifies the
+  //                   destination inbox, it does not authorise anything)
+  //   FORM_ENDPOINT   full POST URL, for formspree / formsubmit / custom
+  //
+  // `active` is what the template branches on. When it is false the form degrades to a
+  // phone / WhatsApp / email prompt rather than silently swallowing enquiries.
+  eleventyConfig.addGlobalData('enquiry', () => {
+    const cfg = require('./src/_data/site.json').enquiry || {};
+    const pick = (env, key) => String(process.env[env] || cfg[key] || '').trim();
+    const provider = pick('FORM_PROVIDER', 'provider').toLowerCase();
+    const accessKey = pick('FORM_ACCESS_KEY', 'accessKey');
+    let endpoint = pick('FORM_ENDPOINT', 'endpoint');
+
+    if (provider === 'web3forms' && !endpoint) endpoint = 'https://api.web3forms.com/submit';
+    const active = Boolean(endpoint) && (provider !== 'web3forms' || Boolean(accessKey));
+
+    return {
+      provider,
+      endpoint: active ? endpoint : '',
+      accessKey: provider === 'web3forms' ? accessKey : '',
+      subject: cfg.subject || 'New enquiry',
+      replyTo: cfg.replyTo || '',
+      active,
+    };
+  });
 
   // Absolute URL of the home page, prefix included. Structured data and the Atom feed need
   // a real URL to build @ids from, and `siteUrl` alone is the bare origin.

@@ -6,17 +6,17 @@
     "shortTitle": "Compliance & Consulting",
     "icon": "doc-check",
     "image": "card-comp",
-    "summary": "Comprehensive environmental consulting to ensure statutory compliance and regulatory excellence.",
-    "metaTitle": "Environmental Compliance Consultant",
+    "summary": "Regulatory approvals, audits and documentation that stand up to inspection.",
+    "metaTitle": "Environmental Compliance Consultants in Kerala",
     "metaDescription": "Regulatory approvals, statutory documentation, environmental audits, site compliance assessments and baseline monitoring. Thiruvananthapuram, serving India.",
-    "keywords": "environmental compliance consultant, environmental audit, regulatory approvals, environmental documentation, baseline monitoring",
+    "keywords": "environmental compliance consultant Kerala, environmental audit, regulatory approvals, consent to establish, consent to operate, environmental documentation, baseline monitoring",
     "bullets": [
       "Regulatory approvals and statutory compliance support",
       "Environmental documentation, reporting and management plans",
       "Environmental audits and site compliance assessments",
       "Environmental monitoring and baseline studies"
     ],
-    "intro": "Environmental regulation changes faster than most organisations can track, and the cost of discovering a gap during an inspection is far higher than the cost of closing it beforehand. We work with government bodies, industries, commercial establishments and residential communities to establish exactly where they stand, what is required of them, and how to get there without disrupting operations.",
+    "intro": "Environmental regulation changes faster than most organisations can track, and the cost of discovering a gap during an inspection is far higher than the cost of closing it beforehand. We work with industries, quarries, hotels, commercial establishments, government bodies and residential communities to establish exactly where they stand, what is required of them, and how to get there without disrupting operations.",
     "detail": [
       {
         "h": "Regulatory approvals and statutory compliance support",
@@ -50,24 +50,92 @@
       }
     ]
   },
+
   {
-    "slug": "gis-geospatial-services",
+    "slug": "environmental-impact-assessment-ec",
     "n": "02",
-    "title": "GIS & Geospatial Services",
-    "shortTitle": "GIS & Geospatial",
+    "title": "Environmental Impact Assessment & Clearance",
+    "shortTitle": "EIA & Clearance",
+    "icon": "clearance",
+    "image": "card-comp",
+    "summary": "Comprehensive EIA reports and the site investigation that Environmental Clearance rests on.",
+    "metaTitle": "EIA & Environmental Clearance Consultants",
+    "metaDescription": "Comprehensive Environmental Impact Assessment (EIA) reports, environmental site investigation and Environmental Clearance (EC) support across India.",
+    "keywords": "EIA consultants Kerala, environmental impact assessment report, environmental clearance consultant, EC support, environmental site investigation, baseline data EIA, thematic maps for EIA",
+    "bullets": [
+      "Preparation of comprehensive Environmental Impact Assessment (EIA) reports",
+      "Environmental site investigation for EIA and Environmental Clearance (EC) work",
+      "Site investigation reports and supporting technical documentation",
+      "Baseline environmental data collection and interpretation",
+      "Thematic mapping and spatial evidence for impact assessment",
+      "Environmental management and monitoring plans for the assessed project"
+    ],
+    "intro": "An Environmental Impact Assessment is only as strong as the field data underneath it. Reports are questioned on their baseline, their spatial evidence and their internal consistency far more often than on their conclusions — which is why our EIA work begins with site investigation and mapping rather than with a document template.",
+    "detail": [
+      {
+        "h": "Comprehensive Environmental Impact Assessment reports",
+        "p": "We prepare EIA reports as a single technical argument: what the environment at the site is now, what the project will change, how significant that change is, and what will be done about it. Each of those four claims is traced back to measured data or to a mapped source, because an assessment that cannot show its working is the one that comes back with queries."
+      },
+      {
+        "h": "Environmental site investigation",
+        "p": "Field investigation is the foundation of the whole exercise — water, soil, air and land-use conditions recorded at the site itself, with a sampling design chosen for the decision the data has to support. Investigation carried out properly at this stage is also what makes the later monitoring plan meaningful, since you cannot measure change against a baseline that was never established."
+      },
+      {
+        "h": "Site investigation reports for EC-related work",
+        "p": "Environmental Clearance work generates a long chain of supporting technical documents, and a gap in any one of them stalls the whole file. We prepare site investigation reports and the accompanying technical documentation as a coherent set, so the data referenced in one document actually matches the data in the next."
+      },
+      {
+        "h": "Baseline data and its interpretation",
+        "p": "Raw monitoring data is not evidence until it has been interpreted against the standard that applies and the conditions under which it was collected. We present baseline results with the method, the period and the limits stated plainly — the form in which a reviewer can accept them and a project proponent can defend them."
+      },
+      {
+        "h": "Thematic mapping and spatial evidence",
+        "p": "Land use, drainage, sensitivity and buffer-zone maps are where an assessment either becomes concrete or stays abstract. Because our GIS and remote sensing work is in-house, the maps in an EIA we prepare are built from the same data as the assessment itself rather than commissioned separately and reconciled afterwards."
+      },
+      {
+        "h": "Environmental management and monitoring plans",
+        "p": "The commitments made in an assessment become obligations the moment a clearance is granted. We write management and monitoring plans that the site can actually operate — realistic frequencies, named responsibilities and records that demonstrate compliance without a separate reporting exercise."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "What goes into an Environmental Impact Assessment report?",
+        "a": "In broad terms: a description of the project, the environmental baseline established at and around the site, identification and prediction of impacts, mitigation measures, and an environmental management and monitoring plan. The specific scope and the studies required depend on the project category and the terms of reference issued for it."
+      },
+      {
+        "q": "Why does site investigation matter so much for Environmental Clearance?",
+        "a": "Because almost everything else in the file refers back to it. Baseline conditions, impact predictions, mitigation design and the monitoring plan are all built on the investigation data, so weaknesses there propagate through every later section and are the most common reason a submission attracts queries."
+      },
+      {
+        "q": "Can you work alongside a project's existing design consultants?",
+        "a": "Yes, and it usually produces a better file. We take the project description and layout from the design team and contribute the environmental baseline, spatial analysis, impact assessment and management planning around it."
+      },
+      {
+        "q": "When should EIA work start on a project?",
+        "a": "As early as possible. Baseline data has to be collected before site activity begins, and several studies are season-dependent — starting late is the single most common cause of programme delay on clearance work."
+      }
+    ]
+  },
+
+  {
+    "slug": "gis-remote-sensing-mapping",
+    "n": "03",
+    "title": "GIS, Remote Sensing & Mapping",
+    "shortTitle": "GIS & Mapping",
     "icon": "layers",
     "image": "card-gis",
-    "summary": "Professional mapping and spatial analysis for environmental planning, research and decision-making.",
-    "metaTitle": "GIS & Geospatial Mapping Services",
-    "metaDescription": "Thematic maps for EIA, Land Use/Land Cover mapping, watershed and terrain analysis, sensitivity mapping and GIS support for research across India.",
-    "keywords": "GIS services, thematic map preparation, LULC mapping, watershed analysis, environmental sensitivity mapping, GIS for EIA, spatial analysis",
+    "summary": "Mapping and spatial analysis for environmental planning, assessment and research.",
+    "metaTitle": "GIS, Remote Sensing & Mapping Services",
+    "metaDescription": "Thematic maps for EIA, Land Use/Land Cover mapping, watershed and terrain analysis, sensitivity mapping, remote sensing and GIS consultancy across India.",
+    "keywords": "GIS services Kerala, remote sensing consultant, thematic map preparation, LULC mapping, watershed analysis, environmental sensitivity mapping, GIS for EIA, spatial analysis, GIS consultancy",
     "bullets": [
       "Thematic map preparation and cartographic outputs",
       "GIS-based spatial analysis and modelling",
-      "Land Use/Land Cover (LULC) mapping",
-      "Watershed, terrain, and drainage analysis",
+      "Land Use / Land Cover (LULC) mapping and change detection",
+      "Watershed, terrain and drainage analysis",
       "Environmental sensitivity and resource mapping",
-      "GIS support for research, and academic projects"
+      "Remote sensing image analysis and interpretation",
+      "GIS consultancy for research and academic projects"
     ],
     "intro": "Spatial data answers questions that tabular data cannot: not just how much, but where, adjacent to what, and draining into where. Our geospatial work supports environmental planning, impact assessment and research — producing maps that are defensible under review, not merely attractive.",
     "detail": [
@@ -80,7 +148,7 @@
         "p": "Overlay analysis, proximity and buffer studies, suitability modelling and change detection between time periods. The method is chosen to fit the decision: a siting question, a constraint map and an impact zone each demand a different analytical approach, and we document which was used and why."
       },
       {
-        "h": "Land Use / Land Cover (LULC) mapping",
+        "h": "Land Use / Land Cover mapping and change detection",
         "p": "Classification of land cover from remote sensing imagery into the categories a project actually needs, with the classification scheme stated explicitly. Where change over time is the question, multi-date classification shows how land use has shifted and at what rate — the evidence base for most land-related environmental argument."
       },
       {
@@ -92,7 +160,11 @@
         "p": "Composite mapping of the features that constrain or complicate development — ecologically sensitive areas, water bodies, drainage lines and resource distribution. Sensitivity mapping is most valuable early, when the layout can still respond to what the map shows."
       },
       {
-        "h": "GIS support for research and academic projects",
+        "h": "Remote sensing image analysis",
+        "p": "Satellite imagery selected for the question rather than for availability — the right sensor, resolution and season, with the limits of what it can resolve stated openly. Remote sensing is powerful for extent and change, and weak for anything smaller than its pixel, so we say which of the two a given output is."
+      },
+      {
+        "h": "GIS consultancy for research and academic projects",
         "p": "Spatial data preparation, analysis and cartographic output for researchers and students whose work needs a geospatial component but whose training is in another discipline. We work alongside the researcher so the method is understood and defensible, not delivered as a black box."
       }
     ],
@@ -107,82 +179,98 @@
       },
       {
         "q": "Do you provide GIS support for student research?",
-        "a": "Yes — technical guidance for dissertations, projects and scientific studies is a distinct part of our practice. The intent is that the student can explain and defend the method, so we work through it with them rather than simply returning outputs."
+        "a": "Yes — technical guidance and academic coaching in GIS applications and software is a distinct part of our practice. The intent is that the student can explain and defend the method, so we work through it with them rather than simply returning outputs."
       }
     ]
   },
+
   {
-    "slug": "pollution-control-environmental-management",
-    "n": "03",
-    "title": "Pollution Control & Environmental Management",
-    "shortTitle": "Pollution Control",
+    "slug": "water-wastewater-solid-waste-management",
+    "n": "04",
+    "title": "Water, Wastewater & Solid Waste Management",
+    "shortTitle": "Water & Waste",
     "icon": "droplet",
-    "image": "card-comp",
-    "summary": "Practical solutions for efficient management of air, water and waste systems.",
-    "metaTitle": "Pollution Control & Water Management",
-    "metaDescription": "Site-specific pollution control, treatment system operation and maintenance, water quality assessment, rainwater harvesting and waste management.",
-    "keywords": "pollution control consultant, water quality assessment, rainwater harvesting, waste management consultant, treatment system O&M, swimming pool water quality",
+    "image": "card-gis",
+    "summary": "Treatment systems designed for the real load — sewage, solid waste, pool and process water.",
+    "metaTitle": "Wastewater, STP & Solid Waste Management",
+    "metaDescription": "Sewage treatment plant design, wastewater and reactor design, solid waste facilities, swimming pool water treatment and water quality testing.",
+    "keywords": "sewage treatment plant design Kerala, STP consultant, wastewater treatment design, reactor design, solid waste management consultant, swimming pool water treatment, water quality analysis and testing, rainwater harvesting, pollution control consultant",
     "bullets": [
-      "Site-specific pollution control solutions",
-      "Operation and maintenance of pollution control systems",
-      "Water quality assessment and treatment support",
+      "Design and implementation of sewage treatment plants (STP)",
+      "Wastewater treatment and reactor design",
+      "Solid waste treatment facilities and waste management solutions",
+      "Water treatment systems for swimming pools and recreational water bodies",
+      "Water quality analysis, testing and reporting",
+      "Site-specific pollution control and treatment system operation and maintenance",
       "Rainwater harvesting planning and guidance",
-      "Swimming pool water quality and maintenance support",
-      "Solid and liquid waste management solutions"
+      "CADD and technical design for treatment and environmental works"
     ],
-    "intro": "Most pollution control failures are not design failures — they are operating failures. A system that was correctly specified will still breach limits if it is run outside its design envelope, maintained irregularly, or loaded with something it was never sized for. Our work spans both: getting the solution right for the site, and keeping it working afterwards.",
+    "intro": "Most treatment failures are not design failures — they are sizing and operating failures. A system that was correctly specified will still breach limits if it is run outside its design envelope, maintained irregularly, or loaded with something it was never sized for. Our work spans both: engineering the right system for the site, and keeping it working afterwards.",
     "detail": [
       {
-        "h": "Site-specific pollution control solutions",
-        "p": "Control measures matched to the actual characteristics of the site — the load, the variability, the space available and the standard that has to be met. A specification copied from a comparable facility is a common and expensive mistake, because the loading profile is rarely comparable in the ways that matter."
+        "h": "Sewage treatment plant design and implementation",
+        "p": "Sewage treatment plants designed around the actual flow and load a site generates, including the variation across a day and across a season. Hotels, residential communities and institutional buildings have very different loading profiles from industry, and a plant sized on a per-head figure alone is the most common reason a commissioned STP fails to hold its outlet standard."
       },
       {
-        "h": "Operation and maintenance of pollution control systems",
-        "p": "Ongoing operation and maintenance support for installed treatment and control systems, including performance monitoring, corrective action and the record keeping that demonstrates the system is doing what it was permitted to do."
+        "h": "Wastewater treatment and reactor design",
+        "p": "Process selection and reactor design matched to the effluent's actual characteristics — strength, biodegradability, variability and the standard the discharge has to meet. We size the reactor from characterisation data rather than from a comparable facility, because the loading profile is rarely comparable in the ways that matter."
       },
       {
-        "h": "Water quality assessment and treatment support",
-        "p": "Characterisation of water quality against the standard relevant to its use, followed by treatment support where the water does not meet it. Parameter selection is driven by intended use — drinking, process, discharge and irrigation each impose different requirements, and testing everything is rarely the efficient route to an answer."
+        "h": "Solid waste treatment facilities and waste management",
+        "p": "Practical handling, segregation, treatment and disposal arrangements for solid and liquid waste streams, including the treatment facility itself where one is required. We start from what the site actually generates and where it goes today, because waste plans built on assumed streams fail at the first audit."
+      },
+      {
+        "h": "Swimming pool and recreational water treatment",
+        "p": "Treatment, circulation and water quality management for swimming pools and recreational water bodies in resorts, hotels, commercial facilities and residential communities. Balancing turnover, disinfection and testing frequency keeps quality consistent rather than corrected reactively after a complaint."
+      },
+      {
+        "h": "Water quality analysis, testing and reporting",
+        "p": "Characterisation of water quality against the standard relevant to its use, followed by treatment support where the water does not meet it. Parameter selection is driven by intended use — drinking, process, discharge, irrigation and recreational water each impose different requirements, and testing everything is rarely the efficient route to an answer."
+      },
+      {
+        "h": "Pollution control and system operation and maintenance",
+        "p": "Control measures matched to the site's real characteristics, plus ongoing operation and maintenance support for installed treatment and control systems: performance monitoring, corrective action, and the record keeping that demonstrates the system is doing what it was permitted to do."
       },
       {
         "h": "Rainwater harvesting planning and guidance",
         "p": "Assessment of catchment area, rainfall pattern and demand to size storage and recharge realistically. Harvesting systems commonly underperform because storage was sized without reference to the demand profile, or because recharge potential at the site was assumed rather than assessed."
       },
       {
-        "h": "Swimming pool water quality and maintenance support",
-        "p": "Water quality assessment and maintenance guidance for swimming pools in resorts, commercial facilities and residential communities — balancing treatment, circulation and testing frequency so quality is maintained consistently rather than corrected reactively."
-      },
-      {
-        "h": "Solid and liquid waste management solutions",
-        "p": "Practical handling, segregation, treatment and disposal arrangements for solid and liquid waste streams. We start from what the site actually generates and where it goes today, because waste plans built on assumed streams fail at the first audit."
+        "h": "CADD and technical design",
+        "p": "Drawings and technical design output for treatment works and environmental installations — layouts, unit details and schematics prepared to the standard a contractor can build from and an authority can review, rather than indicative sketches that have to be redrawn before construction."
       }
     ],
     "faqs": [
       {
+        "q": "How is the size of a sewage treatment plant decided?",
+        "a": "From the actual hydraulic and organic load the site will generate, including peak and seasonal variation, and from the outlet standard the treated effluent has to meet. A per-head estimate is a starting point, not a design basis — occupancy patterns in hotels and residential communities in particular differ enough to change the result substantially."
+      },
+      {
         "q": "Our treatment system was compliant at commissioning but is failing now. Why?",
-        "a": "Most commonly the load has changed — in volume, composition or variability — beyond what the system was sized for, or maintenance has drifted. Assessing actual current loading against design assumptions usually identifies the cause faster than modifying the system."
+        "a": "Most commonly the load has changed — in volume, composition or variability — beyond what the system was sized for, or maintenance has drifted. Assessing actual current loading against the original design assumptions usually identifies the cause faster than modifying the system."
       },
       {
         "q": "How large should a rainwater harvesting system be?",
         "a": "It depends on catchment area, local rainfall pattern and, critically, the demand it is intended to meet. Sizing storage without reference to the demand profile is the most frequent reason harvesting systems underperform."
       },
       {
-        "q": "Do you support residential communities as well as industry?",
-        "a": "Yes. Residential communities are one of the six sectors we work with, and water quality, rainwater harvesting and waste management are the areas they most often need support in."
+        "q": "Do you support residential communities and hotels as well as industry?",
+        "a": "Yes. Hotels, resorts, commercial establishments and residential communities are among the sectors we work with most, and water quality, swimming pool treatment, sewage treatment and waste management are the areas they most often need support in."
       }
     ]
   },
+
   {
     "slug": "sustainability-eco-solutions",
-    "n": "04",
+    "n": "05",
     "title": "Sustainability & Eco Solutions",
     "shortTitle": "Sustainability",
     "icon": "leaf",
     "image": "card-sust",
     "summary": "Integrated sustainability strategies for environmentally responsible development.",
     "metaTitle": "Sustainability Consulting & ESG Reporting",
-    "metaDescription": "Sustainability planning for resorts, commercial and residential projects, green building certification, ESG reporting and resource efficiency.",
-    "keywords": "sustainability consultant, ESG reporting, green building certification, resource efficiency, climate resilient advisory, nature-based solutions",
+    "metaDescription": "Sustainability planning for resorts, commercial and residential projects, green building certification, ESG reporting and resource efficiency across India.",
+    "keywords": "sustainability consultant Kerala, ESG reporting, green building certification, resource efficiency, climate resilient advisory, nature-based solutions",
     "bullets": [
       "Sustainability planning for resorts, commercial, and residential projects",
       "Green building and green certification support",
@@ -228,25 +316,27 @@
       }
     ]
   },
+
   {
     "slug": "training-research-technical-support",
-    "n": "05",
-    "title": "Training, Research & Technical Support",
+    "n": "06",
+    "title": "Training, Research & Academic Support",
     "shortTitle": "Training & Research",
     "icon": "academic",
     "image": "card-sust",
-    "summary": "Building knowledge and technical capacity for industry and academia.",
+    "summary": "Building knowledge and technical capacity for industry, researchers and students.",
     "metaTitle": "Environmental Training & Research Support",
-    "metaDescription": "Capacity-building programs, professional training, academic collaboration, research consultancy and technical guidance for dissertations and studies.",
-    "keywords": "environmental training, capacity building, research consultancy, dissertation guidance, environmental data analysis, academic collaboration",
+    "metaDescription": "Capacity-building programs, professional training, GIS software coaching, academic collaboration and technical guidance for dissertations and scientific studies.",
+    "keywords": "environmental training, capacity building, GIS training Kerala, GIS software coaching, research consultancy, dissertation guidance, environmental data analysis, academic project assistance",
     "bullets": [
       "Environmental awareness and capacity-building programs",
       "Professional training for industry personnel",
+      "Academic coaching in GIS applications and software",
       "Academic collaboration and research consultancy",
-      "Technical guidance for dissertations, projects, and scientific studies",
-      "Data analysis, report preparation, and environmental research support"
+      "Technical guidance for dissertations, projects and scientific studies",
+      "Data analysis, report preparation and environmental research support"
     ],
-    "intro": "Knowledge dissemination across industry and academia is part of our vision, not a sideline to it. Compliance that depends entirely on an external consultant is fragile; the organisations that maintain environmental performance are the ones whose own people understand why the requirements exist.",
+    "intro": "Knowledge dissemination across industry and academia is part of our purpose, not a sideline to it. Compliance that depends entirely on an external consultant is fragile; the organisations that maintain environmental performance are the ones whose own people understand why the requirements exist.",
     "detail": [
       {
         "h": "Environmental awareness and capacity-building programs",
@@ -255,6 +345,10 @@
       {
         "h": "Professional training for industry personnel",
         "p": "Technical training for the people responsible for environmental performance day to day — operators, supervisors and environmental officers. The emphasis is on the reasoning behind procedures, so staff can respond correctly to situations no procedure anticipated."
+      },
+      {
+        "h": "Academic coaching in GIS applications and software",
+        "p": "Structured, hands-on coaching in GIS software and its application to real environmental problems, for students and early-career researchers. Sessions are built around the learner's own project wherever possible, so the skill is acquired on work that has to be submitted rather than on a sample dataset."
       },
       {
         "h": "Academic collaboration and research consultancy",
@@ -272,7 +366,7 @@
     "faqs": [
       {
         "q": "Do you work directly with students?",
-        "a": "Yes. Technical guidance for dissertations, projects and scientific studies is a defined part of our practice, covering study design, analysis and interpretation."
+        "a": "Yes. Academic coaching in GIS applications and software, and technical guidance for dissertations, projects and scientific studies, are defined parts of our practice."
       },
       {
         "q": "Can training be delivered at our site?",

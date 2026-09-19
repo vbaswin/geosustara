@@ -1,0 +1,97 @@
+---
+layout: layouts/page.njk
+permalink: /privacy/
+title: "Privacy"
+heading: "What this website collects, and what it does not."
+description: "How Geosustara Enviro Services LLP handles information submitted through this website. No analytics, no advertising trackers, no cookies."
+lede: "Short version: this site has no analytics, no advertising trackers and sets no cookies. The only information it collects is what you type into the enquiry form."
+sections:
+  - { id: enquiry,    label: The enquiry form }
+  - { id: third,      label: Third parties }
+  - { id: cookies,    label: Cookies & tracking }
+  - { id: rights,     label: Your information }
+breadcrumbs:
+  - text: Home
+    url: /
+  - text: Privacy
+---
+{%- from "partials/icons.njk" import arrow -%}
+
+<section class="sec">
+  <div class="wrap">
+    <div class="svc-layout">
+      <div class="svc-body prose rv">
+
+        <h2 id="enquiry">The enquiry form</h2>
+        <p>If you submit the form on the <a href="{{ '/contact/' | url }}">contact page</a>, the details you
+          enter — your name, organisation, email address, phone number, the sector and service you selected,
+          the site location and your message — are sent to us by email so that we can reply to you.</p>
+        <p>We use those details only to respond to your enquiry and to carry out any work that follows from it.
+          We do not sell them, and we do not add you to a mailing list.</p>
+        {%- if enquiry.active %}
+        <p>The message is delivered by
+          {%- if enquiry.provider == "web3forms" %} Web3Forms
+          {%- elif enquiry.provider == "formspree" %} Formspree
+          {%- elif enquiry.provider == "formsubmit" %} FormSubmit
+          {%- else %} a third-party form-delivery service
+          {%- endif %}, which passes it on to our inbox. It travels over an encrypted
+          connection and is not used for any other purpose.</p>
+        {%- else %}
+        <p>The form is not yet connected to a delivery service. Until it is, submitting it opens your own
+          email application with the details filled in, so nothing is sent anywhere until you send it
+          yourself.</p>
+        {%- endif %}
+        <p>Enquiries that lead to no engagement are kept only as long as they are useful for following up,
+          and deleted after that. If you would rather not use the form at all, call
+          {%- for p in site.contact.phones %}
+          <a href="tel:{{ p.e164 }}">{{ p.display }}</a>{% if not loop.last %} or{% endif %}
+          {%- endfor %} or email
+          <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>.</p>
+
+        <h2 id="third">Third parties this site loads</h2>
+        <p>Three things on this site are served by other companies. Each of them can see your IP address and
+          your browser's user-agent string, as any web server can, because that is how a request reaches them.</p>
+        <ul>
+          <li><strong>Google Fonts</strong> — the typefaces used across the site are requested from
+            <code>fonts.googleapis.com</code> and <code>fonts.gstatic.com</code> on every page.</li>
+          <li><strong>OpenStreetMap and CARTO</strong> — the map on the contact page loads its tiles from
+            CARTO, using OpenStreetMap data. It is loaded only when you scroll near it, and only on that
+            page.</li>
+          <li><strong>Our hosting provider</strong> — like any web host, it keeps short-lived server logs of
+            requests, which include IP addresses.</li>
+        </ul>
+        <p>None of these are used by us for analytics or profiling. We do not run Google Analytics, any
+          advertising pixel, or any other tracker on this site.</p>
+
+        <h2 id="cookies">Cookies and tracking</h2>
+        <p>This site sets no cookies of its own, stores nothing in your browser, and shows no consent banner
+          because there is nothing to consent to. There is no session, no login and no account.</p>
+
+        <h2 id="rights">Your information</h2>
+        <p>If you have sent us an enquiry and want to know what we hold, want it corrected, or want it
+          deleted, write to <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a> from the
+          address you used, or call us. We will act on it.</p>
+        <p>{{ site.name }}, {{ site.contact.addressFull }}.</p>
+
+        <p style="margin-top:34px;color:var(--muted-2);font-size:13.5px">This page describes the website. It
+          is not a contract, and it does not cover information you give us directly by phone, email or during
+          an engagement — that is governed by the terms of the engagement itself.</p>
+      </div>
+
+      <aside class="svc-side">
+        {% include "partials/secnav.njk" %}
+
+        <div class="side-card">
+          <h3>Contact</h3>
+          <ul>
+            {%- for p in site.contact.phones %}
+            <li><a href="tel:{{ p.e164 }}">{{ p.display }}</a></li>
+            {%- endfor %}
+            <li><a href="https://wa.me/{{ site.contact.whatsapp }}" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

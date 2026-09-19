@@ -1,52 +1,157 @@
 {%- from "partials/icons.njk" import arrow -%}
-{#- Posts to site.formEndpoint when configured. Until then the submit handler in main.js
-    shows a clear message and points at the phone/email, which are always in the DOM. -#}
-<form class="form rv" id="enquiry"
-      {% if site.formEndpoint %}action="{{ site.formEndpoint }}" method="POST"{% endif %}
-      data-endpoint="{{ site.formEndpoint or '' }}" novalidate>
+{#- ---------------------------------------------------------------------------
+    Consultation enquiry form.
+
+    Three states, all of them working:
+      1. A provider is configured (see eleventy.config.js > enquiry). The form does a real
+         POST. With JavaScript it goes by fetch and stays on the page; without JavaScript
+         the browser posts natively and the provider redirects to /contact/thank-you/.
+      2. No provider configured, JavaScript on. main.js composes the answers into a
+         pre-filled email — and offers WhatsApp — so an enquiry still reaches the firm.
+      3. No provider, no JavaScript. The direct routes below the form are plain links and
+         are always in the DOM, so there is never a dead end.
+
+    The hidden fields differ per provider; only the relevant set is emitted.
+--------------------------------------------------------------------------- -#}
+{%- set thankYou = "/contact/thank-you/" | absUrl(siteUrl) -%}
+
+{#- method="dialog" on a form with no ancestor <dialog> aborts submission without navigating.
+    That is deliberate: with no provider and no JavaScript, a plain GET would put the
+    visitor's name, email and phone number into the URL, the host's access log and their
+    browser history. The submit event still fires, so the JavaScript path is unaffected. -#}
+<form class="form rv" id="enquiry" novalidate
+      {%- if enquiry.active %} action="{{ enquiry.endpoint }}" method="POST"
+      {%- else %} method="dialog"{% endif %}
+      data-endpoint="{{ enquiry.endpoint }}"
+      data-provider="{{ enquiry.provider }}"
+      data-mailto="{{ site.contact.email }}"
+      data-whatsapp="{{ site.contact.whatsapp }}"
+      data-thanks="{{ '/contact/thank-you/' | url }}">
+
+  {#- Emitted only when the provider actually resolved; a half-configured provider would
+      otherwise ship an empty access_key into the markup. -#}
+  {%- if enquiry.active %}
+  {%- if enquiry.provider == "web3forms" %}
+  <input type="hidden" name="access_key" value="{{ enquiry.accessKey }}">
+  <input type="hidden" name="subject" value="{{ enquiry.subject }}">
+  <input type="hidden" name="from_name" value="{{ site.name }} website">
+  <input type="hidden" name="redirect" value="{{ thankYou }}">
+  {%- elif enquiry.provider == "formspree" %}
+  <input type="hidden" name="_subject" value="{{ enquiry.subject }}">
+  <input type="hidden" name="_next" value="{{ thankYou }}">
+  {%- elif enquiry.provider == "formsubmit" %}
+  <input type="hidden" name="_subject" value="{{ enquiry.subject }}">
+  <input type="hidden" name="_next" value="{{ thankYou }}">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+  {%- endif %}
+  {%- endif %}
+
   <div class="f2">
     <div class="field">
       <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
-      <input id="f-name" name="name" type="text" autocomplete="name" required>
+      <input id="f-name" name="name" type="text" autocomplete="name" required
+             aria-describedby="f-name-err">
+      <span class="err" id="f-name-err" hidden>Please tell us your name.</span>
     </div>
     <div class="field">
       <label for="f-org">Organisation</label>
       <input id="f-org" name="organisation" type="text" autocomplete="organization">
     </div>
   </div>
+
   <div class="f2">
     <div class="field">
       <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
-      <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+      <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required
+             aria-describedby="f-email-err">
+      <span class="err" id="f-email-err" hidden>Please enter an email address we can reply to.</span>
     </div>
     <div class="field">
-      <label for="f-phone">Phone</label>
-      <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+      <label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+      {#- minlength rather than a pattern. Real phone numbers arrive with country codes,
+          spaces, extensions and brackets; a regex tight enough to be useful rejects more
+          genuine enquiries than it blocks junk. -#}
+      <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required
+             minlength="8" aria-describedby="f-phone-err">
+      <span class="err" id="f-phone-err" hidden>Please enter a phone number — most enquiries are quickest to answer by call.</span>
     </div>
   </div>
-  <div class="field">
-    <label for="f-service">Service area</label>
-    <select id="f-service" name="service">
-      {%- for s in services %}
-      <option value="{{ s.slug }}">{{ s.title }}</option>
-      {%- endfor %}
-      <option value="other">Something else</option>
-    </select>
+
+  <div class="f2">
+    <div class="field">
+      <label for="f-service">What do you need?</label>
+      <select id="f-service" name="service">
+        {#- The value is the readable title so the notification email is legible; the slug
+            rides along in data-slug so ?service=<slug> links from service pages can preselect. -#}
+        {%- for s in services %}
+        <option value="{{ s.title }}" data-slug="{{ s.slug }}">{{ s.title }}</option>
+        {%- endfor %}
+        <option value="Not sure yet">Not sure yet — help me work it out</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-sector">You are a…</label>
+      <select id="f-sector" name="sector">
+        {%- for s in site.sectors %}
+        <option value="{{ s }}">{{ s }}</option>
+        {%- endfor %}
+        <option value="Other">Something else</option>
+      </select>
+    </div>
   </div>
+
   <div class="field">
-    <label for="f-message">Requirement <span class="req" aria-hidden="true">*</span></label>
-    <textarea id="f-message" name="message" rows="4" required></textarea>
-    <span class="hint" id="f-message-hint">Tell us about the site, the obligation or the research question.</span>
+    <label for="f-location">Site location</label>
+    <input id="f-location" name="location" type="text" autocomplete="address-level2"
+           placeholder="District and state — e.g. Thiruvananthapuram, Kerala"
+           aria-describedby="f-location-hint">
+    <span class="hint" id="f-location-hint">Helps us judge whether a site visit is straightforward.</span>
   </div>
-  {#- Honeypot: bots fill hidden fields, people do not. -#}
+
+  <div class="field">
+    <label for="f-message">Your requirement <span class="req" aria-hidden="true">*</span></label>
+    <textarea id="f-message" name="message" rows="5" required
+              aria-describedby="f-message-hint f-message-err"></textarea>
+    <span class="hint" id="f-message-hint">The site, the obligation or the research question — and any deadline you are working to.</span>
+    <span class="err" id="f-message-err" hidden>Please describe what you need, even briefly.</span>
+  </div>
+
+  <div class="field field--check">
+    <input id="f-consent" name="consent" type="checkbox" value="yes" required
+           aria-describedby="f-consent-err">
+    <label for="f-consent">I agree that Geosustara may use these details to respond to this enquiry.
+      <a href="{{ '/privacy/' | url }}">Privacy</a> <span class="req" aria-hidden="true">*</span></label>
+    <span class="err" id="f-consent-err" hidden>Please confirm this so we may reply.</span>
+  </div>
+
+  {#- Honeypots: bots fill hidden fields, people do not. Both names are here because the
+      supported providers watch for different ones. -#}
   <div class="vh" aria-hidden="true">
     <label for="f-company">Do not fill this in</label>
     <input id="f-company" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+    <label for="f-botcheck">Leave this empty</label>
+    <input id="f-botcheck" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off">
   </div>
-  <button class="btn mag" type="submit">Send enquiry {{ arrow() }}</button>
+
+  <button class="btn mag" type="submit" id="enquiry-submit">Send enquiry {{ arrow() }}</button>
   <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
-  <p class="form-note">
-    Prefer to speak directly? Call <a href="tel:{{ site.contact.phoneE164 }}" style="color:var(--aqua)">{{ site.contact.phoneDisplay }}</a>
-    or email <a href="mailto:{{ site.contact.email }}" style="color:var(--aqua)">{{ site.contact.email }}</a>.
-  </p>
+  {%- if not enquiry.active %}
+  <noscript>
+    <p class="form-note is-warn">This form is not connected to a delivery service yet, and
+      JavaScript is switched off — so the button above will not send anything. Please use one
+      of the routes below instead. Sorry for the detour.</p>
+  </noscript>
+  {%- endif %}
+
+  <div class="form-alt">
+    <span class="form-alt-k">Or reach us directly</span>
+    <ul>
+      {%- for p in site.contact.phones %}
+      <li><a href="tel:{{ p.e164 }}">{{ p.display }}</a></li>
+      {%- endfor %}
+      <li><a href="https://wa.me/{{ site.contact.whatsapp }}" rel="noopener">WhatsApp</a></li>
+      <li><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></li>
+    </ul>
+  </div>
 </form>

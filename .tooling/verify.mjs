@@ -138,24 +138,57 @@ for (const file of htmlFiles) {
 }
 
 // ---- required root files ----
-for (const f of ['sitemap.xml', 'robots.txt', 'favicon.svg', 'site.webmanifest',
+for (const f of ['sitemap.xml', 'robots.txt', 'favicon.svg', 'favicon.ico', 'site.webmanifest',
                  'icon-192.png', 'icon-512.png', 'apple-touch-icon.png',
-                 'insights/feed.xml', '404.html', 'assets/img/og-default.jpg']) {
+                 'insights/feed.xml', '404.html', 'assets/img/og-default.jpg',
+                 // Referenced by the Organization structured data and the header/footer.
+                 'assets/img/logo.png', 'assets/img/mark-96.png', 'assets/img/mark-192.png',
+                 // Response headers for Cloudflare Pages / Netlify. Underscore-prefixed, so
+                 // worth asserting that passthrough copy really did pick it up.
+                 '_headers']) {
   if (!existsSync(path.join(SITE, f))) problems.push(`missing required file: /${f}`);
 }
 
 // ---- sitemap sanity ----
 const sm = await readFile(path.join(SITE, 'sitemap.xml'), 'utf8');
 const locs = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
-const indexablePaths = htmlFiles
-  .filter(f => !f.endsWith('404.html'))
-  .map(f => '/' + path.relative(SITE, f).replace(/\\/g, '/').replace(/index\.html$/, ''));
-const locPaths = locs.map(l => new URL(l).pathname);
-for (const p of indexablePaths) {
-  if (!locPaths.includes(p)) problems.push(`page missing from sitemap: ${p}`);
+
+// A page carrying `noindex` must NOT be in the sitemap — telling Google to crawl a URL and
+// then telling it not to index that URL is a contradiction it reports as an error. The 404
+// and /contact/thank-you/ are both in this category.
+const noindexPages = new Set();
+for (const f of htmlFiles) {
+  const html = await readFile(f, 'utf8');
+  if (/<meta\b[^>]*\bname="robots"[^>]*\bcontent="[^"]*noindex/i.test(html) ||
+      /<meta\b[^>]*\bcontent="[^"]*noindex[^"]*"[^>]*\bname="robots"/i.test(html)) {
+    noindexPages.add(f);
+  }
 }
+
+const toPath = (f) =>
+  '/' + path.relative(SITE, f).replace(/\\/g, '/').replace(/index\.html$/, '');
+const builtPages = htmlFiles.filter(f => !f.endsWith('404.html'));
+const builtPaths = builtPages.map(toPath);
+const locPaths = locs.map(l => new URL(l).pathname);
+
+// NOINDEX=1 marks the whole build, which is a preview deployment — the sitemap is then
+// expected to disagree with the page-level directives, so the cross-check is meaningless.
+const wholeSiteNoindex = noindexPages.size === htmlFiles.length;
+
 for (const p of locPaths) {
-  if (!indexablePaths.includes(p)) problems.push(`sitemap lists a page that was not built: ${p}`);
+  if (!builtPaths.includes(p)) problems.push(`sitemap lists a page that was not built: ${p}`);
+}
+if (wholeSiteNoindex) {
+  warnings.push('NOINDEX build — sitemap/indexability cross-check skipped');
+} else {
+  for (const f of builtPages) {
+    const p = toPath(f);
+    if (noindexPages.has(f)) {
+      if (locPaths.includes(p)) problems.push(`noindex page is listed in the sitemap: ${p}`);
+    } else if (!locPaths.includes(p)) {
+      problems.push(`page missing from sitemap: ${p}`);
+    }
+  }
 }
 for (const l of locs) {
   if (!l.startsWith('https://')) problems.push(`sitemap loc not absolute https: ${l}`);

@@ -106,4 +106,6 @@ None of this requires more sophisticated analysis. It requires deciding what the
 before producing it — which is, in practice, the part most often skipped.
 
 If you are preparing thematic maps for an impact assessment and want a second read before the
-package goes in, that is work we do regularly.
+package goes in, that is work we do regularly — see
+[GIS, remote sensing and mapping]({{ '/services/gis-remote-sensing-mapping/' | url }}) and
+[Environmental Impact Assessment and clearance]({{ '/services/environmental-impact-assessment-ec/' | url }}).

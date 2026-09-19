@@ -1,19 +1,37 @@
 {
   "name": "Geosustara Enviro Services LLP",
   "shortName": "Geosustara",
+  "legalForm": "LLP",
+
+  "//tagline": "Used in the Open Graph image alt and the header eyebrow. Kept descriptive rather than poetic because it is read by machines as often as by people.",
   "tagline": "Environmental & Geospatial Consulting",
+
+  "//strapline": "The brochure headline. Brand voice, not a description — never used where a description is required.",
+  "strapline": "Strategies for a Sustainable Tomorrow",
+  "promise": "Expertise you can trust. Engineering backed by evidence.",
+  "motto": "Understand better. Decide smarter. Sustain responsibly.",
+
   "url": "https://geosustara.com",
   "urlIsPlaceholder": false,
   "locale": "en_IN",
   "lang": "en-IN",
-  "themeColor": "#061513",
+  "themeColor": "#06140D",
 
-  "description": "Sustainability-driven environmental consulting firm in Thiruvananthapuram delivering regulatory compliance, GIS and geospatial services, pollution control, sustainability consulting and research support across India.",
+  "//description": "Meta description for the home page and the fallback for any page that does not set its own. Kept under 160 characters so it is not truncated in results.",
+  "description": "Environmental and geospatial consultants in Thiruvananthapuram, Kerala — EIA and Environmental Clearance support, GIS mapping, water and wastewater solutions.",
+
+  "//descriptionLong": "Used only in structured data, where length is not penalised.",
+  "descriptionLong": "Geosustara Enviro Services LLP is a sustainability-driven environmental consulting firm in Thiruvananthapuram, Kerala. We deliver Environmental Impact Assessment (EIA) and Environmental Clearance (EC) support, environmental compliance and auditing, GIS, remote sensing and thematic mapping, water quality analysis, wastewater and sewage treatment plant design, solid waste management, sustainability and ESG consulting, and academic research support across India.",
 
   "contact": {
-    "phoneDisplay": "+91 94469 93196",
-    "phoneE164": "+919446993196",
-    "phoneRaw": "9446993196",
+    "//phones": "Both numbers are on the company brochure. The first is used wherever a single number is needed.",
+    "phones": [
+      { "display": "+91 62824 62332", "e164": "+916282462332", "wa": "916282462332", "label": "Primary" },
+      { "display": "+91 80868 51442", "e164": "+918086851442", "wa": "918086851442", "label": "Alternate" }
+    ],
+    "phoneDisplay": "+91 62824 62332",
+    "phoneE164": "+916282462332",
+    "whatsapp": "916282462332",
     "email": "geosustara@gmail.com",
     "addressLine": "Perekonam, Pappanamcode",
     "locality": "Thiruvananthapuram",
@@ -29,11 +47,19 @@
   "map": { "lat": 8.4718, "lng": 76.956, "zoom": 13, "approximate": true },
 
   "areaServed": "India",
+  "//areaServedNote": "Kerala is named separately in the structured data. Most enquiries are state-level, and a LocalBusiness that claims only 'India' ranks poorly for the district terms people actually search.",
+  "areaServedRegions": ["Kerala", "Tamil Nadu", "Karnataka"],
 
-  "//formEndpoint": "Paste a form endpoint here to activate the enquiry form — e.g. a Formspree URL (https://formspree.io/f/xxxxxxx) or a Web3Forms endpoint. Until it is set, the form tells visitors to phone or email instead. Both are free for this volume.",
-  "formEndpoint": null,
+  "//enquiry": "Enquiry form wiring. Set `provider` and the matching credential, or override at build time with FORM_PROVIDER / FORM_ACCESS_KEY / FORM_ENDPOINT so nothing sensitive is committed. Until one is set the form falls back to phone, WhatsApp and email, all of which are always in the page. See README.md > Enquiry form.",
+  "enquiry": {
+    "provider": null,
+    "accessKey": null,
+    "endpoint": null,
+    "subject": "New consultation enquiry — geosustara.com",
+    "replyTo": "geosustara@gmail.com"
+  },
 
-  "//nav": "An explicit Home item is included deliberately. The logo also links home, but this audience includes government bodies and residential communities where that convention is not universally known, and Indian institutional sites conventionally carry it. 'Approach' was removed because it pointed at a section of /about/ and sat redundantly beside 'About'.",
+  "//nav": "An explicit Home item is included deliberately. The logo also links home, but this audience includes government bodies and residential communities where that convention is not universally known, and Indian institutional sites conventionally carry it.",
   "nav": [
     { "text": "Home",      "url": "/" },
     { "text": "Services",  "url": "/services/" },
@@ -42,16 +68,53 @@
     { "text": "Contact",   "url": "/contact/" }
   ],
 
-  "sectors": [
-    "Government bodies",
-    "Industries",
-    "Commercial establishments",
-    "Residential communities",
-    "Research organizations",
-    "Academic institutions"
+  "//whyUs": "Verbatim positioning from the company brochure. This is the firm's own framing of the problem it exists to solve, so it is used as written rather than paraphrased.",
+  "whyUs": {
+    "problem": "Environmental challenges are rarely simple. Limited site data, fragmented information, shifting regulatory requirements and solutions that look good on paper but cannot be built make environmental decision-making difficult.",
+    "answer": "We bridge that gap through field investigation, scientific analysis, GIS and remote sensing, and practical engineering — so what you receive is a clear picture of your site and a solution that can actually be implemented on it.",
+    "pillars": [
+      { "t": "Field investigation", "d": "We start on the ground, not in a template. Site conditions are measured before anything is designed or claimed." },
+      { "t": "Scientific analysis", "d": "Water, waste and environmental data tested and interpreted against the standard that actually applies to its use." },
+      { "t": "GIS & remote sensing", "d": "Spatial evidence that answers where, adjacent to what, and draining into where — not just how much." },
+      { "t": "Practical engineering", "d": "Treatment systems and technical designs sized for the real load, the real site and the real budget." }
+    ]
+  },
+
+  "//expertise": "The capability list from the brochure. These are the terms clients and search engines both use, so each one links to the service page that covers it.",
+  "expertise": [
+    { "t": "Environmental Engineering",              "s": "water-wastewater-solid-waste-management" },
+    { "t": "GIS, Remote Sensing & Mapping",          "s": "gis-remote-sensing-mapping" },
+    { "t": "Environmental Impact Assessment (EIA)",  "s": "environmental-impact-assessment-ec" },
+    { "t": "Environmental Clearance (EC) Support",   "s": "environmental-impact-assessment-ec" },
+    { "t": "Water Quality Assessment & Reporting",   "s": "water-wastewater-solid-waste-management" },
+    { "t": "Wastewater Treatment & Reactor Design",  "s": "water-wastewater-solid-waste-management" },
+    { "t": "Environmental Site Investigation",       "s": "environmental-impact-assessment-ec" },
+    { "t": "CADD & Technical Design",                "s": "water-wastewater-solid-waste-management" }
   ],
 
-  "vision": "To be a trusted global partner in sustainability-driven environmental consulting, geospatial solutions, regulatory compliance, and knowledge dissemination across industry and academia.",
+  "//sectors": "Flat list for the marquee. The same sectors carry a one-line description in `whoWeServe` for the pages that have room for it.",
+  "sectors": [
+    "Industries & manufacturing",
+    "Quarries & mineral-based industries",
+    "Hotels & commercial establishments",
+    "Government agencies & local bodies",
+    "Residential communities",
+    "Research organizations",
+    "Students & academic institutions"
+  ],
+
+  "whoWeServe": [
+    { "t": "Industries & manufacturing",        "d": "Environmental assessments, statutory compliance and management solutions for operating plants and new projects." },
+    { "t": "Quarries & mineral-based industries", "d": "Site assessment, mapping and environmental studies for quarrying and mineral-based operations." },
+    { "t": "Hotels & commercial establishments", "d": "Water, wastewater, swimming pool and environmental solutions for resorts, hotels and commercial buildings." },
+    { "t": "Government agencies & local bodies", "d": "Environmental studies, thematic mapping and technical support for departments, boards and local self-government institutions." },
+    { "t": "Residential communities",            "d": "Water quality, rainwater harvesting and waste management support for apartments, villas and gated communities." },
+    { "t": "Research organizations",             "d": "Field capability, geospatial analysis and domain support for environmental research programmes." },
+    { "t": "Students & academic institutions",   "d": "Environmental analysis, GIS coaching, mapping and technical assistance for dissertations and academic projects." }
+  ],
+
+  "//vision": "Vision as stated on the company brochure.",
+  "vision": "To be a premier catalyst for sustainable development, harmonizing industrial progress with environmental integrity.",
 
   "mission": "To deliver practical, cost-effective environmental and geospatial solutions through consulting, implementation, research support and capacity building — enabling sustainable development and informed decision-making.",
 
@@ -59,13 +122,13 @@
   "lifecycle": [
     { "n": "01", "title": "Assessment",
       "short": "Find out where you actually stand, on the ground.",
-      "body": "Baseline studies, environmental audits and site compliance assessments establish the ground truth before anything is committed to paper." },
+      "body": "Site investigation, baseline studies and environmental audits establish the ground truth before anything is committed to paper." },
     { "n": "02", "title": "Planning",
       "short": "Turn those findings into a defensible, costed plan.",
-      "body": "Management plans, thematic mapping and GIS-based spatial modelling turn field findings into a defensible, costed strategy." },
+      "body": "Impact assessment, management plans, thematic mapping and GIS-based spatial modelling turn field findings into a defensible, costed strategy." },
     { "n": "03", "title": "Implementation",
       "short": "Approvals obtained, systems commissioned, records kept.",
-      "body": "Regulatory approvals secured, pollution control systems commissioned, certification and reporting delivered on the ground." },
+      "body": "Clearances and approvals secured, treatment and pollution control systems designed and commissioned, certification and reporting delivered on the ground." },
     { "n": "04", "title": "Monitoring",
       "short": "We stay on, and keep the performance measurable.",
       "body": "Continuous environmental monitoring, operation and maintenance support, and measurable performance improvement over the long term." }

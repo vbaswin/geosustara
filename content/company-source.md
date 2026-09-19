@@ -1,8 +1,14 @@
 # Geosustara Enviro Services LLP — Source Content
 
 > Verbatim extraction from `Mission mode.docx` (created 2026-08-14).
-> This file is the **single source of truth** for all website copy.
-> Nothing may be added to the site that is not derived from or an elaboration of this document.
+>
+> **This file is no longer the only source of truth.** The company brochure supplied on
+> 2026-09-19 is extracted in [`brochure-source.md`](brochure-source.md) and supersedes this
+> document wherever the two disagree — notably the Vision statement, the contact numbers,
+> and the sector list. Read both before changing site copy.
+>
+> Nothing may be added to the site that is not derived from, or an elaboration of, one of
+> these two documents.
 
 ---
 
@@ -35,6 +41,10 @@ our clients from initial assessment and planning through implementation and cont
 transforming environmental challenges into opportunities for responsible growth and innovation.
 
 ## Vision
+
+> **Superseded.** The brochure states the vision as: "To be a premier catalyst for sustainable
+> development, harmonizing industrial progress with environmental integrity." That is what the
+> site publishes. The line below is kept for history only.
 
 To be a trusted global partner in sustainability-driven environmental consulting, geospatial
 solutions, regulatory compliance, and knowledge dissemination across industry and academia.

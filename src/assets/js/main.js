@@ -65,7 +65,7 @@
       var mp = document.createElementNS(NS, 'path');
       mp.setAttribute('d', d);
       mp.setAttribute('fill', 'none');
-      mp.setAttribute('stroke', '#35C3AC');
+      mp.setAttribute('stroke', '#16C264');
       mp.setAttribute('stroke-width', '.7');
       mp.setAttribute('opacity', (0.05 + y * 0.021).toFixed(3));
       mesh.appendChild(mp);
@@ -97,7 +97,7 @@
     svg.setAttribute('style', 'width:100%;height:100%;display:block');
     var g = document.createElementNS(NS, 'g');
     g.setAttribute('fill', 'none');
-    g.setAttribute('stroke', '#35C3AC');
+    g.setAttribute('stroke', '#16C264');
     g.setAttribute('stroke-width', '.8');
     for (var i = 0; i < 9; i++) {
       var d = '', b = -10 + i * 38;
@@ -121,7 +121,7 @@
       ['M' + g2 * 50 + ' 0V400', 'M0 ' + g2 * 50 + 'H400'].forEach(function (dd2) {
         var l = document.createElementNS(NS, 'path');
         l.setAttribute('d', dd2);
-        l.setAttribute('stroke', '#35C3AC');
+        l.setAttribute('stroke', '#16C264');
         l.setAttribute('stroke-width', '.5');
         l.setAttribute('opacity', '.18');
         lcg.appendChild(l);
@@ -156,7 +156,7 @@
             maxZoom: 19
           }).addTo(map);
           L.circleMarker([lat, lng], {
-            radius: 9, color: '#35C3AC', weight: 2, fillColor: '#35C3AC', fillOpacity: 0.35
+            radius: 9, color: '#16C264', weight: 2, fillColor: '#16C264', fillOpacity: 0.35
           }).addTo(map).bindPopup(el.dataset.popup || '');
         } catch (e) { /* map is decorative; the address is in the DOM regardless */ }
       };
@@ -245,58 +245,166 @@
     update();
   })();
 
-  /* ------------------------------------------------------ enquiry form ---- */
+  /* ------------------------------------------------------ enquiry form ----
+     Works in three configurations, none of which dead-ends:
+       - a provider is wired up   -> POST by fetch, then /contact/thank-you/
+       - no provider, JS present  -> compose a pre-filled email, offer WhatsApp
+       - no provider, no JS       -> the direct phone / WhatsApp / email links below
+                                     the form, which are always in the DOM
+  ------------------------------------------------------------------------- */
   (function () {
     var form = $('#enquiry');
     if (!form) return;
+
     var status = $('#form-status', form);
-    var btn = form.querySelector('button[type=submit]');
+    var btn = $('#enquiry-submit', form);
+    var endpoint = form.dataset.endpoint || '';
+    var provider = form.dataset.provider || '';
+    var sending = false;
 
     var say = function (msg, tone) {
-      status.textContent = msg;
-      status.style.color = tone === 'bad' ? '#FF9B7A' : (tone === 'good' ? '#5FE0C8' : '');
+      status.innerHTML = '';
+      status.appendChild(document.createTextNode(msg));
+      status.className = 'form-note' + (tone ? ' is-' + tone : '');
     };
 
-    // Prefill the service dropdown from ?service=<slug> so service-page CTAs carry context.
+    var addLink = function (text, href) {
+      status.appendChild(document.createTextNode(' '));
+      var a = document.createElement('a');
+      a.href = href;
+      a.textContent = text;
+      a.rel = 'noopener';
+      status.appendChild(a);
+    };
+
+    /* ---- per-field validation ------------------------------------------- */
+    // Native constraint validation decides; this only renders the result, so the rules
+    // live in the markup and there is one source of truth for them.
+    // Visible, named controls only: the provider's hidden fields (access key, subject,
+    // redirect) and the two honeypots must never be validated, focused or transcribed.
+    var fields = $$('input,select,textarea', form).filter(function (el) {
+      return el.name && el.type !== 'hidden' && el.closest('.field');
+    });
+
+    var mark = function (el) {
+      var ok = el.checkValidity();
+      var err = document.getElementById(el.id + '-err');
+      el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+      el.closest('.field').classList.toggle('is-bad', !ok);
+      if (err) err.hidden = ok;
+      return ok;
+    };
+
+    fields.forEach(function (el) {
+      // Only complain after the field has been visited once — nagging while someone is
+      // still typing their email address is worse than not validating at all.
+      el.addEventListener('blur', function () { if (el.value || el.required) mark(el); });
+      el.addEventListener('input', function () {
+        if (el.closest('.field').classList.contains('is-bad')) mark(el);
+      });
+      el.addEventListener('change', function () {
+        if (el.type === 'checkbox') mark(el);
+      });
+    });
+
+    var validate = function () {
+      var firstBad = null;
+      fields.forEach(function (el) { if (!mark(el) && !firstBad) firstBad = el; });
+      if (firstBad) {
+        firstBad.focus({ preventScroll: true });
+        firstBad.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        say('Please complete the highlighted fields above.', 'bad');
+      }
+      return !firstBad;
+    };
+
+    /* ---- prefill from ?service=<slug> ------------------------------------ */
     var wanted = new URLSearchParams(location.search).get('service');
     if (wanted) {
       var sel = $('#f-service', form);
-      if (sel && sel.querySelector('option[value="' + CSS.escape(wanted) + '"]')) sel.value = wanted;
+      var opt = sel && sel.querySelector('option[data-slug="' + wanted.replace(/"/g, '') + '"]');
+      if (opt) sel.value = opt.value;
     }
 
-    form.addEventListener('submit', function (e) {
-      var endpoint = form.dataset.endpoint;
+    /* ---- readable transcript, used by the no-provider fallback ----------- */
+    var transcript = function () {
+      var lines = [];
+      fields.forEach(function (el) {
+        if (el.type === 'checkbox') return;
+        var v = (el.value || '').trim();
+        if (!v) return;
+        var label = form.querySelector('label[for="' + el.id + '"]');
+        var key = label ? label.textContent.replace(/\s*\*\s*$/, '').trim() : el.name;
+        lines.push(key + ': ' + v);
+      });
+      return lines.join('\n');
+    };
 
-      // Native validation first, so required fields and email format are enforced.
-      if (!form.checkValidity()) {
+    form.addEventListener('submit', function (e) {
+      // Honeypots. Behave exactly as a success would, so a bot learns nothing.
+      var pot = $('#f-company', form), pot2 = $('#f-botcheck', form);
+      if ((pot && pot.value) || (pot2 && pot2.checked)) {
         e.preventDefault();
-        var bad = form.querySelector(':invalid');
-        if (bad) bad.focus();
-        say('Please complete the required fields above.', 'bad');
+        location.href = form.dataset.thanks;
         return;
       }
-      if (!endpoint) {
-        e.preventDefault();
-        say('The enquiry form is not connected yet — please call ' +
-            document.querySelector('[href^="tel:"]').textContent.trim() +
-            ' or email us directly. Sorry for the detour.', 'bad');
-        return;
-      }
+
+      if (!validate()) { e.preventDefault(); return; }
       e.preventDefault();
+      if (sending) return;
+
+      /* -- no provider configured: compose an email instead ---------------- */
+      if (!endpoint) {
+        var subject = 'Consultation enquiry — ' + ($('#f-service', form) || {}).value;
+        var href = 'mailto:' + form.dataset.mailto +
+                   '?subject=' + encodeURIComponent(subject) +
+                   '&body=' + encodeURIComponent(transcript());
+        say('Opening your email app with these details filled in. If nothing happens, send them on', 'warn');
+        addLink('WhatsApp', 'https://wa.me/' + form.dataset.whatsapp +
+                            '?text=' + encodeURIComponent(transcript()));
+        window.location.href = href;
+        return;
+      }
+
+      /* -- provider configured -------------------------------------------- */
+      sending = true;
       btn.disabled = true;
+      btn.setAttribute('aria-busy', 'true');
       say('Sending…');
+
       fetch(endpoint, {
         method: 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' }
       }).then(function (r) {
-        if (!r.ok) throw new Error(r.status);
+        return r.json().catch(function () { return { ok: r.ok }; })
+          .then(function (data) { return { r: r, data: data }; });
+      }).then(function (res) {
+        // Web3Forms answers {success:true}; Formspree answers 200 with {ok:true} or an
+        // "errors" array. Treat anything that is not clearly a success as a failure.
+        var good = res.r.ok && res.data.success !== false && !res.data.errors;
+        if (!good) throw new Error('rejected');
         form.reset();
-        say('Thank you — your enquiry has been sent. We will reply shortly.', 'good');
+        location.href = form.dataset.thanks;
       }).catch(function () {
-        say('That did not go through. Please email or call us instead.', 'bad');
-      }).finally(function () { btn.disabled = false; });
+        sending = false;
+        btn.disabled = false;
+        btn.removeAttribute('aria-busy');
+        say('That did not go through — the network or the form service refused it. Please call ' +
+            (document.querySelector('.form-alt a[href^="tel:"]') || {}).textContent +
+            ', message us on', 'bad');
+        addLink('WhatsApp', 'https://wa.me/' + form.dataset.whatsapp);
+        status.appendChild(document.createTextNode(' or email'));
+        addLink(form.dataset.mailto, 'mailto:' + form.dataset.mailto);
+      });
     });
+
+    if (provider && !endpoint) {
+      // Nothing visible to the visitor — a note for whoever deploys it. A provider was
+      // named but its credential is missing, so the form silently fell back to email.
+      console.warn('[enquiry] provider "' + provider + '" is set but incomplete — check ' +
+                   'accessKey / endpoint in site.json, or FORM_ACCESS_KEY / FORM_ENDPOINT.');
+    }
   })();
 
   /* ------------------------------------------- shared by both branches ---- */
@@ -476,16 +584,13 @@
   });
 
   var brand = $('.brand');
-  if (brand) {
-    var l1 = $('#lg1'), l2 = $('#lg2'), l3 = $('#lg3');
-    if (l1 && l2 && l3) {
-      brand.addEventListener('pointerenter', function () {
-        gsap.to(l1, { y: -2.5, duration: 0.5, ease: 'power3.out' });
-        gsap.to(l3, { y: 2.5, duration: 0.5, ease: 'power3.out' });
-      });
-      brand.addEventListener('pointerleave', function () {
-        gsap.to([l1, l2, l3], { y: 0, duration: 0.5, ease: 'power3.out' });
-      });
-    }
+  var brandMark = brand && $('.brand-mark', brand);
+  if (brandMark) {
+    brand.addEventListener('pointerenter', function () {
+      gsap.to(brandMark, { scale: 1.07, rotate: -3, duration: 0.5, ease: 'power3.out' });
+    });
+    brand.addEventListener('pointerleave', function () {
+      gsap.to(brandMark, { scale: 1, rotate: 0, duration: 0.5, ease: 'power3.out' });
+    });
   }
 })();

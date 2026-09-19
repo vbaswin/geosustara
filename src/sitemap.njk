@@ -45,6 +45,14 @@ eleventyExcludeFromCollections: true
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+  {#- /contact/thank-you/ is deliberately absent: it carries noindex and only makes sense
+      arriving from a submitted form. -#}
+  <url>
+    <loc>{{ "/privacy/" | absUrl(siteUrl) }}</loc>
+    <lastmod>{{ buildDate | dateYMD }}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
   {%- for p in collections.insights | reverse %}
   <url>
     <loc>{{ p.url | absUrl(siteUrl) }}</loc>

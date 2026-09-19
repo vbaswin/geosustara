@@ -3,27 +3,30 @@ layout: layouts/page.njk
 permalink: /about/
 title: "About the Firm"
 heading: "Bridging environmental responsibility and practical implementation."
-description: "A sustainability-driven environmental consulting firm in Thiruvananthapuram, delivering integrated environmental and geospatial solutions across India."
-lede: "We were founded with a vision to bridge the gap between environmental responsibility and practical implementation by delivering integrated environmental and geospatial solutions."
+description: "Geosustara Enviro Services LLP — environmental and geospatial consultants in Thiruvananthapuram, Kerala, serving industry, government and academia."
+lede: "We were founded to close the gap between environmental responsibility and practical implementation, by delivering integrated environmental and geospatial solutions rather than reports alone."
 showCta: true
 sections:
-  - { id: overview, label: Overview }
-  - { id: vision,   label: Vision & Mission }
-  - { id: approach, label: Approach }
-  - { id: questions, label: Questions }
+  - { id: overview,     label: Overview }
+  - { id: vision,       label: Vision & Mission }
+  - { id: who-we-serve, label: Who we serve }
+  - { id: approach,     label: Approach }
+  - { id: questions,    label: Questions }
 breadcrumbs:
   - text: Home
     url: /
   - text: About
 faqs:
   - q: "What does Geosustara Enviro Services LLP do?"
-    a: "We are a sustainability-driven environmental consulting firm. Our work covers environmental compliance, pollution control, waste and water resource management, GIS mapping and spatial analysis, sustainability consulting, and technical support for research and academic projects."
+    a: "We are a sustainability-driven environmental consulting firm. Our work covers environmental compliance and auditing, Environmental Impact Assessment (EIA) and Environmental Clearance (EC) support, GIS, remote sensing and thematic mapping, water, wastewater and solid waste management, sustainability consulting, and technical support for research and academic projects."
   - q: "Who do you work with?"
-    a: "Government bodies, industries, commercial establishments, residential communities, research organizations and academic institutions."
+    a: "Industries and manufacturing units, quarries and mineral-based industries, hotels and commercial establishments, government agencies and local bodies, residential communities, research organizations, and students and academic institutions."
   - q: "Where are you based and where do you work?"
-    a: "Our office is at Perekonam, Pappanamcode, Thiruvananthapuram, Kerala. We work with clients across India."
+    a: "Our office is at Perekonam, Pappanamcode, Thiruvananthapuram, Kerala. We work with clients across India, with most site work in Kerala and neighbouring states."
   - q: "How does an engagement usually run?"
-    a: "In four stages — assessment, planning, implementation and monitoring. We support clients from the initial assessment through to continuous monitoring rather than handing over a report and leaving."
+    a: "In four stages — assessment, planning, implementation and monitoring. We support clients from the initial site investigation through to continuous monitoring rather than handing over a report and leaving."
+  - q: "Do you carry out both the study and the engineering?"
+    a: "Yes, and that is deliberate. Environmental site investigation, GIS and remote sensing, and treatment system design sit in one team, so the data behind an assessment is the same data a design is sized on."
 ---
 {%- from "partials/icons.njk" import svcIcon, arrow, picture -%}
 
@@ -35,19 +38,28 @@ faqs:
           environmental consulting firm committed to helping organizations achieve regulatory compliance, optimize
           resource use, and adopt responsible environmental practices.</p>
 
+        <h2>The gap we exist to close</h2>
+        <p>{{ site.whyUs.problem }}</p>
+        <p>{{ site.whyUs.answer }}</p>
+
         <h2>Beyond reports</h2>
         <p>We provide end-to-end services that go beyond reports. Our approach combines technical expertise, field
           experience, scientific analysis, and a deep understanding of evolving environmental regulations to deliver
           practical, cost-effective, and sustainable solutions.</p>
-        <p>We work closely with government bodies, industries, commercial establishments, residential communities,
-          research organizations, and academic institutions to address diverse environmental challenges.</p>
+        <p>Because environmental engineering, site investigation and geospatial analysis sit inside the same team,
+          an assessment we write and a treatment system we size are built on the same field data — rather than on
+          two sets of numbers that have to be reconciled at the end.</p>
 
         <h2>What our expertise covers</h2>
-        <p>Our expertise spans environmental compliance, pollution control, waste and water resource management,
-          GIS mapping and spatial analysis, sustainability consulting, and technical support for research and
-          academic projects. Whether it is obtaining regulatory approvals, preparing thematic maps for Environmental
-          Impact Assessment (EIA), optimizing environmental systems, or supporting scientific research, we provide
-          reliable solutions tailored to each client's needs.</p>
+        <p>Our expertise spans environmental engineering; Environmental Impact Assessment (EIA) and Environmental
+          Clearance (EC) support; environmental site investigation; GIS, remote sensing and mapping; water quality
+          assessment and reporting; wastewater treatment and reactor design; solid waste management; CADD and
+          technical design; sustainability consulting; and technical support for research and academic projects.</p>
+        <ul class="xp" style="margin:22px 0">
+          {%- for e in site.expertise %}
+          <li><a href="{{ ('/services/' + e.s + '/') | url }}"><span class="d" aria-hidden="true"></span>{{ e.t }}</a></li>
+          {%- endfor %}
+        </ul>
 
         <h2>What we believe</h2>
         <p>At Geosustara, we believe sustainability should be practical, measurable, and impactful. We support our
@@ -59,9 +71,11 @@ faqs:
         {% include "partials/secnav.njk" %}
 
         <div class="side-card">
-          <h3>Who we work with</h3>
+          <h3>Our services</h3>
           <ul>
-            {%- for s in site.sectors %}<li><span>{{ s }}</span></li>{% endfor %}
+            {%- for s in services %}
+            <li><a href="{{ ('/services/' + s.slug + '/') | url }}">{{ s.shortTitle }}</a></li>
+            {%- endfor %}
           </ul>
         </div>
         <div class="side-card">
@@ -69,7 +83,9 @@ faqs:
           <ul>
             <li><span>{{ site.contact.addressLine }}</span></li>
             <li><span>{{ site.contact.locality }}, {{ site.contact.region }} {{ site.contact.postalCode }}</span></li>
-            <li><a href="tel:{{ site.contact.phoneE164 }}">{{ site.contact.phoneDisplay }}</a></li>
+            {%- for p in site.contact.phones %}
+            <li><a href="tel:{{ p.e164 }}">{{ p.display }}</a></li>
+            {%- endfor %}
             <li><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></li>
           </ul>
         </div>
@@ -97,12 +113,32 @@ faqs:
         <p>{{ site.mission }}</p>
       </div>
     </div>
-    <p class="pullquote rv">We believe sustainability should be <em>practical, measurable</em> and impactful.</p>
+    <p class="pullquote rv">Expertise you can trust. Engineering <em>backed by evidence</em>.</p>
+  </div>
+</section>
+
+<!-- ===================== WHO WE SERVE ===================== -->
+<section class="sec" id="who-we-serve">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">Who we serve</span>
+      <h2 class="sec-title">Who we work with, and<br>what each one usually needs.</h2>
+      <p class="sec-lede">The problems differ by sector far more than the regulations do. These are the starting
+        points we are asked about most often.</p>
+    </div>
+    <ul class="serve rv">
+      {%- for s in site.whoWeServe %}
+      <li>
+        <h3>{{ s.t }}</h3>
+        <p>{{ s.d }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
   </div>
 </section>
 
 <!-- ===================== APPROACH ===================== -->
-<section class="sec" id="approach">
+<section class="sec sec--tint" id="approach">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="label">How we work</span>
@@ -117,9 +153,9 @@ faqs:
                      [640,1000], "(max-width:1040px) 460px, 40vw", "lazy", false, 1000, 1000) }}
           <svg viewBox="0 0 400 400" aria-hidden="true">
             <g id="lcg"></g>
-            <path id="lctrail" fill="none" stroke="#35C3AC" stroke-width="1.2" stroke-dasharray="4 5" opacity=".5" d=""></path>
-            <circle id="lcring" cx="200" cy="200" r="34" fill="none" stroke="#35C3AC" stroke-width="1.4" opacity=".7"></circle>
-            <circle id="lcdot" cx="200" cy="200" r="5" fill="#35C3AC"></circle>
+            <path id="lctrail" fill="none" stroke="#16C264" stroke-width="1.2" stroke-dasharray="4 5" opacity=".5" d=""></path>
+            <circle id="lcring" cx="200" cy="200" r="34" fill="none" stroke="#16C264" stroke-width="1.4" opacity=".7"></circle>
+            <circle id="lcdot" cx="200" cy="200" r="5" fill="#16C264"></circle>
           </svg>
           <span class="lc-stage" id="lcStage">Stage 01 — Assessment</span>
         </div>
@@ -138,7 +174,7 @@ faqs:
 </section>
 
 <!-- ===================== FAQ ===================== -->
-<section class="sec sec--tint" id="questions">
+<section class="sec" id="questions">
   <div class="wrap" style="max-width:900px">
     <div class="sec-head rv">
       <span class="label">Questions</span>

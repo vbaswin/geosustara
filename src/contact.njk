@@ -3,12 +3,19 @@ layout: layouts/page.njk
 permalink: /contact/
 title: "Contact"
 heading: "Start with an assessment."
-description: "Contact Geosustara Enviro Services LLP — Pappanamcode, Thiruvananthapuram, Kerala 695018. Call +91 94469 93196 or email geosustara@gmail.com."
-lede: "Tell us about your site, your obligations or your research question. We will tell you exactly what is required."
+description: "Contact Geosustara Enviro Services LLP — Pappanamcode, Thiruvananthapuram, Kerala 695018. Call +91 62824 62332, message on WhatsApp or email geosustara@gmail.com."
+lede: "Tell us about your site, your obligations or your research question. We will tell you exactly what is required — and what it takes."
 breadcrumbs:
   - text: Home
     url: /
   - text: Contact
+faqs:
+  - q: "How quickly do you respond to an enquiry?"
+    a: "Enquiries sent through this page reach us by email and are normally answered within one working day. If it is urgent, call or send a WhatsApp message on either of the numbers listed — that is always the fastest route."
+  - q: "What should I include in a first enquiry?"
+    a: "The location of the site, what it is used for, and the obligation or problem you are facing — a notice received, an approval needed, a system that is failing, a study that needs data. Drawings, previous reports and test results are useful but not needed to start."
+  - q: "Do you visit the site before quoting?"
+    a: "For most work, yes. Environmental scope is very difficult to judge accurately from a description alone, and a short visit usually avoids both over-specifying the study and discovering extra work mid-way."
 ---
 {%- from "partials/icons.njk" import svcIcon, arrow -%}
 
@@ -26,9 +33,15 @@ breadcrumbs:
             </address>
           </div>
         </div>
+        {%- for p in site.contact.phones %}
         <div class="ctr">
-          <div class="ctk">Telephone</div>
-          <div class="ctv"><a href="tel:{{ site.contact.phoneE164 }}">{{ site.contact.phoneDisplay }}</a></div>
+          <div class="ctk">{% if loop.first %}Telephone{% else %}Alternate{% endif %}</div>
+          <div class="ctv"><a href="tel:{{ p.e164 }}">{{ p.display }}</a></div>
+        </div>
+        {%- endfor %}
+        <div class="ctr">
+          <div class="ctk">WhatsApp</div>
+          <div class="ctv"><a href="https://wa.me/{{ site.contact.whatsapp }}" rel="noopener">{{ site.contact.phoneDisplay }} — message us</a></div>
         </div>
         <div class="ctr">
           <div class="ctk">Email</div>
@@ -40,7 +53,7 @@ breadcrumbs:
         </div>
         <div class="ctr">
           <div class="ctk">Area served</div>
-          <div class="ctv">{{ site.areaServed }}</div>
+          <div class="ctv">{{ site.areaServed }} &middot; site work mainly in {{ site.contact.region }}</div>
         </div>
 
         <div id="map" data-lat="{{ site.map.lat }}" data-lng="{{ site.map.lng }}" data-zoom="{{ site.map.zoom }}"
@@ -57,5 +70,22 @@ breadcrumbs:
   </div>
 </section>
 
-{#- No service card grid here: the form's own dropdown already lists all five, and repeating
+<section class="sec sec--tint">
+  <div class="wrap" style="max-width:900px">
+    <div class="sec-head rv">
+      <span class="label">Before you write</span>
+      <h2 class="sec-title">Getting a useful answer<br>on the first reply.</h2>
+    </div>
+    <div class="faq rv">
+      {%- for f in faqs %}
+      <details{% if loop.first %} open{% endif %}>
+        <summary>{{ f.q }}</summary>
+        <div class="a">{{ f.a }}</div>
+      </details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{#- No service card grid here: the form's own dropdown already lists all six, and repeating
     the summaries would put them on a fourth URL. -#}

@@ -66,6 +66,20 @@ eleventyComputed:
         {%- endfor %}
       </div>
       {%- endif %}
+
+      {#- The header CTA is always on screen, but a visitor who has read this far has a
+          specific question about this service. The ?service= parameter preselects it in the
+          enquiry form, so they do not restate what they just read. -#}
+      <div class="svc-cta rv" id="enquire">
+        <div>
+          <h2>Have a site or a deadline in mind?</h2>
+          <p>Describe what you are dealing with and we will tell you what it needs, what it involves and
+            roughly how long it takes. No obligation either way.</p>
+        </div>
+        <div class="hero-cta" style="margin-top:0">
+          <a class="btn mag" href="{{ '/contact/' | url }}?service={{ service.slug }}">Request a consultation {{ arrow() }}</a>
+        </div>
+      </div>
     </div>
 
     <aside class="svc-side">

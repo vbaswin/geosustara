@@ -1,0 +1,21 @@
+# Response headers for Cloudflare Pages and Netlify.
+#
+# vercel.json carries the same rules for Vercel, and GitHub Pages ignores both — it has no
+# mechanism for custom headers at all. Keep the two files in step if you change either.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+/insights/feed.xml
+  Content-Type: application/atom+xml; charset=utf-8
+  Cache-Control: public, max-age=3600

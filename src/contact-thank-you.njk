@@ -1,0 +1,54 @@
+---
+layout: layouts/page.njk
+permalink: /contact/thank-you/
+title: "Enquiry received"
+heading: "Thank you — your enquiry is with us."
+description: "Your enquiry has reached Geosustara Enviro Services LLP. We will reply within one working day."
+lede: "We have your message. Here is what happens next."
+noindex: true
+eleventyExcludeFromCollections: true
+breadcrumbs:
+  - text: Home
+    url: /
+  - text: Contact
+    url: /contact/
+  - text: Enquiry received
+---
+{%- from "partials/icons.njk" import arrow -%}
+{#- Deliberately noindex: this page only makes sense arriving from a submitted form, and an
+    indexed "thank you" page competes with /contact/ for the firm's own brand terms.
+    It is a real URL rather than an inline message so a conversion goal can be attached to
+    it later without touching the form. -#}
+
+<section class="sec">
+  <div class="wrap">
+    <div class="thanks rv">
+      <span class="tick" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false"><path d="m4 12.5 5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+
+      <h2 class="sec-title" style="margin-top:0">What happens next</h2>
+      <ol class="next-steps">
+        <li>We read the enquiry and check whether anything obvious is missing — location, the obligation,
+          the deadline you are working to.</li>
+        <li>You get a reply, normally within one working day, saying what the work involves and what we
+          would need from you to scope it properly.</li>
+        <li>Where the scope is not clear from a description — which is most site work — we suggest a short
+          site visit before anything is quoted.</li>
+      </ol>
+
+      <p style="margin-top:28px;color:var(--muted);line-height:1.78">
+        If it is urgent, do not wait for the email. Call
+        {%- for p in site.contact.phones %}
+        <a href="tel:{{ p.e164 }}" style="color:var(--brand)">{{ p.display }}</a>{% if not loop.last %} or{% endif %}
+        {%- endfor %}, or send the same details on
+        <a href="https://wa.me/{{ site.contact.whatsapp }}" rel="noopener" style="color:var(--brand)">WhatsApp</a>.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn mag" href="{{ '/services/' | url }}">Browse our services {{ arrow() }}</a>
+        <a class="btn btn--out mag" href="{{ '/insights/' | url }}">Read our notes {{ arrow() }}</a>
+      </div>
+    </div>
+  </div>
+</section>

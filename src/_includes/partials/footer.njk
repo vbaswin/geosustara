@@ -2,17 +2,18 @@
   <div class="wrap">
     <div class="fg">
       <div class="fbrand">
-        <svg width="34" height="34" viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
-          <path d="M24 5 43 13.4 24 21.8 5 13.4 24 5Z" stroke="#35C3AC" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M8.6 21 24 27.8 39.4 21" stroke="#35C3AC" stroke-width="1.6" stroke-linejoin="round" opacity=".62"/>
-          <path d="M8.6 28.6 24 35.4 39.4 28.6" stroke="#35C3AC" stroke-width="1.6" stroke-linejoin="round" opacity=".34"/>
-        </svg>
-        <p>{{ site.name }} — sustainability-driven environmental consulting, geospatial solutions and
-          regulatory compliance across industry and academia.</p>
+        <img class="brand-mark" src="{{ '/assets/img/mark-96.png' | url }}"
+             srcset="{{ '/assets/img/mark-96.png' | url }} 96w, {{ '/assets/img/mark-192.png' | url }} 192w"
+             sizes="40px" width="40" height="34" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <p>{{ site.name }} — environmental and geospatial consulting: EIA and Environmental Clearance
+          support, GIS and remote sensing, water, wastewater and solid waste solutions, sustainability
+          and research support.</p>
         <address>
           {{ site.contact.addressLine }},<br>
           {{ site.contact.locality }}, {{ site.contact.region }} {{ site.contact.postalCode }}<br>
-          <a href="tel:{{ site.contact.phoneE164 }}">{{ site.contact.phoneDisplay }}</a><br>
+          {%- for p in site.contact.phones %}
+          <a href="tel:{{ p.e164 }}">{{ p.display }}</a><br>
+          {%- endfor %}
           <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>
         </address>
       </div>
@@ -28,15 +29,17 @@
         <h2>Firm</h2>
         <a href="{{ '/about/' | url }}">About</a>
         <a href="{{ '/about/' | url }}#vision">Vision &amp; Mission</a>
+        <a href="{{ '/about/' | url }}#who-we-serve">Who we serve</a>
         <a href="{{ '/about/' | url }}#approach">Approach</a>
         <a href="{{ '/contact/' | url }}">Contact</a>
       </div>
 
       <div>
-        <h2>Insights</h2>
+        <h2>More</h2>
         <a href="{{ '/insights/' | url }}">All articles</a>
         <a href="{{ '/insights/feed.xml' | url }}">RSS feed</a>
         <a href="{{ '/sitemap.xml' | url }}">Sitemap</a>
+        <a href="{{ '/privacy/' | url }}">Privacy</a>
       </div>
     </div>
 

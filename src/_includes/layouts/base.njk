@@ -33,12 +33,16 @@
 <meta name="twitter:title" content="{{ pageTitle }}">
 <meta name="twitter:description" content="{{ pageDesc }}">
 <meta name="twitter:image" content="{{ ogImg }}">
+<meta name="twitter:image:alt" content="{{ site.name }} — {{ site.tagline }}">
 
 <meta name="theme-color" content="{{ site.themeColor }}">
 <meta name="format-detection" content="telephone=no">
 <meta name="geo.region" content="IN-{{ site.contact.regionCode }}">
 <meta name="geo.placename" content="{{ site.contact.locality }}">
 
+{#- favicon.ico carries 16/32/48px frames. The 48px one is what Google reads for the
+    favicon beside a search result, and it will not accept an SVG for that. -#}
+<link rel="icon" href="{{ '/favicon.ico' | url }}" sizes="48x48">
 <link rel="icon" href="{{ '/favicon.svg' | url }}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | url }}">
 <link rel="manifest" href="{{ '/site.webmanifest' | url }}">

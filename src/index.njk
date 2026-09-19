@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: false
-description: "Sustainability-driven environmental consulting in Thiruvananthapuram — regulatory compliance, GIS mapping, pollution control and sustainability across India."
+description: "Environmental and geospatial consultants in Thiruvananthapuram, Kerala — EIA and Environmental Clearance support, GIS mapping, water and wastewater solutions."
 ---
 {%- from "partials/icons.njk" import svcIcon, arrow, picture -%}
 
@@ -23,25 +23,30 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
   <div class="wrap hero-in">
     <div class="eyebrow">
       <span class="rule"></span>
-      <span class="label">{{ site.tagline }} &middot; {{ site.contact.locality }}</span>
+      <span class="label">{{ site.strapline }} &middot; {{ site.contact.locality }}</span>
     </div>
+    {#- The H1 carries the two terms this firm has to rank for, and closes on the promise
+        printed on its own brochure. Three lines of roughly equal length so none of them
+        wraps inside the clipped .ln mask. -#}
     <h1 class="hh">
-      <span class="ln"><span>Sustainability that is</span></span>
-      <span class="ln"><span><em>practical, measurable</em></span></span>
-      <span class="ln"><span>and impactful.</span></span>
+      <span class="ln"><span>Environmental and</span></span>
+      <span class="ln"><span><em>geospatial</em> consulting</span></span>
+      <span class="ln"><span>backed by evidence.</span></span>
     </h1>
     <div class="hero-row">
       <div>
-        <p class="hero-p">We bridge the gap between environmental responsibility and practical implementation —
-          delivering integrated environmental and geospatial solutions that go beyond reports.</p>
+        <p class="hero-p">Environmental Impact Assessment and clearance support, GIS and remote sensing,
+          water and wastewater engineering — from field investigation through to a commissioned system.</p>
         <div class="hero-cta">
           <a class="btn mag" href="{{ '/services/' | url }}">View our services {{ arrow() }}</a>
+          <a class="btn btn--out mag" href="https://wa.me/{{ site.contact.whatsapp }}" rel="noopener">
+            {{ svcIcon("chat") }} WhatsApp us</a>
         </div>
       </div>
       <div class="metrics">
-        <div class="metric"><span class="n" data-count="5">0</span><span class="t">Service<br>areas</span></div>
-        <div class="metric"><span class="n" data-count="6">0</span><span class="t">Sectors<br>served</span></div>
-        <div class="metric"><span class="n" data-count="4">0</span><span class="t">Stage<br>lifecycle</span></div>
+        <div class="metric"><span class="n" data-count="{{ services.length }}">0</span><span class="t">Service<br>areas</span></div>
+        <div class="metric"><span class="n" data-count="{{ site.sectors.length }}">0</span><span class="t">Sectors<br>served</span></div>
+        <div class="metric"><span class="n" data-count="{{ site.lifecycle.length }}">0</span><span class="t">Stage<br>lifecycle</span></div>
       </div>
     </div>
   </div>
@@ -59,18 +64,44 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
   </div>
 </div>
 
+<!-- ===================== WHY US ===================== -->
+<section class="sec" id="why-us">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">01 — Why us</span>
+      {#- The brochure's three-sentence motto, broken one sentence to a line. Kept as a single
+          string in site.json so there is one place to correct the wording. -#}
+      <h2 class="sec-title">{{ site.motto | replace(". ", ".<br>") | safe }}</h2>
+    </div>
+    <div class="why">
+      <div class="rv">
+        <p class="why-lead">{{ site.whyUs.problem }}</p>
+        <p class="why-body">{{ site.whyUs.answer }}</p>
+      </div>
+      <ul class="pillars rv">
+        {%- for p in site.whyUs.pillars %}
+        <li>
+          <h3>{{ p.t }}</h3>
+          <p>{{ p.d }}</p>
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== SERVICES ===================== -->
-<section class="sec" id="services">
+<section class="sec sec--tint" id="services">
   <div class="topo-band" aria-hidden="true">
-    <svg viewBox="0 0 1440 180" preserveAspectRatio="none"><g data-topo-band fill="none" stroke="#35C3AC" stroke-width="1"></g></svg>
+    <svg viewBox="0 0 1440 180" preserveAspectRatio="none"><g data-topo-band fill="none" stroke="#16C264" stroke-width="1"></g></svg>
   </div>
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="label">01 — What we do</span>
-      <h2 class="sec-title">Five disciplines,<br>one integrated practice.</h2>
-      <p class="sec-lede">Our expertise spans environmental compliance, pollution control, waste and water resource
-        management, GIS mapping and spatial analysis, sustainability consulting, and technical support for research
-        and academic projects.</p>
+      <span class="label">02 — What we do</span>
+      <h2 class="sec-title">Six disciplines,<br>one integrated practice.</h2>
+      <p class="sec-lede">Environmental compliance and auditing, Environmental Impact Assessment and clearance
+        support, GIS and remote sensing, water, wastewater and solid waste engineering, sustainability
+        consulting, and training and research support — from one team, on one set of site data.</p>
     </div>
 
     {#- Overview only. The capability lists live on /services/ and each detail page, so the
@@ -91,11 +122,34 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
   </div>
 </section>
 
+<!-- ===================== EXPERTISE ===================== -->
+{#- The capability list from the brochure. Each entry links to the page that covers it, so
+    this doubles as the internal-linking spine of the site. -#}
+<section class="sec" id="expertise">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label">03 — Our expertise</span>
+      <h2 class="sec-title">What we are asked<br>for most often.</h2>
+      <p class="sec-lede">The capabilities behind the six service areas. Each one links to where it is
+        covered in full.</p>
+    </div>
+    <ul class="xp rv">
+      {%- for e in site.expertise %}
+      <li>
+        <a href="{{ ('/services/' + e.s + '/') | url }}">
+          <span class="d" aria-hidden="true"></span>{{ e.t }}
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
 <!-- ===================== LIFECYCLE ===================== -->
 <section class="sec sec--tint" id="approach">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="label">02 — How we work</span>
+      <span class="label">04 — How we work</span>
       <h2 class="sec-title">From first survey to<br>continuous monitoring.</h2>
       <p class="sec-lede">We support our clients from initial assessment and planning through implementation and
         continuous monitoring — transforming environmental challenges into opportunities for responsible growth
@@ -123,13 +177,12 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
 <section class="sec" id="purpose">
   <div class="wrap">
     <div class="sec-head rv" style="text-align:center;margin-inline:auto">
-      <span class="label">03 — Our purpose</span>
+      <span class="label">05 — Our purpose</span>
     </div>
-    <p class="pullquote rv">We believe sustainability should be <em>practical, measurable</em> and impactful.</p>
+    <p class="pullquote rv">We bridge environmental responsibility with <em>practical implementation</em>.</p>
     <p class="rv" style="text-align:center;max-width:56ch;margin:26px auto 0;color:var(--muted);font-size:clamp(15px,.45vw + 14px,17.5px);line-height:1.74">
-      We were founded to bridge the gap between environmental responsibility and practical
-      implementation — supporting clients from first assessment through to continuous monitoring
-      rather than handing over a report and leaving.
+      {{ site.promise }} We support clients from first assessment through to continuous
+      monitoring rather than handing over a report and leaving.
     </p>
   </div>
 </section>
@@ -140,7 +193,7 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
 <section class="sec sec--tint" id="insights">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="label">04 — Insights</span>
+      <span class="label">06 — Insights</span>
       <h2 class="sec-title">Notes from the field.</h2>
       <p class="sec-lede">On regulation, geospatial method and environmental performance — written for the people
         who have to act on them.</p>
@@ -171,20 +224,25 @@ description: "Sustainability-driven environmental consulting in Thiruvananthapur
 <!-- ===================== CONTACT ===================== -->
 {#- A short routing band, not a second copy of /contact/. The enquiry form and the map live
     on the contact page only, so a visitor never meets the same block twice. -#}
-<section class="sec sec--tint" id="contact">
+<section class="sec" id="contact">
   <div class="wrap contact-band">
     <div class="rv">
-      <span class="label">05 — Contact</span>
+      <span class="label">07 — Contact</span>
       <h2 class="sec-title" style="max-width:16ch">Start with an assessment.</h2>
     </div>
     <div class="rv">
       <ul class="cband">
         <li><span class="ctk">Office</span><span class="ctv">{{ site.contact.addressLine }},<br>{{ site.contact.locality }} {{ site.contact.postalCode }}</span></li>
-        <li><span class="ctk">Telephone</span><span class="ctv"><a href="tel:{{ site.contact.phoneE164 }}">{{ site.contact.phoneDisplay }}</a></span></li>
+        <li><span class="ctk">Telephone</span><span class="ctv">
+          {%- for p in site.contact.phones %}
+          <a href="tel:{{ p.e164 }}">{{ p.display }}</a>{% if not loop.last %}<br>{% endif %}
+          {%- endfor %}
+        </span></li>
+        <li><span class="ctk">WhatsApp</span><span class="ctv"><a href="https://wa.me/{{ site.contact.whatsapp }}" rel="noopener">Message us</a></span></li>
         <li><span class="ctk">Email</span><span class="ctv"><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></span></li>
       </ul>
-      <p class="form-note" style="margin-top:18px">Full contact details, a map and an enquiry form
-        are on the <a href="{{ '/contact/' | url }}" style="color:var(--aqua)">contact page</a>.</p>
+      <p class="form-note" style="margin-top:18px">A map and the full enquiry form are on the
+        <a href="{{ '/contact/' | url }}" style="color:var(--brand)">contact page</a>.</p>
     </div>
   </div>
 </section>
