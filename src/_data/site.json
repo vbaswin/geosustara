@@ -43,8 +43,13 @@
     "addressFull": "Perekonam, Pappanamcode, Thiruvananthapuram, Kerala 695018, India"
   },
 
-  "//map": "Locality-level coordinates for Pappanamcode, shown at neighbourhood zoom. These are APPROXIMATE and are used only for the visual map — they are deliberately NOT published in the LocalBusiness structured data, where a wrong pin would do harm. Replace with your exact coordinates (right-click your building in Google Maps > copy the lat,lng) and raise the zoom to 16.",
-  "map": { "lat": 8.4718, "lng": 76.956, "zoom": 13, "approximate": true },
+  "//map": "Read only by .tooling/build-locator-map.py, which draws src/assets/img/locator-map.svg. The site ships that SVG and makes no map request at runtime. The previous value (76.956) was about 2.8 km west of Pappanamcode, in Manacaud — these are the Pappanamcode locality coordinates from OpenStreetMap. Still APPROXIMATE and still deliberately NOT published in the LocalBusiness structured data, where a wrong pin would do harm. To show the exact office, put your own lat/lng here and re-run the generator.",
+  "map": {
+    "lat": 8.4703,
+    "lng": 76.9818,
+    "approximate": true,
+    "note": "Pappanamcode, about 4 km east-south-east of Thiruvananthapuram city centre"
+  },
 
   "areaServed": "India",
   "//areaServedNote": "Kerala is named separately in the structured data. Most enquiries are state-level, and a LocalBusiness that claims only 'India' ranks poorly for the district terms people actually search.",

@@ -58,30 +58,26 @@ faqs:
 
         {%- set directions = "https://www.google.com/maps/search/?api=1&query=" + (site.contact.addressFull | urlencode) %}
 
-        <div id="map" data-lat="{{ site.map.lat }}" data-lng="{{ site.map.lng }}" data-zoom="{{ site.map.zoom }}"
-             data-v="{{ '/assets/vendor/leaflet.js' | assetVersion }}"
-             data-popup="{{ site.name }} — {{ site.contact.locality }}"
-             role="img" aria-label="Map showing the {{ 'approximate ' if site.map.approximate }}office location in {{ site.contact.locality }}, {{ site.contact.region }}."></div>
+        {#- A drawn-once SVG, not a live map. The previous Leaflet + CARTO setup broke when
+            CARTO began requiring an API key and started stamping "API KEY REQUIRED" across
+            the tiles. This makes no request at runtime, costs ~13 KB gzipped against
+            Leaflet's 144 KB, and cannot expire. Regenerate with
+            `python .tooling/build-locator-map.py`. -#}
+        <figure class="locator">
+          <img src="{{ '/assets/img/locator-map.svg' | url }}" width="920" height="613"
+               loading="lazy" decoding="async"
+               alt="Locator map of Thiruvananthapuram. The Geosustara office is marked at
+                    Pappanamcode, about 4 km east-south-east of the city centre, with the
+                    Arabian Sea coast to the west.">
+          <figcaption>
+            <span>{{ site.map.note }} &middot; map data &copy; OpenStreetMap contributors</span>
+            <a class="btn btn--out" href="{{ directions }}" target="_blank" rel="noopener">
+              Open in Google Maps {{ arrow() }}</a>
+          </figcaption>
+        </figure>
 
-        {#- Shown by main.js if the tile service is unreachable or starts demanding a key —
-            which is exactly what happened to the previous basemap provider. Never a blank
-            frame: the address and the directions link are what a visitor came for anyway. -#}
-        <div class="map-fallback" id="map-fallback" hidden>
-          <span class="ctk">Finding us</span>
-          <address>{{ site.contact.addressFull }}</address>
-          <a class="btn btn--out" href="{{ directions }}" target="_blank" rel="noopener">
-            Open in Google Maps {{ arrow() }}</a>
-        </div>
-
-        <p class="form-note map-note">
-          {%- if site.map.approximate %}
-          The pin is at neighbourhood level. For door-to-door directions,
-          {%- else %}
-          For door-to-door directions,
-          {%- endif %}
-          <a href="{{ directions }}" target="_blank" rel="noopener">open the address in Google Maps</a>
-          or call ahead — the lanes here are easier described than mapped.
-        </p>
+        <p class="form-note map-note">The marker is at neighbourhood level, not the door.
+          Please call ahead — the lanes here are easier described than mapped.</p>
       </div>
 
       {% include "partials/contact-form.njk" %}
