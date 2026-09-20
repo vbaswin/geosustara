@@ -83,7 +83,6 @@ module.exports = function (eleventyConfig) {
       endpoint: active ? endpoint : '',
       accessKey: provider === 'web3forms' ? accessKey : '',
       subject: cfg.subject || 'New enquiry',
-      replyTo: cfg.replyTo || '',
       active,
     };
   });

@@ -56,12 +56,12 @@
   "areaServedRegions": ["Kerala", "Tamil Nadu", "Karnataka"],
 
   "//enquiry": "Enquiry form wiring. Set `provider` and the matching credential, or override at build time with FORM_PROVIDER / FORM_ACCESS_KEY / FORM_ENDPOINT so nothing sensitive is committed. Until one is set the form falls back to phone, WhatsApp and email, all of which are always in the page. See README.md > Enquiry form.",
+  "//enquiryInbox": "Which inbox enquiries land in is decided by the credential, NOT by anything in this file — for Web3Forms it is the address the access key was created for. To move them to a new address, create a new key for it. Replies go to whoever sent the enquiry, which is what you want.",
   "enquiry": {
     "provider": null,
     "accessKey": null,
     "endpoint": null,
-    "subject": "New consultation enquiry — geosustara.com",
-    "replyTo": "geosustara@gmail.com"
+    "subject": "New consultation enquiry — geosustara.com"
   },
 
   "//nav": "An explicit Home item is included deliberately. The logo also links home, but this audience includes government bodies and residential communities where that convention is not universally known, and Indian institutional sites conventionally carry it.",

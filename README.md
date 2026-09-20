@@ -236,12 +236,15 @@ offers WhatsApp as an alternative. Nothing is silently swallowed in any configur
      "provider": "web3forms",
      "accessKey": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
      "endpoint": null,
-     "subject": "New consultation enquiry — geosustara.com",
-     "replyTo": "geosustara@gmail.com"
+     "subject": "New consultation enquiry — geosustara.com"
    }
    ```
 
 4. Rebuild. Test it once from the live site and check the inbox (including Spam, the first time).
+
+**Enquiries land in whichever inbox the access key was created for.** Nothing in `site.json`
+controls that. When you move to `info@geosustara.com`, create a new key for that address and
+replace `accessKey` — changing `contact.email` alone only changes what the page displays.
 
 ### Alternatives
 
