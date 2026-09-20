@@ -42,6 +42,8 @@ Then open <http://localhost:8080>. The site rebuilds as you edit.
 
 ## Deploying
 
+> **[`docs/POST-PURCHASE-RUNBOOK.md`](docs/POST-PURCHASE-RUNBOOK.md)** is the one to open
+> once the domain is bought — tick-box execution order, exact DNS values, troubleshooting.
 > **[`docs/LAUNCH-PLAN.md`](docs/LAUNCH-PLAN.md)** is the ordered checklist — domain, host,
 > email, Business Profile, Search Console, and what is still open.
 > **[`docs/DOMAIN-AND-HOSTING.md`](docs/DOMAIN-AND-HOSTING.md)** is the detail behind it:

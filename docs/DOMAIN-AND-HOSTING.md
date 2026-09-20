@@ -54,9 +54,28 @@ Two more things that bite people here:
   some foreign sites. Set a calendar reminder 45 days before expiry regardless of where you
   buy. A lapsed domain is the most expensive mistake in this document.
 
-**So: buy the domain in rupees from an Indian registrar unless you have a Visa/Mastercard
-credit card and prefer the flat Cloudflare price.** Either way, host on Cloudflare — that part
-is free and needs no payment method.
+### Decided: Hostinger, paying yearly
+
+Aswin's card is a **Visa debit card**, so Cloudflare Registrar is genuinely payable — it is
+not ruled out the way a RuPay card would be. It was still not chosen. The reasoning, so
+nobody re-opens it:
+
+Paying **yearly** means repeating a USD charge on an Indian debit card every year. That
+needs international usage left enabled, it can fail 3DS on any given attempt, and RBI's
+recurring-mandate rules break foreign renewals without warning. A renewal that fails
+quietly is how you lose a domain that is printed on a brochure. An INR charge on an Indian
+card simply works, every year, and comes with a GST invoice.
+
+Cloudflare is cheaper — at-cost, about ₹900/year flat, against Hostinger's ₹420 then
+~₹1,400. Over five years that is roughly **₹200/year**. Not worth the annual failure mode.
+
+**Buying multi-year upfront would flip this** — one transaction instead of ten removes the
+risk, and Cloudflare sells terms up to 10 years. That was declined; yearly it is.
+
+**The registrar does not affect the website at all.** Cloudflare DNS, CDN, SSL and Pages
+hosting are free wherever the domain was bought — you point the nameservers once. No
+visitor or client can see who the registrar is. Transferring to Cloudflare later is easy if
+the renewal price ever stops making sense.
 
 ---
 
@@ -253,7 +272,10 @@ Pages off in the repository settings so the old URL stops resolving.
 `geosustara@gmail.com` on a company brochure costs you credibility with exactly the clients
 you want — government bodies, industrial buyers, institutions. Once you own the domain:
 
-1. <https://www.zoho.com/mail/> → **Free Forever** plan (5 users, 5 GB each, your own domain).
+1. Sign up on the **Forever Free** plan — 5 users, 5 GB each, your own domain:
+   <https://workplace.zoho.in/signup?type=org&plan=free>. Do *not* start from the pricing
+   page: it shows only the paid cards (₹59–₹399/user/month) and the free tier is a
+   separate block below them. `zoho.in` is the Indian data centre, where it is offered.
 2. Verify the domain by adding the TXT record Zoho gives you, in Cloudflare DNS.
 3. Add Zoho's **MX records** in Cloudflare DNS (proxy **off** — orange cloud grey — for MX).
 4. Add the **SPF** and **DKIM** records Zoho provides. Skipping these is why business mail
@@ -262,8 +284,18 @@ you want — government bodies, industrial buyers, institutions. Once you own th
 6. Update `contact.email` in `src/_data/site.json`, rebuild, redeploy.
 
 Zoho is an Indian company with Indian data centres, and the free plan genuinely stays free.
-Its one real limitation: no IMAP/POP on the free tier, so you use the web app or the Zoho
-Mail phone app rather than Outlook. Mail Lite is about ₹90/user/month if you need IMAP.
+Its one real limitation: no IMAP/POP/ActiveSync on the free tier, so you use the web app or
+the Zoho Mail phone app rather than Outlook, Apple Mail or the Gmail app.
+
+**Decided: stay on the free plan.** The Zoho Mail app covers Android, iPhone, Windows, Mac,
+Linux and any browser, so the free tier is not a web-only compromise — you simply open
+Zoho's app instead of Gmail's. Only that.
+
+If it grates later, **Mail Lite is ₹59/user/month billed annually** (₹708/year plus 18% GST,
+about **₹835/year** for one mailbox) and switching is a toggle — same address, same mail, no
+migration. Buy one user rather than five: each mailbox carries up to 30 aliases free, so
+`info@`, `sales@` and `enquiry@` share one inbox and one licence.
+Paid settings: `imappro.zoho.com` 993 SSL, `smtppro.zoho.com` 465 SSL / 587 TLS.
 
 Keep the Gmail address working and forward it — old brochures will be in circulation for
 years.
@@ -297,7 +329,8 @@ years.
 The first two differ by about ₹1,000 across five years. That is not enough to agonise over —
 pick whichever you can actually pay for without a failed transaction.
 
-Add ~₹5,400/year only if you later need Zoho Mail Lite for IMAP across 5 users.
+Email adds **₹0** — the Zoho free plan is the decision. Add ~₹835/year only if you later
+want IMAP (Outlook, Apple Mail, the Gmail app) on a single Mail Lite mailbox.
 
 ---
 

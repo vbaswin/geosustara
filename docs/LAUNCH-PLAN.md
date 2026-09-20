@@ -3,11 +3,12 @@
 *Written 20 September 2026. Start here if you are picking this up after a break, or if
 someone new — person or assistant — is working on the site.*
 
-Three documents cover everything:
+Four documents cover everything:
 
 | | |
 |---|---|
 | **This file** | What state the site is in, what happens next, and in what order |
+| [`POST-PURCHASE-RUNBOOK.md`](POST-PURCHASE-RUNBOOK.md) | **The one to open once the domain is bought.** Tick-box execution order, exact DNS values, troubleshooting |
 | [`DOMAIN-AND-HOSTING.md`](DOMAIN-AND-HOSTING.md) | Registrars, hosts, payment from India, DNS, business email — the detail behind steps 1–3 and 6 |
 | [`../README.md`](../README.md) | How the site is built and how to edit it |
 
@@ -85,16 +86,32 @@ Zoho needs DNS, so it comes after Cloudflare.
 
 ### Step 1 — Buy the domain
 
-**Decision already made:** an Indian registrar if you are paying with a RuPay or domestic
-debit card, Cloudflare Registrar if you have a Visa/Mastercard **credit** card with
-international payments enabled. The five-year difference is about ₹1,000 — not worth a
-failed transaction over.
+**Settled 20 September 2026: Hostinger, `geosustara.com`, one-year term.**
 
-- **Hostinger** or **BigRock** — INR, GST invoice, RuPay works. ~₹420 first year,
-  ~₹1,400/year after.
-- **Cloudflare Registrar** — ~₹1,000/year flat forever, free WHOIS privacy, but USD only
-  and **RuPay does not work there** (Cloudflare takes Visa, Mastercard, Amex, Discover,
-  UnionPay).
+| | |
+|---|---|
+| Paid now | **₹1,081.40** — ₹899 domain + ₹17.44 ICANN + ₹164.96 GST |
+| WHOIS privacy | ₹0, included |
+| **Renews Sept 2027 at** | **~₹1,789** — ₹1,499 + ICANN + 18% GST |
+
+The ₹899 is promotional. Budget ₹1,789, not ₹1,081, for every year after the first.
+
+Why Hostinger and not the alternatives, so nobody reopens it:
+
+| Registrar | Renewal incl. GST | Verdict |
+|---|---|---|
+| Cloudflare | ~₹1,100 flat, at cost | Cheapest, but a **USD charge on an Indian debit card every year** — 3DS can fail and RBI rules break foreign renewals |
+| BigRock | ~₹1,450–1,600 | No advantage over Hostinger |
+| **Hostinger** | ~₹1,789 | **Chosen.** INR, GST invoice you can claim, any Indian card, free WHOIS privacy |
+| GoDaddy | ~₹1,887 | Same ₹1 first-year hook, higher renewal, worst upsell flow |
+
+A three-year term was offered at ₹3,600 (₹1,200/year, saving ~₹1,060) and **declined — one
+year was preferred.** That is a fine trade: it keeps the domain unlocked, so at renewal you
+can move to Cloudflare (~₹1,100) instead of paying Hostinger's ₹1,789.
+
+⚠️ **Set a calendar reminder for early August 2027**, ~45 days before expiry. Annual renewal
+has exactly one failure mode — it lapses while nobody is looking. Auto-renew is a safety
+net, not a guarantee: it fails silently when a card is reissued.
 
 At checkout, anywhere:
 
@@ -163,16 +180,40 @@ Finally: SSL/TLS → **Full (strict)**, and turn on **Always Use HTTPS**.
 `geosustara@gmail.com` on a brochure aimed at government bodies and industrial buyers costs
 you credibility with exactly the clients you want.
 
-[Zoho Mail](https://www.zoho.com/mail/) **Free Forever** — 5 users, 5 GB each, your own
+[Zoho Mail](https://www.zoho.com/mail/) **Forever Free** — 5 users, 5 GB each, your own
 domain, no card. Indian company, Indian data centres.
+
+> **The pricing page does not show it.** That page lists only paid cards
+> (₹59–₹399/user/month). The free tier is a separate block *below* the cards, headed
+> "Forever Free Plan". Skip the pricing page and sign up directly at
+> <https://workplace.zoho.in/signup?type=org&plan=free> — `zoho.in` is the Indian data
+> centre, and Zoho offers the free plan there.
 
 1. Verify the domain with the TXT record Zoho gives you, added in Cloudflare DNS.
 2. Add Zoho's **MX** records. Proxy **off** (grey cloud, not orange) for MX.
 3. Add the **SPF** and **DKIM** records. Skipping these is why business mail lands in Spam.
 4. Create `info@geosustara.com`.
 
-Limitation: the free tier has no IMAP/POP, so you use the Zoho web app or phone app rather
-than Outlook. Mail Lite is ~₹90/user/month if you need IMAP.
+**Stay on the free plan. Do not pay for email.** It is a real mailbox — it sends as well as
+receives, which Cloudflare Email Routing does not — and it covers every device:
+
+| Platform | Zoho Mail app |
+|---|---|
+| Android, iPhone/iPad | Yes |
+| Windows, Mac, Linux | Yes (Zoho Mail Desktop Lite) |
+| Any browser | Yes |
+
+The single limitation: the free tier has **no IMAP/POP/ActiveSync**, so you open Zoho's own
+app rather than Outlook, Apple Mail or the Gmail app. That is the whole trade — which app
+you open, not whether you can read mail on a device.
+
+If that becomes annoying later, **Mail Lite is ₹59/user/month billed annually** — about
+**₹835/year** for one mailbox. It is a toggle in the admin console: same address, same mail,
+no migration. Buy *one* user, not five — a mailbox carries up to 30 aliases free, so
+`info@`, `sales@` and `enquiry@` share one inbox and one licence.
+
+Paid IMAP/SMTP settings differ from the free ones — note the `pro`:
+`imappro.zoho.com` port 993 SSL, `smtppro.zoho.com` port 465 SSL or 587 TLS.
 
 **Keep `geosustara@gmail.com` alive and forwarding.** It is printed on the brochure, those
 will circulate for years, and it is the Google account that owns the Business Profile.
