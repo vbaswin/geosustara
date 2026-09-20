@@ -3,6 +3,11 @@
 Static website for **geosustara.com**. Built with [Eleventy](https://www.11ty.dev/); the output in
 `_site/` is plain HTML, CSS, JS and images that will run on any web host.
 
+> **Not live yet?** Start with [`docs/LAUNCH-PLAN.md`](docs/LAUNCH-PLAN.md) — the ordered
+> plan for buying the domain, hosting it, business email, the Google Business Profile and
+> Search Console, plus what is still waiting on a decision. This README covers how the site
+> is built and edited; the launch plan covers everything outside the repository.
+
 ---
 
 ## Quick start
@@ -37,10 +42,11 @@ Then open <http://localhost:8080>. The site rebuilds as you edit.
 
 ## Deploying
 
-> **Buying the domain and choosing a host is covered end to end in
-> [`docs/DOMAIN-AND-HOSTING.md`](docs/DOMAIN-AND-HOSTING.md)** — registrars in India, five-year
-> cost comparison, DNS, `www` redirect, and business email on the domain. Read that first if
-> the site is not live yet.
+> **[`docs/LAUNCH-PLAN.md`](docs/LAUNCH-PLAN.md)** is the ordered checklist — domain, host,
+> email, Business Profile, Search Console, and what is still open.
+> **[`docs/DOMAIN-AND-HOSTING.md`](docs/DOMAIN-AND-HOSTING.md)** is the detail behind it:
+> registrars in India, paying with an Indian card, five-year cost comparison, DNS and the
+> `www` redirect.
 
 ### Cloudflare Pages (recommended)
 
