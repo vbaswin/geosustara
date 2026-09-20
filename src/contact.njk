@@ -56,14 +56,32 @@ faqs:
           <div class="ctv">{{ site.areaServed }} &middot; site work mainly in {{ site.contact.region }}</div>
         </div>
 
+        {%- set directions = "https://www.google.com/maps/search/?api=1&query=" + (site.contact.addressFull | urlencode) %}
+
         <div id="map" data-lat="{{ site.map.lat }}" data-lng="{{ site.map.lng }}" data-zoom="{{ site.map.zoom }}"
              data-v="{{ '/assets/vendor/leaflet.js' | assetVersion }}"
              data-popup="{{ site.name }} — {{ site.contact.locality }}"
              role="img" aria-label="Map showing the {{ 'approximate ' if site.map.approximate }}office location in {{ site.contact.locality }}, {{ site.contact.region }}."></div>
-        {%- if site.map.approximate %}
-        <p class="form-note">Map shows the {{ site.contact.addressLine }} neighbourhood. Please call ahead for
-          directions to the office.</p>
-        {%- endif %}
+
+        {#- Shown by main.js if the tile service is unreachable or starts demanding a key —
+            which is exactly what happened to the previous basemap provider. Never a blank
+            frame: the address and the directions link are what a visitor came for anyway. -#}
+        <div class="map-fallback" id="map-fallback" hidden>
+          <span class="ctk">Finding us</span>
+          <address>{{ site.contact.addressFull }}</address>
+          <a class="btn btn--out" href="{{ directions }}" target="_blank" rel="noopener">
+            Open in Google Maps {{ arrow() }}</a>
+        </div>
+
+        <p class="form-note map-note">
+          {%- if site.map.approximate %}
+          The pin is at neighbourhood level. For door-to-door directions,
+          {%- else %}
+          For door-to-door directions,
+          {%- endif %}
+          <a href="{{ directions }}" target="_blank" rel="noopener">open the address in Google Maps</a>
+          or call ahead — the lanes here are easier described than mapped.
+        </p>
       </div>
 
       {% include "partials/contact-form.njk" %}

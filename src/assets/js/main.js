@@ -129,10 +129,29 @@
     }
   }
 
-  /* ------------------------------------------------- lazy-load Leaflet ---- */
+  /* ------------------------------------------------- lazy-load Leaflet ----
+     The map is decorative — the address, both phone numbers and a directions link are
+     plain markup and never depend on any of this. If the tiles cannot be drawn we say so
+     and step out of the way, rather than leaving a broken-looking panel on the page.
+
+     CARTO's dark basemap was used here until it began requiring an API key and started
+     serving tiles watermarked "API KEY REQUIRED". Any free tile service can do that, so
+     `giveUp` below is not defensive programming for its own sake — it is the handler for
+     a failure mode this page has already been through once.
+  ------------------------------------------------------------------------- */
   (function () {
     var el = $('#map');
-    if (!el || !('IntersectionObserver' in window)) return;
+    if (!el) return;
+    var fallback = $('#map-fallback');
+
+    // Reveal the address panel and remove the map frame entirely.
+    var giveUp = function () {
+      if (fallback) fallback.hidden = false;
+      if (el.parentNode) el.parentNode.removeChild(el);
+    };
+
+    if (!('IntersectionObserver' in window)) { giveUp(); return; }
+
     var started = false;
     var load = function () {
       if (started) return;
@@ -150,19 +169,34 @@
       document.head.appendChild(css);
       var s = document.createElement('script');
       s.src = base + '/assets/vendor/leaflet.js' + v;
+      s.onerror = giveUp;
       s.onload = function () {
         try {
           var lat = parseFloat(el.dataset.lat), lng = parseFloat(el.dataset.lng);
           var zoom = parseInt(el.dataset.zoom, 10) || 13;
           var map = L.map(el, { scrollWheelZoom: false }).setView([lat, lng], zoom);
-          L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-            maxZoom: 19
-          }).addTo(map);
+
+          var tiles = L.tileLayer(
+            'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+            {
+              attribution: 'Esri, HERE, Garmin &copy; OpenStreetMap contributors',
+              maxZoom: 16
+            }
+          );
+
+          // A handful of failures is normal at the edges of a pan. A wall of them means
+          // the service is gone or has started demanding a key, and a grid of grey
+          // squares looks worse than no map at all.
+          var errors = 0;
+          tiles.on('tileerror', function () {
+            if (++errors > 6) { tiles.off('tileerror'); map.remove(); giveUp(); }
+          });
+
+          tiles.addTo(map);
           L.circleMarker([lat, lng], {
             radius: 9, color: '#16C264', weight: 2, fillColor: '#16C264', fillOpacity: 0.35
           }).addTo(map).bindPopup(el.dataset.popup || '');
-        } catch (e) { /* map is decorative; the address is in the DOM regardless */ }
+        } catch (e) { giveUp(); }
       };
       document.body.appendChild(s);
     };
