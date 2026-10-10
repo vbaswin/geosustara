@@ -533,17 +533,6 @@
     });
   });
 
-  $$('.mag').forEach(function (btn) {
-    var qx = gsap.quickTo(btn, 'x', { duration: 0.45, ease: 'power3.out' });
-    var qy = gsap.quickTo(btn, 'y', { duration: 0.45, ease: 'power3.out' });
-    btn.addEventListener('pointermove', function (e) {
-      var r = btn.getBoundingClientRect();
-      qx((e.clientX - (r.left + r.width / 2)) * 0.28);
-      qy((e.clientY - (r.top + r.height / 2)) * 0.4);
-    }, { passive: true });
-    btn.addEventListener('pointerleave', function () { qx(0); qy(0); });
-  });
-
   var brand = $('.brand');
   var brandMark = brand && $('.brand-mark', brand);
   if (brandMark) {
